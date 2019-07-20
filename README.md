@@ -1,5 +1,7 @@
 # Plock-iOS
 
+#Libraries
+- SnapKit
 
 ## Requirements
 - Xcode 11 (Beta 3)
