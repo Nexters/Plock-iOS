@@ -12,9 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler : nil )
+
         // Do any additional setup after loading the view.
     }
-
-
 }
-

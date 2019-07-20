@@ -14,6 +14,7 @@
 		14FDF40A22D9AA3D00AD2C65 /* Plock.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14FDF40822D9AA3D00AD2C65 /* Plock.xcdatamodeld */; };
 		14FDF40C22D9AA3F00AD2C65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14FDF40B22D9AA3F00AD2C65 /* Assets.xcassets */; };
 		14FDF40F22D9AA3F00AD2C65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14FDF40D22D9AA3F00AD2C65 /* LaunchScreen.storyboard */; };
+		C59C18582FD9BB168CF19AA4 /* Pods_Plock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B274AC239BFDC7DB4D42440F /* Pods_Plock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,9 @@
 		14FDF40B22D9AA3F00AD2C65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14FDF40E22D9AA3F00AD2C65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14FDF41022D9AA3F00AD2C65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DE67799394C4136FD6E2E9D /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
+		6A3C8F40D7EBB7074A926815 /* Pods-Plock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.debug.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.debug.xcconfig"; sourceTree = "<group>"; };
+		B274AC239BFDC7DB4D42440F /* Pods_Plock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C59C18582FD9BB168CF19AA4 /* Pods_Plock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				14FDF3FE22D9AA3D00AD2C65 /* Plock */,
 				14FDF3FD22D9AA3D00AD2C65 /* Products */,
+				7597995B764AF8C23AF5B1F6 /* Pods */,
+				DE77D6BF5B380FD7ACF03517 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +77,24 @@
 			path = Plock;
 			sourceTree = "<group>";
 		};
+		7597995B764AF8C23AF5B1F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A3C8F40D7EBB7074A926815 /* Pods-Plock.debug.xcconfig */,
+				1DE67799394C4136FD6E2E9D /* Pods-Plock.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DE77D6BF5B380FD7ACF03517 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B274AC239BFDC7DB4D42440F /* Pods_Plock.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14FDF41322D9AA3F00AD2C65 /* Build configuration list for PBXNativeTarget "Plock" */;
 			buildPhases = (
+				EC9CC92D68CD5B74952DFE3A /* [CP] Check Pods Manifest.lock */,
 				14FDF3F822D9AA3D00AD2C65 /* Sources */,
 				14FDF3F922D9AA3D00AD2C65 /* Frameworks */,
 				14FDF3FA22D9AA3D00AD2C65 /* Resources */,
+				BA11E169146CA8D6D6C8DE01 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +162,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BA11E169146CA8D6D6C8DE01 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Plock/Pods-Plock-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Plock/Pods-Plock-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Plock/Pods-Plock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC9CC92D68CD5B74952DFE3A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Plock-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14FDF3F822D9AA3D00AD2C65 /* Sources */ = {
@@ -286,6 +355,7 @@
 		};
 		14FDF41422D9AA3F00AD2C65 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A3C8F40D7EBB7074A926815 /* Pods-Plock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -295,7 +365,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Zedd.Plock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.plock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -304,6 +374,7 @@
 		};
 		14FDF41522D9AA3F00AD2C65 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DE67799394C4136FD6E2E9D /* Pods-Plock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -313,7 +384,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Zedd.Plock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.plock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
