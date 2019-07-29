@@ -34,15 +34,15 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
     override init(dependency: RootDependency) {
         super.init(dependency: dependency)
     }
-
+    
     func build() -> LaunchRouting {
-            let viewController = RootViewController()
-            let component = RootComponent(dependency: dependency,
-                                          rootViewController: viewController)
-            let interactor = RootInteractor(presenter: viewController)
-
-            return RootRouter(interactor: interactor,
-                              viewController: viewController
-            )
-        }
+        let viewController = RootViewController()
+        let component = RootComponent(dependency: dependency,
+                                      rootViewController: viewController)
+        let interactor = RootInteractor(presenter: viewController)
+        
+        return RootRouter(interactor: interactor,
+                          viewController: viewController
+        )
+    }
 }
