@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import RIBs
 
-class ViewController: UIViewController {
+extension ViewController: ViewControllable{ }
 
+final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
 }
 
