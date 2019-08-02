@@ -20,6 +20,13 @@
 		A174552322EF17F300C9844E /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174551F22EF17F300C9844E /* RootBuilder.swift */; };
 		A174552422EF17F300C9844E /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174552022EF17F300C9844E /* RootInteractor.swift */; };
 		A174552722EF1ABE00C9844E /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174552622EF1ABE00C9844E /* AppComponent.swift */; };
+		A174552D22F4578A00C9844E /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174552922F4578A00C9844E /* MainRouter.swift */; };
+		A174552E22F4578A00C9844E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174552A22F4578A00C9844E /* MainViewController.swift */; };
+		A174552F22F4578A00C9844E /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174552B22F4578A00C9844E /* MainBuilder.swift */; };
+		A174553022F4578A00C9844E /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174552C22F4578A00C9844E /* MainInteractor.swift */; };
+		A174553422F45C0800C9844E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174553322F45C0800C9844E /* BaseViewController.swift */; };
+		A174553722F465C300C9844E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174553622F465C300C9844E /* UIView+.swift */; };
+		A174553922F468B800C9844E /* RootComponent+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174553822F468B800C9844E /* RootComponent+Main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +46,13 @@
 		A174551F22EF17F300C9844E /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootBuilder.swift; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Root/RootBuilder.swift"; sourceTree = "<group>"; };
 		A174552022EF17F300C9844E /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootInteractor.swift; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Root/RootInteractor.swift"; sourceTree = "<group>"; };
 		A174552622EF1ABE00C9844E /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppComponent.swift; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/AppStart/AppComponent.swift"; sourceTree = "<group>"; };
+		A174552922F4578A00C9844E /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainRouter.swift; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Main/MainRouter.swift"; sourceTree = "<group>"; };
+		A174552A22F4578A00C9844E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Main/MainViewController.swift"; sourceTree = "<group>"; };
+		A174552B22F4578A00C9844E /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainBuilder.swift; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Main/MainBuilder.swift"; sourceTree = "<group>"; };
+		A174552C22F4578A00C9844E /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainInteractor.swift; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Main/MainInteractor.swift"; sourceTree = "<group>"; };
+		A174553322F45C0800C9844E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = "../../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Common/Base/BaseViewController.swift"; sourceTree = "<group>"; };
+		A174553622F465C300C9844E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+.swift"; path = "../../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Common/Extension/UIView+.swift"; sourceTree = "<group>"; };
+		A174553822F468B800C9844E /* RootComponent+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RootComponent+Main.swift"; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Root/RootComponent+Main.swift"; sourceTree = "<group>"; };
 		F02551D0C66B394311DD491A /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,7 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				14FDF40322D9AA3D00AD2C65 /* ViewController.swift */,
+				A174553122F45BDE00C9844E /* Common */,
 				A174552522EF181B00C9844E /* AppStart */,
+				A174552822F4576800C9844E /* Main */,
 				A174551C22EF17E600C9844E /* Root */,
 				14FDF40522D9AA3D00AD2C65 /* Main.storyboard */,
 				14FDF40B22D9AA3F00AD2C65 /* Assets.xcassets */,
@@ -102,6 +118,7 @@
 				A174551D22EF17F300C9844E /* RootRouter.swift */,
 				A174551E22EF17F300C9844E /* RootViewController.swift */,
 				A174552022EF17F300C9844E /* RootInteractor.swift */,
+				A174553822F468B800C9844E /* RootComponent+Main.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -114,6 +131,42 @@
 				A174552622EF1ABE00C9844E /* AppComponent.swift */,
 			);
 			path = AppStart;
+			sourceTree = "<group>";
+		};
+		A174552822F4576800C9844E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A174552922F4578A00C9844E /* MainRouter.swift */,
+				A174552A22F4578A00C9844E /* MainViewController.swift */,
+				A174552B22F4578A00C9844E /* MainBuilder.swift */,
+				A174552C22F4578A00C9844E /* MainInteractor.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A174553122F45BDE00C9844E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A174553522F465A300C9844E /* Extension */,
+				A174553222F45BE500C9844E /* Base */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A174553222F45BE500C9844E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A174553322F45C0800C9844E /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A174553522F465A300C9844E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A174553622F465C300C9844E /* UIView+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		BE3A50755C06761C3A3AC0BC /* Pods */ = {
@@ -241,14 +294,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
+				A174552E22F4578A00C9844E /* MainViewController.swift in Sources */,
 				A174552322EF17F300C9844E /* RootBuilder.swift in Sources */,
 				A174552122EF17F300C9844E /* RootRouter.swift in Sources */,
 				A174552222EF17F300C9844E /* RootViewController.swift in Sources */,
+				A174553422F45C0800C9844E /* BaseViewController.swift in Sources */,
 				14FDF40022D9AA3D00AD2C65 /* AppDelegate.swift in Sources */,
+				A174552D22F4578A00C9844E /* MainRouter.swift in Sources */,
 				A174552722EF1ABE00C9844E /* AppComponent.swift in Sources */,
+				A174553722F465C300C9844E /* UIView+.swift in Sources */,
+				A174553922F468B800C9844E /* RootComponent+Main.swift in Sources */,
+				A174552F22F4578A00C9844E /* MainBuilder.swift in Sources */,
 				14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */,
 				A174552422EF17F300C9844E /* RootInteractor.swift in Sources */,
 				14FDF40A22D9AA3D00AD2C65 /* Plock.xcdatamodeld in Sources */,
+				A174553022F4578A00C9844E /* MainInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

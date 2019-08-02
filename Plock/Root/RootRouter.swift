@@ -9,7 +9,7 @@
 import RIBs
 
 
-protocol RootInteractable: Interactable {
+protocol RootInteractable: Interactable, MainListener {
     var router: RootRouting? { get set }
     var listener: RootListener? { get set }
 }
@@ -20,10 +20,13 @@ protocol RootViewControllable: ViewControllable {
 }
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
-
-    // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: RootInteractable,
-                  viewController: RootViewControllable) {
+    private var mainBuilder: MainBuildable
+    
+    
+    init(interactor: RootInteractable,
+         viewController: RootViewControllable,
+         mainBuilder: MainBuildable) {
+        self.mainBuilder = mainBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -32,6 +35,8 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         super.didLoad()
         self.routeToViewController()
     }
+    
+    
 }
 
 
@@ -41,9 +46,12 @@ extension RootRouter{
 //        let loggedOut = loggedOutBuilder.build(withListener: interactor)
 //        self.loggedOut = loggedOut
 //        attachChild(loggedOut)
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        self.viewController.present(viewController: viewController)
+        let mainBuilder = self.mainBuilder.build(withListener: self.interactor)
+        self.attachChild(mainBuilder)
+        self.viewController.present(viewController: mainBuilder.viewControllable)
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+//        self.viewController.present(viewController: viewController)
     }
 }
 
