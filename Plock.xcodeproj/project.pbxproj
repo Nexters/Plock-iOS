@@ -35,6 +35,14 @@
 		A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB79F22F574A5006EB852 /* RootRouter.swift */; };
 		A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A022F574A5006EB852 /* RootBuilder.swift */; };
 		A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A122F574A5006EB852 /* RootViewController.swift */; };
+		A1BEB7AE22F58B05006EB852 /* ReadMapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7AA22F58B05006EB852 /* ReadMapRouter.swift */; };
+		A1BEB7AF22F58B05006EB852 /* ReadMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7AB22F58B05006EB852 /* ReadMapViewController.swift */; };
+		A1BEB7B022F58B05006EB852 /* ReadMapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7AC22F58B05006EB852 /* ReadMapBuilder.swift */; };
+		A1BEB7B122F58B05006EB852 /* ReadMapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7AD22F58B05006EB852 /* ReadMapInteractor.swift */; };
+		A1BEB7B622F58BA8006EB852 /* ReadListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7B222F58BA8006EB852 /* ReadListRouter.swift */; };
+		A1BEB7B722F58BA8006EB852 /* ReadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7B322F58BA8006EB852 /* ReadListViewController.swift */; };
+		A1BEB7B822F58BA8006EB852 /* ReadListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7B422F58BA8006EB852 /* ReadListBuilder.swift */; };
+		A1BEB7B922F58BA8006EB852 /* ReadListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7B522F58BA8006EB852 /* ReadListInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +77,14 @@
 		A1BEB79F22F574A5006EB852 /* RootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		A1BEB7A022F574A5006EB852 /* RootBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		A1BEB7A122F574A5006EB852 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		A1BEB7AA22F58B05006EB852 /* ReadMapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMapRouter.swift; sourceTree = "<group>"; };
+		A1BEB7AB22F58B05006EB852 /* ReadMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMapViewController.swift; sourceTree = "<group>"; };
+		A1BEB7AC22F58B05006EB852 /* ReadMapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMapBuilder.swift; sourceTree = "<group>"; };
+		A1BEB7AD22F58B05006EB852 /* ReadMapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMapInteractor.swift; sourceTree = "<group>"; };
+		A1BEB7B222F58BA8006EB852 /* ReadListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadListRouter.swift; sourceTree = "<group>"; };
+		A1BEB7B322F58BA8006EB852 /* ReadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadListViewController.swift; sourceTree = "<group>"; };
+		A1BEB7B422F58BA8006EB852 /* ReadListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadListBuilder.swift; sourceTree = "<group>"; };
+		A1BEB7B522F58BA8006EB852 /* ReadListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadListInteractor.swift; sourceTree = "<group>"; };
 		F02551D0C66B394311DD491A /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +211,8 @@
 				A1BEB78422F55A46006EB852 /* ReadViewController.swift */,
 				A1BEB78522F55A46006EB852 /* ReadBuilder.swift */,
 				A1BEB78622F55A46006EB852 /* ReadInteractor.swift */,
+				A1BEB7A922F58ABF006EB852 /* ReadList */,
+				A1BEB7A822F58AAE006EB852 /* ReadMap */,
 			);
 			path = Read;
 			sourceTree = "<group>";
@@ -215,6 +233,28 @@
 				A1BEB79122F57240006EB852 /* MapView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A1BEB7A822F58AAE006EB852 /* ReadMap */ = {
+			isa = PBXGroup;
+			children = (
+				A1BEB7AA22F58B05006EB852 /* ReadMapRouter.swift */,
+				A1BEB7AB22F58B05006EB852 /* ReadMapViewController.swift */,
+				A1BEB7AC22F58B05006EB852 /* ReadMapBuilder.swift */,
+				A1BEB7AD22F58B05006EB852 /* ReadMapInteractor.swift */,
+			);
+			path = ReadMap;
+			sourceTree = "<group>";
+		};
+		A1BEB7A922F58ABF006EB852 /* ReadList */ = {
+			isa = PBXGroup;
+			children = (
+				A1BEB7B222F58BA8006EB852 /* ReadListRouter.swift */,
+				A1BEB7B322F58BA8006EB852 /* ReadListViewController.swift */,
+				A1BEB7B422F58BA8006EB852 /* ReadListBuilder.swift */,
+				A1BEB7B522F58BA8006EB852 /* ReadListInteractor.swift */,
+			);
+			path = ReadList;
 			sourceTree = "<group>";
 		};
 		BE3A50755C06761C3A3AC0BC /* Pods */ = {
@@ -347,7 +387,10 @@
 				A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */,
 				A1BEB79822F57491006EB852 /* MainInteractor.swift in Sources */,
 				A1BEB78A22F55A46006EB852 /* ReadInteractor.swift in Sources */,
+				A1BEB7B922F58BA8006EB852 /* ReadListInteractor.swift in Sources */,
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
+				A1BEB7B122F58B05006EB852 /* ReadMapInteractor.swift in Sources */,
+				A1BEB7B022F58B05006EB852 /* ReadMapBuilder.swift in Sources */,
 				A1BEB79C22F57491006EB852 /* MainBuilder.swift in Sources */,
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,
 				A1BEB79922F57491006EB852 /* MainRouter.swift in Sources */,
@@ -355,7 +398,12 @@
 				A1BEB7A322F574A5006EB852 /* RootComponent+Main.swift in Sources */,
 				14FDF40022D9AA3D00AD2C65 /* AppDelegate.swift in Sources */,
 				A174552722EF1ABE00C9844E /* AppComponent.swift in Sources */,
+				A1BEB7B722F58BA8006EB852 /* ReadListViewController.swift in Sources */,
 				A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */,
+				A1BEB7AF22F58B05006EB852 /* ReadMapViewController.swift in Sources */,
+				A1BEB7B822F58BA8006EB852 /* ReadListBuilder.swift in Sources */,
+				A1BEB7B622F58BA8006EB852 /* ReadListRouter.swift in Sources */,
+				A1BEB7AE22F58B05006EB852 /* ReadMapRouter.swift in Sources */,
 				A174553722F465C300C9844E /* UIView+.swift in Sources */,
 				14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */,
 				A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */,

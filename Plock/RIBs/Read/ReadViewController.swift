@@ -12,9 +12,8 @@ import RxCocoa
 import UIKit
 
 protocol ReadPresentableListener: class {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func showMap()
+    func showList()
 }
 
 final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable {
@@ -58,8 +57,12 @@ extension ReadViewController{
         segment.selectedSegmentIndex = 0;
         self.navigationItem.titleView = segment
         
-        segment.rx.value.subscribe(onNext:{
-            print("changed segmentControl \($0)")
+        segment.rx.value.subscribe(onNext:{ [weak self] segment in
+            if segment == 0 {
+                self?.listener?.showMap()
+            }else{
+                self?.listener?.showList()
+            }
         }).disposed(by: self.disposeBag)
     }
 }
