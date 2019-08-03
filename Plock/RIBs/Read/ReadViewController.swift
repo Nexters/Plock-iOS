@@ -19,6 +19,7 @@ protocol ReadPresentableListener: class {
 final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable {
 
     weak var listener: ReadPresentableListener?
+    private var mapView = MapView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -26,6 +27,11 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView(){
+        super.loadView()
+        self.view = self.mapView
     }
     
     override func viewDidLoad() {
