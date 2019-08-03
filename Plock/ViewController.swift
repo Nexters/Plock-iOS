@@ -8,13 +8,30 @@
 
 import UIKit
 import RIBs
+import SnapKit
 
 extension ViewController: ViewControllable{ }
 
 final class ViewController: UIViewController {
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .white
+        let tempLabel = UILabel()
+        tempLabel.text = "하윙"
+        self.view.addSubview(tempLabel)
+        
+        tempLabel.snp.makeConstraints{
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
     }
 }
 

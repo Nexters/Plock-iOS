@@ -46,11 +46,19 @@ extension RootRouter: RootRouting{
         /*
          제드꺼 붙이면 됨
          */
+        if let main = self.mainRouting {
+            self.detachChild(main)
+            viewController.dismiss(viewController: main.viewControllable)
+            self.mainRouting = nil
+        }
+        let vc = ViewController()
+        self.viewController.present(viewController: vc)
     }
     
     //MARK: Private
     private func routeToViewController(){
         let mainBuilder = self.mainBuilder.build(withListener: self.interactor)
+        self.mainRouting = mainBuilder
         self.attachChild(mainBuilder)
         let navigationController = UINavigationController(rootViewController: mainBuilder.viewControllable.uiviewController)
         self.viewController.present(viewController: navigationController)

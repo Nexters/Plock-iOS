@@ -34,10 +34,10 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
     }
     
     func present(viewController: ViewControllable) {
-        self.present(viewController.uiviewController, animated: false, completion: nil)
+        self.present(viewController.uiviewController, animated: true, completion: nil)
     }
     
     func dismiss(viewController: ViewControllable) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 }

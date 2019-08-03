@@ -8,6 +8,7 @@
 
 import RIBs
 import RxSwift
+import RxCocoa
 import UIKit
 
 protocol ReadPresentableListener: class {
@@ -20,6 +21,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
 
     weak var listener: ReadPresentableListener?
     private var mapView = MapView()
+    private let disposeBag = DisposeBag()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -40,9 +42,24 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     override func setupUI() {
         self.view.backgroundColor = .white
+        self.setupNavigationTitle()
     }
     
     override func setupBind() {
         
+    }
+}
+
+//MARK: Draw UI
+extension ReadViewController{
+    private func setupNavigationTitle(){
+        let segment: UISegmentedControl = UISegmentedControl(items: ["지도", "리스트"])
+        segment.sizeToFit()
+        segment.selectedSegmentIndex = 0;
+        self.navigationItem.titleView = segment
+        
+        segment.rx.value.subscribe(onNext:{
+            print("changed segmentControl \($0)")
+        }).disposed(by: self.disposeBag)
     }
 }
