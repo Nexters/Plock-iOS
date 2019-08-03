@@ -1,36 +1,35 @@
 //
-//  MainInteractor.swift
+//  ReadInteractor.swift
 //  Plock
 //
-//  Created by Haehyeon Jeong on 2019/08/02.
+//  Created by Haehyeon Jeong on 2019/08/03.
 //  Copyright © 2019 Zedd. All rights reserved.
 //
 
 import RIBs
 import RxSwift
 
-protocol MainRouting: ViewableRouting {
+protocol ReadRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-    func goRead()
 }
 
-protocol MainPresentable: Presentable {
-    var listener: MainPresentableListener? { get set }
+protocol ReadPresentable: Presentable {
+    var listener: ReadPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol MainListener: class {
+protocol ReadListener: class {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
-    func goWrite()
 }
 
-final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable {
-    weak var router: MainRouting?
-    weak var listener: MainListener?
+final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteractable, ReadPresentableListener {
+
+    weak var router: ReadRouting?
+    weak var listener: ReadListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: MainPresentable) {
+    override init(presenter: ReadPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -43,15 +42,5 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
-    }
-}
-
-extension MainInteractor: MainPresentableListener{
-    func read() {
-        self.router?.goRead()
-    }
-    
-    func write() {
-        self.listener?.goWrite()
     }
 }

@@ -31,10 +31,14 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
     }
 
     func build(withListener listener: MainListener) -> MainRouting {
-        let _ = MainComponent(dependency: dependency)
+        let component = MainComponent(dependency: dependency)
         let viewController = MainViewController()
         let interactor = MainInteractor(presenter: viewController)
         interactor.listener = listener
-        return MainRouter(interactor: interactor, viewController: viewController)
+        let readBuilder = ReadBuilder(dependency: component)
+        
+        return MainRouter(interactor: interactor,
+                          viewController: viewController,
+                          readBuilder: readBuilder)
     }
 }

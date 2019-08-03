@@ -18,6 +18,7 @@ protocol RootPresentableListener: class {
 
 final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
     weak var listener: RootPresentableListener?
+    var currentViewController: UIViewController?
     
     init() {
         super.init(nibName: nil, bundle: nil)

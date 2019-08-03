@@ -19,9 +19,10 @@ protocol RootViewControllable: ViewControllable {
     func dismiss(viewController:ViewControllable)
 }
 
-final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
+final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable> {
     private var mainBuilder: MainBuildable
-    
+    private var mainRouting: ViewableRouting?
+    private var readRouting: ViewableRouting?
     
     init(interactor: RootInteractable,
          viewController: RootViewControllable,
@@ -35,23 +36,24 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         super.didLoad()
         self.routeToViewController()
     }
-    
-    
 }
 
 
 // MARK: - Private
-extension RootRouter{
+extension RootRouter: RootRouting{
+    func routeToWrite() {
+        print("routeToWrite")
+        /*
+         제드꺼 붙이면 됨
+         */
+    }
+    
+    //MARK: Private
     private func routeToViewController(){
-//        let loggedOut = loggedOutBuilder.build(withListener: interactor)
-//        self.loggedOut = loggedOut
-//        attachChild(loggedOut)
         let mainBuilder = self.mainBuilder.build(withListener: self.interactor)
         self.attachChild(mainBuilder)
-        self.viewController.present(viewController: mainBuilder.viewControllable)
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-//        self.viewController.present(viewController: viewController)
+        let navigationController = UINavigationController(rootViewController: mainBuilder.viewControllable.uiviewController)
+        self.viewController.present(viewController: navigationController)
     }
 }
 

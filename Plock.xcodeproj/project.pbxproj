@@ -27,6 +27,12 @@
 		A174553422F45C0800C9844E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174553322F45C0800C9844E /* BaseViewController.swift */; };
 		A174553722F465C300C9844E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174553622F465C300C9844E /* UIView+.swift */; };
 		A174553922F468B800C9844E /* RootComponent+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174553822F468B800C9844E /* RootComponent+Main.swift */; };
+		A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */; };
+		A1BEB78722F55A46006EB852 /* ReadRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78322F55A46006EB852 /* ReadRouter.swift */; };
+		A1BEB78822F55A46006EB852 /* ReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78422F55A46006EB852 /* ReadViewController.swift */; };
+		A1BEB78922F55A46006EB852 /* ReadBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78522F55A46006EB852 /* ReadBuilder.swift */; };
+		A1BEB78A22F55A46006EB852 /* ReadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78622F55A46006EB852 /* ReadInteractor.swift */; };
+		A1BEB78C22F567A4006EB852 /* MainComponent+Read.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78B22F567A4006EB852 /* MainComponent+Read.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +59,12 @@
 		A174553322F45C0800C9844E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = "../../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Common/Base/BaseViewController.swift"; sourceTree = "<group>"; };
 		A174553622F465C300C9844E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+.swift"; path = "../../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Common/Extension/UIView+.swift"; sourceTree = "<group>"; };
 		A174553822F468B800C9844E /* RootComponent+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RootComponent+Main.swift"; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Root/RootComponent+Main.swift"; sourceTree = "<group>"; };
+		A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		A1BEB78322F55A46006EB852 /* ReadRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadRouter.swift; sourceTree = "<group>"; };
+		A1BEB78422F55A46006EB852 /* ReadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadViewController.swift; sourceTree = "<group>"; };
+		A1BEB78522F55A46006EB852 /* ReadBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadBuilder.swift; sourceTree = "<group>"; };
+		A1BEB78622F55A46006EB852 /* ReadInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadInteractor.swift; sourceTree = "<group>"; };
+		A1BEB78B22F567A4006EB852 /* MainComponent+Read.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainComponent+Read.swift"; sourceTree = "<group>"; };
 		F02551D0C66B394311DD491A /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +113,7 @@
 				A174553122F45BDE00C9844E /* Common */,
 				A174552522EF181B00C9844E /* AppStart */,
 				A174552822F4576800C9844E /* Main */,
+				A1BEB78222F55A39006EB852 /* Read */,
 				A174551C22EF17E600C9844E /* Root */,
 				14FDF40522D9AA3D00AD2C65 /* Main.storyboard */,
 				14FDF40B22D9AA3F00AD2C65 /* Assets.xcassets */,
@@ -140,6 +153,7 @@
 				A174552A22F4578A00C9844E /* MainViewController.swift */,
 				A174552B22F4578A00C9844E /* MainBuilder.swift */,
 				A174552C22F4578A00C9844E /* MainInteractor.swift */,
+				A1BEB78B22F567A4006EB852 /* MainComponent+Read.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -165,8 +179,20 @@
 			isa = PBXGroup;
 			children = (
 				A174553622F465C300C9844E /* UIView+.swift */,
+				A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		A1BEB78222F55A39006EB852 /* Read */ = {
+			isa = PBXGroup;
+			children = (
+				A1BEB78322F55A46006EB852 /* ReadRouter.swift */,
+				A1BEB78422F55A46006EB852 /* ReadViewController.swift */,
+				A1BEB78522F55A46006EB852 /* ReadBuilder.swift */,
+				A1BEB78622F55A46006EB852 /* ReadInteractor.swift */,
+			);
+			path = Read;
 			sourceTree = "<group>";
 		};
 		BE3A50755C06761C3A3AC0BC /* Pods */ = {
@@ -293,6 +319,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1BEB78722F55A46006EB852 /* ReadRouter.swift in Sources */,
+				A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */,
+				A1BEB78A22F55A46006EB852 /* ReadInteractor.swift in Sources */,
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
 				A174552E22F4578A00C9844E /* MainViewController.swift in Sources */,
 				A174552322EF17F300C9844E /* RootBuilder.swift in Sources */,
@@ -306,9 +335,12 @@
 				A174553922F468B800C9844E /* RootComponent+Main.swift in Sources */,
 				A174552F22F4578A00C9844E /* MainBuilder.swift in Sources */,
 				14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */,
+				A1BEB78C22F567A4006EB852 /* MainComponent+Read.swift in Sources */,
 				A174552422EF17F300C9844E /* RootInteractor.swift in Sources */,
+				A1BEB78822F55A46006EB852 /* ReadViewController.swift in Sources */,
 				14FDF40A22D9AA3D00AD2C65 /* Plock.xcdatamodeld in Sources */,
 				A174553022F4578A00C9844E /* MainInteractor.swift in Sources */,
+				A1BEB78922F55A46006EB852 /* ReadBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

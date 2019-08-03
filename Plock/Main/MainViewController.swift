@@ -7,19 +7,20 @@
 //
 
 import RIBs
+import RxCocoa
 import RxSwift
 import SnapKit
 import UIKit
 
 
 protocol MainPresentableListener: class {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func read()
+    func write()
 }
 
 final class MainViewController: BaseViewController, MainPresentable, MainViewControllable {
     //MARK: Property
+    private let disposeBag = DisposeBag()
     weak var listener: MainPresentableListener?
     
     //MARK: UI Component
@@ -82,6 +83,18 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
         self.buildButtons()
         self.buildMainImageViews()
         self.layout()
+    }
+    
+    override func setupBind() {
+        self.writeButton.rx.tap
+            .subscribe(onNext:{ [weak self] in
+                self?.listener?.write()
+            }).disposed(by: self.disposeBag)
+        
+        self.readButton.rx.tap
+            .subscribe(onNext:{ [weak self] in
+                self?.listener?.read()
+            }).disposed(by: self.disposeBag)
     }
 }
 
