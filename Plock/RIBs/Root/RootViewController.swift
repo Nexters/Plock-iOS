@@ -18,11 +18,26 @@ protocol RootPresentableListener: class {
 
 final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
     weak var listener: RootPresentableListener?
+    var currentViewController: UIViewController?
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor.white
+    }
+    
     func present(viewController: ViewControllable) {
-        self.present(viewController.uiviewController, animated: nil, completion: nil)
+        self.present(viewController.uiviewController, animated: true, completion: nil)
     }
     
     func dismiss(viewController: ViewControllable) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 }
