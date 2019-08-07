@@ -18,9 +18,11 @@ protocol ReadViewControllable: ViewControllable {
 }
 
 final class ReadRouter: ViewableRouter<ReadInteractable, ReadViewControllable>, ReadRouting {
-
+    private weak var currentChild: ViewableRouting?
+    
     // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: ReadInteractable, viewController: ReadViewControllable) {
+    override init(interactor: ReadInteractable,
+                  viewController: ReadViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }

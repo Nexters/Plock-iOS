@@ -46,11 +46,4 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
 }
 
 extension ReadInteractor: ReadPresentableListener{
-    func showMap() {
-        
-    }
-    
-    func showList() {
-        
-    }
 }

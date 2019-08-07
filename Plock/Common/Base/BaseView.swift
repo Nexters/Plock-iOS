@@ -16,6 +16,14 @@ class BaseView: UIView {
     init() {
         super.init(frame: UIScreen.main.bounds)
         self.setupUI()
+        self.setupBind()
+    }
+    
+    required init(controlBy viewController: BaseViewController) {
+        self.vc = viewController
+        super.init(frame: UIScreen.main.bounds)
+        self.setupUI()
+        self.setupBind()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -23,6 +31,10 @@ class BaseView: UIView {
     }
     
     func setupUI() {
+        //Override
+    }
+    
+    func setupBind() {
         //Override
     }
 
