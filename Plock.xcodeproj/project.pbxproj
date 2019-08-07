@@ -15,6 +15,7 @@
 		14FDF40C22D9AA3F00AD2C65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14FDF40B22D9AA3F00AD2C65 /* Assets.xcassets */; };
 		14FDF40F22D9AA3F00AD2C65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14FDF40D22D9AA3F00AD2C65 /* LaunchScreen.storyboard */; };
 		3D274597DB0179BED56C14E8 /* Pods_Plock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1157777866724FEBF78F433C /* Pods_Plock.framework */; };
+		A115989E22FACEAB008FB09C /* PlaceGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115989D22FACEAB008FB09C /* PlaceGridView.swift */; };
 		A174552722EF1ABE00C9844E /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174552622EF1ABE00C9844E /* AppComponent.swift */; };
 		A174553422F45C0800C9844E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174553322F45C0800C9844E /* BaseViewController.swift */; };
 		A174553722F465C300C9844E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A174553622F465C300C9844E /* UIView+.swift */; };
@@ -35,14 +36,6 @@
 		A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB79F22F574A5006EB852 /* RootRouter.swift */; };
 		A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A022F574A5006EB852 /* RootBuilder.swift */; };
 		A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A122F574A5006EB852 /* RootViewController.swift */; };
-		A1BEB7AE22F58B05006EB852 /* ReadMapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7AA22F58B05006EB852 /* ReadMapRouter.swift */; };
-		A1BEB7AF22F58B05006EB852 /* ReadMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7AB22F58B05006EB852 /* ReadMapViewController.swift */; };
-		A1BEB7B022F58B05006EB852 /* ReadMapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7AC22F58B05006EB852 /* ReadMapBuilder.swift */; };
-		A1BEB7B122F58B05006EB852 /* ReadMapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7AD22F58B05006EB852 /* ReadMapInteractor.swift */; };
-		A1BEB7B622F58BA8006EB852 /* ReadListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7B222F58BA8006EB852 /* ReadListRouter.swift */; };
-		A1BEB7B722F58BA8006EB852 /* ReadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7B322F58BA8006EB852 /* ReadListViewController.swift */; };
-		A1BEB7B822F58BA8006EB852 /* ReadListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7B422F58BA8006EB852 /* ReadListBuilder.swift */; };
-		A1BEB7B922F58BA8006EB852 /* ReadListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7B522F58BA8006EB852 /* ReadListInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +50,7 @@
 		14FDF40E22D9AA3F00AD2C65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14FDF41022D9AA3F00AD2C65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C22EAFE8800A4D84308AED8 /* Pods-Plock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.debug.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.debug.xcconfig"; sourceTree = "<group>"; };
+		A115989D22FACEAB008FB09C /* PlaceGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceGridView.swift; sourceTree = "<group>"; };
 		A174552622EF1ABE00C9844E /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppComponent.swift; path = "../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/AppStart/AppComponent.swift"; sourceTree = "<group>"; };
 		A174553322F45C0800C9844E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = "../../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Common/Base/BaseViewController.swift"; sourceTree = "<group>"; };
 		A174553622F465C300C9844E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+.swift"; path = "../../../../../../../../System/Volumes/Data/Users/haehyeonjeong/Documents/dev/Plock-iOS/Plock/Common/Extension/UIView+.swift"; sourceTree = "<group>"; };
@@ -77,14 +71,6 @@
 		A1BEB79F22F574A5006EB852 /* RootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		A1BEB7A022F574A5006EB852 /* RootBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		A1BEB7A122F574A5006EB852 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		A1BEB7AA22F58B05006EB852 /* ReadMapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMapRouter.swift; sourceTree = "<group>"; };
-		A1BEB7AB22F58B05006EB852 /* ReadMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMapViewController.swift; sourceTree = "<group>"; };
-		A1BEB7AC22F58B05006EB852 /* ReadMapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMapBuilder.swift; sourceTree = "<group>"; };
-		A1BEB7AD22F58B05006EB852 /* ReadMapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMapInteractor.swift; sourceTree = "<group>"; };
-		A1BEB7B222F58BA8006EB852 /* ReadListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadListRouter.swift; sourceTree = "<group>"; };
-		A1BEB7B322F58BA8006EB852 /* ReadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadListViewController.swift; sourceTree = "<group>"; };
-		A1BEB7B422F58BA8006EB852 /* ReadListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadListBuilder.swift; sourceTree = "<group>"; };
-		A1BEB7B522F58BA8006EB852 /* ReadListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadListInteractor.swift; sourceTree = "<group>"; };
 		F02551D0C66B394311DD491A /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,8 +197,6 @@
 				A1BEB78422F55A46006EB852 /* ReadViewController.swift */,
 				A1BEB78522F55A46006EB852 /* ReadBuilder.swift */,
 				A1BEB78622F55A46006EB852 /* ReadInteractor.swift */,
-				A1BEB7A922F58ABF006EB852 /* ReadList */,
-				A1BEB7A822F58AAE006EB852 /* ReadMap */,
 			);
 			path = Read;
 			sourceTree = "<group>";
@@ -231,30 +215,9 @@
 			isa = PBXGroup;
 			children = (
 				A1BEB79122F57240006EB852 /* MapView.swift */,
+				A115989D22FACEAB008FB09C /* PlaceGridView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A1BEB7A822F58AAE006EB852 /* ReadMap */ = {
-			isa = PBXGroup;
-			children = (
-				A1BEB7AA22F58B05006EB852 /* ReadMapRouter.swift */,
-				A1BEB7AB22F58B05006EB852 /* ReadMapViewController.swift */,
-				A1BEB7AC22F58B05006EB852 /* ReadMapBuilder.swift */,
-				A1BEB7AD22F58B05006EB852 /* ReadMapInteractor.swift */,
-			);
-			path = ReadMap;
-			sourceTree = "<group>";
-		};
-		A1BEB7A922F58ABF006EB852 /* ReadList */ = {
-			isa = PBXGroup;
-			children = (
-				A1BEB7B222F58BA8006EB852 /* ReadListRouter.swift */,
-				A1BEB7B322F58BA8006EB852 /* ReadListViewController.swift */,
-				A1BEB7B422F58BA8006EB852 /* ReadListBuilder.swift */,
-				A1BEB7B522F58BA8006EB852 /* ReadListInteractor.swift */,
-			);
-			path = ReadList;
 			sourceTree = "<group>";
 		};
 		BE3A50755C06761C3A3AC0BC /* Pods */ = {
@@ -387,10 +350,7 @@
 				A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */,
 				A1BEB79822F57491006EB852 /* MainInteractor.swift in Sources */,
 				A1BEB78A22F55A46006EB852 /* ReadInteractor.swift in Sources */,
-				A1BEB7B922F58BA8006EB852 /* ReadListInteractor.swift in Sources */,
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
-				A1BEB7B122F58B05006EB852 /* ReadMapInteractor.swift in Sources */,
-				A1BEB7B022F58B05006EB852 /* ReadMapBuilder.swift in Sources */,
 				A1BEB79C22F57491006EB852 /* MainBuilder.swift in Sources */,
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,
 				A1BEB79922F57491006EB852 /* MainRouter.swift in Sources */,
@@ -398,17 +358,13 @@
 				A1BEB7A322F574A5006EB852 /* RootComponent+Main.swift in Sources */,
 				14FDF40022D9AA3D00AD2C65 /* AppDelegate.swift in Sources */,
 				A174552722EF1ABE00C9844E /* AppComponent.swift in Sources */,
-				A1BEB7B722F58BA8006EB852 /* ReadListViewController.swift in Sources */,
 				A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */,
-				A1BEB7AF22F58B05006EB852 /* ReadMapViewController.swift in Sources */,
-				A1BEB7B822F58BA8006EB852 /* ReadListBuilder.swift in Sources */,
-				A1BEB7B622F58BA8006EB852 /* ReadListRouter.swift in Sources */,
-				A1BEB7AE22F58B05006EB852 /* ReadMapRouter.swift in Sources */,
 				A174553722F465C300C9844E /* UIView+.swift in Sources */,
 				14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */,
 				A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */,
 				A1BEB7A222F574A5006EB852 /* RootInteractor.swift in Sources */,
 				A1BEB79A22F57491006EB852 /* MainComponent+Read.swift in Sources */,
+				A115989E22FACEAB008FB09C /* PlaceGridView.swift in Sources */,
 				A1BEB78822F55A46006EB852 /* ReadViewController.swift in Sources */,
 				A1BEB78E22F5705B006EB852 /* BaseView.swift in Sources */,
 				14FDF40A22D9AA3D00AD2C65 /* Plock.xcdatamodeld in Sources */,
@@ -557,6 +513,7 @@
 			baseConfigurationReference = 2C22EAFE8800A4D84308AED8 /* Pods-Plock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = Plock/Info.plist;
@@ -567,6 +524,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zedd.Plock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -577,6 +535,7 @@
 			baseConfigurationReference = F02551D0C66B394311DD491A /* Pods-Plock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = Plock/Info.plist;
@@ -587,6 +546,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Zedd.Plock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

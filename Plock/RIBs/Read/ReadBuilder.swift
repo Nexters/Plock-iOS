@@ -35,6 +35,7 @@ final class ReadBuilder: Builder<ReadDependency>, ReadBuildable {
         let viewController = ReadViewController()
         let interactor = ReadInteractor(presenter: viewController)
         interactor.listener = listener
+        
         return ReadRouter(interactor: interactor, viewController: viewController)
     }
 }

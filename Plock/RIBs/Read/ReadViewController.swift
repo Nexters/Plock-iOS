@@ -12,14 +12,14 @@ import RxCocoa
 import UIKit
 
 protocol ReadPresentableListener: class {
-    func showMap()
-    func showList()
+    
 }
 
 final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable {
 
     weak var listener: ReadPresentableListener?
     private var mapView = MapView()
+    private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
     
     init() {
@@ -59,10 +59,18 @@ extension ReadViewController{
         
         segment.rx.value.subscribe(onNext:{ [weak self] segment in
             if segment == 0 {
-                self?.listener?.showMap()
+                self?.changeMap()
             }else{
-                self?.listener?.showList()
+                self?.changeList()
             }
         }).disposed(by: self.disposeBag)
+    }
+    
+    private func changeMap(){
+        self.view = self.mapView
+    }
+    
+    private func changeList(){
+        self.view = self.gridView
     }
 }
