@@ -7,6 +7,7 @@ target 'Plock' do
   pod 'RIBs'
   pod 'SnapKit'
   pod 'RxCocoa'
+  pod 'RxDataSources'
   # Pods for Plock
 
 end

@@ -25,7 +25,6 @@ final class PlaceGridView: BaseView{
     
     override func setupBind() {
         
-        
     }
     
     private func layout() {
