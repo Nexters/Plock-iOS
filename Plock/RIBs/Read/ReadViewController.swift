@@ -9,6 +9,7 @@
 import RIBs
 import RxSwift
 import RxCocoa
+import MapKit
 import UIKit
 
 protocol ReadPresentableListener: class {
@@ -18,7 +19,12 @@ protocol ReadPresentableListener: class {
 final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable {
 
     weak var listener: ReadPresentableListener?
-    private var mapView = MapView()
+    
+    private var mapContainerView: MapContainerView = {
+        let mapView = MapContainerView()
+        return mapView
+    }()
+    
     private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
     
@@ -32,7 +38,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     override func loadView(){
         super.loadView()
-        self.view = self.mapView
+        self.view = self.mapContainerView
     }
     
     override func viewDidLoad() {
@@ -45,9 +51,20 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     }
     
     override func setupBind() {
+        self.mapContainerView.mapView.showsUserLocation = true
         
+        self.mapContainerView.mapView
+            .rx.regionDidChangeAnimated.subscribe(onNext:{
+                print("regionDidChangeAnimated: \($0)")
+            }).disposed(by: self.disposeBag)
+        
+        self.mapContainerView.mapView
+            .rx.didUpdate.subscribe(onNext:{
+                print("didUpdate : \($0)")
+            }).disposed(by: self.disposeBag)
     }
 }
+
 
 //MARK: Draw UI
 extension ReadViewController{
@@ -67,7 +84,7 @@ extension ReadViewController{
     }
     
     private func changeMap(){
-        self.view = self.mapView
+        self.view = self.mapContainerView
     }
     
     private func changeList(){

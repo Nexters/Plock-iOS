@@ -12,11 +12,15 @@ import RxCocoa
 import RxSwift
 import MapKit
 
-final class MapView: BaseView{
-    private let mapView: MKMapView = {
+final class MapContainerView: BaseView{
+    lazy var mapView: MKMapView = {
         let mapView = MKMapView()
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
         return mapView
     }()
+    
+    var locationManager = CLLocationManager()
     
     override func setupUI() {
         self.addSubview(self.mapView)
@@ -26,7 +30,7 @@ final class MapView: BaseView{
 
 
 //MARK: draw UI
-extension MapView{
+extension MapContainerView{
     func layout(){
         self.mapView.snp.makeConstraints{
             $0.top.equalToSuperview()
