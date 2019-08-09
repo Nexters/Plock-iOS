@@ -51,8 +51,6 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     }
     
     override func setupBind() {
-        self.mapContainerView.mapView.showsUserLocation = true
-        
         self.mapContainerView.mapView
             .rx.regionDidChangeAnimated.subscribe(onNext:{
                 print("regionDidChangeAnimated: \($0)")
