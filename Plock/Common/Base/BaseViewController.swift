@@ -16,11 +16,11 @@ class BaseViewController: UIViewController {
         self.setupBind()
     }
     
-    func setupUI(){
+    func setupUI() {
         //override
     }
     
-    func setupBind(){
+    func setupBind() {
         //override
     }
 }

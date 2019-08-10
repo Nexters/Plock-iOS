@@ -10,7 +10,7 @@ import UIKit
 import RIBs
 import SnapKit
 
-extension ViewController: ViewControllable{ }
+extension ViewController: ViewControllable { }
 
 final class ViewController: UIViewController {
     init() {
@@ -28,10 +28,9 @@ final class ViewController: UIViewController {
         tempLabel.text = "하윙"
         self.view.addSubview(tempLabel)
         
-        tempLabel.snp.makeConstraints{
+        tempLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
     }
 }
-

@@ -12,18 +12,17 @@ import RxSwift
 import SnapKit
 import UIKit
 
-
 protocol MainPresentableListener: class {
     func read()
     func write()
 }
 
 final class MainViewController: BaseViewController, MainPresentable, MainViewControllable {
-    //MARK: Property
+    // MARK: Property
     private let disposeBag = DisposeBag()
     weak var listener: MainPresentableListener?
     
-    //MARK: UI Component
+    // MARK: UI Component
     private var writeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "writeButton"), for: .normal)
@@ -59,7 +58,7 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         stackView.alignment    = .leading
-        stackView.spacing      = 50
+        stackView.spacing = 50
         return stackView
     }()
     
@@ -87,20 +86,20 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
     
     override func setupBind() {
         self.writeButton.rx.tap
-            .subscribe(onNext:{ [weak self] in
+            .subscribe(onNext: { [weak self] in
                 self?.listener?.write()
             }).disposed(by: self.disposeBag)
         
         self.readButton.rx.tap
-            .subscribe(onNext:{ [weak self] in
+            .subscribe(onNext: { [weak self] in
                 self?.listener?.read()
             }).disposed(by: self.disposeBag)
     }
 }
 
-//MARK: draw UI
-extension MainViewController{
-    private func buildButtons(){
+// MARK: draw UI
+extension MainViewController {
+    private func buildButtons() {
         let writeStackView = UIStackView()
         writeStackView.axis = .vertical
         writeStackView.distribution = .equalSpacing
@@ -117,7 +116,7 @@ extension MainViewController{
         
         let lineView = UIView()
         lineView.backgroundColor = .lightGray
-        lineView.snp.makeConstraints{
+        lineView.snp.makeConstraints {
             $0.width.equalTo(2)
             $0.height.equalTo(76)
         }
@@ -128,19 +127,19 @@ extension MainViewController{
         
     }
     
-    private func buildMainImageViews(){
+    private func buildMainImageViews() {
         
     }
     
-    private func layout(){
-        self.logoImageView.snp.makeConstraints{
+    private func layout() {
+        self.logoImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(112)
             $0.width.equalTo(233)
             $0.height.equalTo(280)
         }
         
-        self.buttonStackView.snp.makeConstraints{
+        self.buttonStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(self.view.safeArea.bottom).offset(-80)
         }

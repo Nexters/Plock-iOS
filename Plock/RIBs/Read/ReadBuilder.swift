@@ -31,7 +31,7 @@ final class ReadBuilder: Builder<ReadDependency>, ReadBuildable {
     }
 
     func build(withListener listener: ReadListener) -> ReadRouting {
-        let _ = ReadComponent(dependency: dependency)
+        _ = ReadComponent(dependency: dependency)
         let viewController = ReadViewController()
         let interactor = ReadInteractor(presenter: viewController)
         interactor.listener = listener
