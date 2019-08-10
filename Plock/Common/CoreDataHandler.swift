@@ -30,12 +30,12 @@ class CoreDataHandler: NSObject {
     
     class func fetchObject() -> [Memory]? {
         let context = getContext()
-        var user: [Memory]? = nil
+        var memory: [Memory]? = nil
         do {
-            user = try context.fetch(Memory.fetchRequest())
-            return user
+            memory = try context.fetch(Memory.fetchRequest())
+            return memory
         } catch {
-            return user
+            return memory
         }
     }
     
