@@ -6,6 +6,7 @@ target 'Plock' do
   use_frameworks!
   pod 'RIBs'
   pod 'SnapKit'
+  pod 'SwiftLint'
   pod 'RxCocoa'
   pod 'RxDataSources'
   # Pods for Plock
