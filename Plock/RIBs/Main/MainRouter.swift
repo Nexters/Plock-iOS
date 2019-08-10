@@ -30,7 +30,7 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable> {
     }
 }
 
-extension MainRouter: MainRouting{
+extension MainRouter: MainRouting {
     func goRead() {
         let router = self.readBuilder.build(withListener: self.interactor)
         self.currentChild = router
@@ -39,7 +39,7 @@ extension MainRouter: MainRouting{
                                                                                       animated: true)
     }
     
-    func detachDetail(){
+    func detachDetail() {
         if let currentChild = self.currentChild {
             detachChild(currentChild)
         }

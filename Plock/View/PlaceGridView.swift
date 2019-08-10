@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PlaceGridView: BaseView{
+final class PlaceGridView: BaseView {
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -28,7 +28,7 @@ final class PlaceGridView: BaseView{
     }
     
     private func layout() {
-        self.collectionView.snp.makeConstraints{
+        self.collectionView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()

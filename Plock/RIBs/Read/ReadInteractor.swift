@@ -45,5 +45,5 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
     }
 }
 
-extension ReadInteractor: ReadPresentableListener{
+extension ReadInteractor: ReadPresentableListener {
 }

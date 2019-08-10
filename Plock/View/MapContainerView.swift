@@ -12,11 +12,11 @@ import RxCocoa
 import RxSwift
 import MapKit
 
-final class MapContainerView: BaseView{
+final class MapContainerView: BaseView {
     lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
+        mapView.userTrackingMode = .followWithHeading
         return mapView
     }()
     
@@ -24,7 +24,6 @@ final class MapContainerView: BaseView{
     
     override init() {
         super.init()
-        self.mapView.showsUserLocation = true
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
         
@@ -51,11 +50,10 @@ final class MapContainerView: BaseView{
     }
 }
 
-
-//MARK: draw UI
-extension MapContainerView{
-    func layout(){
-        self.mapView.snp.makeConstraints{
+// MARK: draw UI
+extension MapContainerView {
+    func layout() {
+        self.mapView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()

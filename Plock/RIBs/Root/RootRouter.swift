@@ -8,15 +8,14 @@
 
 import RIBs
 
-
 protocol RootInteractable: Interactable, MainListener {
     var router: RootRouting? { get set }
     var listener: RootListener? { get set }
 }
 
 protocol RootViewControllable: ViewControllable {
-    func present(viewController:ViewControllable)
-    func dismiss(viewController:ViewControllable)
+    func present(viewController: ViewControllable)
+    func dismiss(viewController: ViewControllable)
 }
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable> {
@@ -38,9 +37,8 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable> {
     }
 }
 
-
 // MARK: - Private
-extension RootRouter: RootRouting{
+extension RootRouter: RootRouting {
     func routeToWrite() {
         print("routeToWrite")
         /*
@@ -55,8 +53,8 @@ extension RootRouter: RootRouting{
         self.viewController.present(viewController: vc)
     }
     
-    //MARK: Private
-    private func routeToViewController(){
+    // MARK: Private
+    private func routeToViewController() {
         let mainBuilder = self.mainBuilder.build(withListener: self.interactor)
         self.mainRouting = mainBuilder
         self.attachChild(mainBuilder)
@@ -64,5 +62,3 @@ extension RootRouter: RootRouting{
         self.viewController.present(viewController: navigationController)
     }
 }
-
-

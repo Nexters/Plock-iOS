@@ -36,7 +36,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView(){
+    override func loadView() {
         super.loadView()
         self.view = self.mapContainerView
     }
@@ -52,40 +52,42 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     override func setupBind() {
         self.mapContainerView.mapView
-            .rx.regionDidChangeAnimated.subscribe(onNext:{
+            .rx.regionDidChangeAnimated.subscribe(onNext: {
                 print("regionDidChangeAnimated: \($0)")
             }).disposed(by: self.disposeBag)
         
         self.mapContainerView.mapView
-            .rx.didUpdate.subscribe(onNext:{
+            .rx.didUpdate.subscribe(onNext: {
                 print("didUpdate : \($0)")
+//                let regionRadius: CLLocationDistance = 1000
+//                let coordinateRegion = MKCoordinateRegion(center: $0, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
+//                self.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
             }).disposed(by: self.disposeBag)
     }
 }
 
-
-//MARK: Draw UI
-extension ReadViewController{
-    private func setupNavigationTitle(){
+// MARK: Draw UI
+extension ReadViewController {
+    private func setupNavigationTitle() {
         let segment: UISegmentedControl = UISegmentedControl(items: ["지도", "리스트"])
         segment.sizeToFit()
-        segment.selectedSegmentIndex = 0;
+        segment.selectedSegmentIndex = 0
         self.navigationItem.titleView = segment
         
-        segment.rx.value.subscribe(onNext:{ [weak self] segment in
+        segment.rx.value.subscribe(onNext: { [weak self] segment in
             if segment == 0 {
                 self?.changeMap()
-            }else{
+            } else {
                 self?.changeList()
             }
         }).disposed(by: self.disposeBag)
     }
     
-    private func changeMap(){
+    private func changeMap() {
         self.view = self.mapContainerView
     }
     
-    private func changeList(){
+    private func changeList() {
         self.view = self.gridView
     }
 }

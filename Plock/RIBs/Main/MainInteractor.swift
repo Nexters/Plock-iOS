@@ -46,7 +46,7 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     }
 }
 
-extension MainInteractor: MainPresentableListener{
+extension MainInteractor: MainPresentableListener {
     func read() {
         self.router?.goRead()
     }

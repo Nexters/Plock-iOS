@@ -10,5 +10,3 @@ import RIBs
 
 protocol MainDependencyRead: Dependency { }
 extension MainComponent: ReadDependency { }
-
-
