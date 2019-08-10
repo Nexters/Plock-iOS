@@ -5,8 +5,6 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>GyeonggiBatangR</string>
-		<string>GyeonggiTitleV</string>
-		<string>GyeonggiTitleB</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>맵 쓰실?ㅋ</string>

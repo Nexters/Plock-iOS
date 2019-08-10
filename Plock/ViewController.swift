@@ -26,9 +26,10 @@ final class ViewController: UIViewController {
         self.view.backgroundColor = .white
         let tempLabel = UILabel()
         tempLabel.text = "하윙"
-        //tempLabel.font = UIFont.GyeonggiBatang.regular(size: 14)
-        self.view.addSubview(tempLabel)
         self.printAllFontNames()
+
+        tempLabel.font = UIFont.GyeonggiBatang.regular(size: 14)
+        self.view.addSubview(tempLabel)
         tempLabel.snp.makeConstraints {
 
             $0.centerX.equalToSuperview()
@@ -38,6 +39,7 @@ final class ViewController: UIViewController {
     
      func printAllFontNames() {
         for familyname in UIFont.familyNames {
+            print(familyname, "familyname")
             for fname in UIFont.fontNames(forFamilyName: familyname) {
                 print(fname)
             }

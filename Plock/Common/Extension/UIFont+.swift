@@ -52,18 +52,5 @@ extension UIFont {
         }
     }
     
-    class GyeonggiTitle {
-        
-        class func bold(size: CGFloat) -> UIFont {
-            return UIFont(name: "GyeonggiTitle-Bold", size: size)!
-        }
-        
-        class func light(size: CGFloat) -> UIFont {
-            return UIFont(name: "GyeonggiTitle-Light", size: size)!
-        }
-        
-        class func medium(size: CGFloat) -> UIFont {
-            return UIFont(name: "GyeonggiTitle-Medium", size: size)!
-        }
-    }
+    
 }
