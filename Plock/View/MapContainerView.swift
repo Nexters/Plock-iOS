@@ -13,6 +13,22 @@ import RxSwift
 import MapKit
 
 final class MapContainerView: BaseView {
+    
+    // MARK: Properties
+    private var locationManager = CLLocationManager()
+    lazy var focusCamera: Driver<Void> = {
+        return self.focusMyLocationButton.rx.tap
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+    }()
+    
+    lazy var writeMemory: Driver<Void> = {
+        return self.writeMemoryButton.rx.tap
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+    }()
+    
+    // MARK: UI Component
     lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.showsUserLocation = true
@@ -20,20 +36,32 @@ final class MapContainerView: BaseView {
         return mapView
     }()
     
-    var locationManager = CLLocationManager()
+    private var focusMyLocationButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Focus", for: .normal)
+        btn.backgroundColor = .red
+        return btn
+    }()
+    
+    private var writeMemoryButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Write", for: .normal)
+        btn.backgroundColor = .red
+        return btn
+    }()
+    
+    private var buttonStackView: UIStackView = {
+        let stView = UIStackView()
+        stView.axis = .vertical
+        stView.distribution = .equalSpacing
+        stView.alignment    = .leading
+        stView.spacing = 10
+        return stView
+    }()
     
     override init() {
         super.init()
-        // Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
-        
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.startUpdatingLocation()
-        }
+        self.locationManagerInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,8 +73,22 @@ final class MapContainerView: BaseView {
     }
     
     override func setupUI() {
+        self.buttonStackView.addArrangedSubview(self.focusMyLocationButton)
+        self.buttonStackView.addArrangedSubview(self.writeMemoryButton)
         self.addSubview(self.mapView)
+        self.addSubview(self.buttonStackView)
+        
         self.layout()
+    }
+    
+    private func locationManagerInit() {
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.startUpdatingLocation()
+        }
     }
 }
 
@@ -58,6 +100,11 @@ extension MapContainerView {
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
             $0.bottom.equalToSuperview()
+        }
+        
+        self.buttonStackView.snp.makeConstraints {
+            $0.right.equalTo(self.safeArea.right).offset(-18)
+            $0.bottom.equalTo(self.safeArea.bottom)
         }
     }
 }

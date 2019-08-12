@@ -17,16 +17,25 @@ protocol ReadPresentableListener: class {
 }
 
 final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable {
-
-    weak var listener: ReadPresentableListener?
     
+    // MARK: Properties
+    weak var listener: ReadPresentableListener?
+    private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
+    private var gridView = PlaceGridView()
+    private let disposeBag = DisposeBag()
+    
+    // MARK: UI Component
     private var mapContainerView: MapContainerView = {
         let mapView = MapContainerView()
         return mapView
     }()
     
-    private var gridView = PlaceGridView()
-    private let disposeBag = DisposeBag()
+    private var titleSegment: UISegmentedControl = {
+        let segment: UISegmentedControl = UISegmentedControl(items: ["지도", "리스트"])
+        segment.sizeToFit()
+        segment.selectedSegmentIndex = 0
+        return segment
+    }()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -47,42 +56,39 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     override func setupUI() {
         self.view.backgroundColor = .white
-        self.setupNavigationTitle()
+        self.navigationItem.titleView = self.titleSegment
     }
     
     override func setupBind() {
-        self.mapContainerView.mapView
-            .rx.regionDidChangeAnimated.subscribe(onNext: {
-                print("regionDidChangeAnimated: \($0)")
-            }).disposed(by: self.disposeBag)
+        let didTapSegment = self.titleSegment.rx.value
+        let regionDidChangeAnimated = self.mapContainerView.mapView.rx.regionDidChangeAnimated
+        let updateLocation = self.mapContainerView.mapView.rx.didUpdate
+        let didChangeVisibleRegion = self.mapContainerView.mapView.rx.didChangeVisibleRegion
+//        let foucusCamera = 
         
-        self.mapContainerView.mapView
-            .rx.didUpdate.subscribe(onNext: {
-                print("didUpdate : \($0)")
-//                let regionRadius: CLLocationDistance = 1000
-//                let coordinateRegion = MKCoordinateRegion(center: $0, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
-//                self.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
-            }).disposed(by: self.disposeBag)
-    }
-}
-
-// MARK: Draw UI
-extension ReadViewController {
-    private func setupNavigationTitle() {
-        let segment: UISegmentedControl = UISegmentedControl(items: ["지도", "리스트"])
-        segment.sizeToFit()
-        segment.selectedSegmentIndex = 0
-        self.navigationItem.titleView = segment
-        
-        segment.rx.value.subscribe(onNext: { [weak self] segment in
+        didTapSegment.subscribe(onNext: { [weak self] segment in
             if segment == 0 {
                 self?.changeMap()
             } else {
                 self?.changeList()
             }
         }).disposed(by: self.disposeBag)
+        
+        regionDidChangeAnimated.subscribe(onNext: {
+                print("regionDidChangeAnimated: \($0)")
+            }).disposed(by: self.disposeBag)
+        
+        updateLocation.bind(to: self.currentLocation)
+            .disposed(by: self.disposeBag)
+        
+        didChangeVisibleRegion.subscribe(onNext: {
+            print("didChangeVisibleRegion: \($0.centerCoordinate)")
+        }).disposed(by: self.disposeBag)
     }
-    
+}
+
+// MARK: Draw UI
+extension ReadViewController {
     private func changeMap() {
         self.view = self.mapContainerView
     }

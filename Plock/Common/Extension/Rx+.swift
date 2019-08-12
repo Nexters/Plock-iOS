@@ -2,29 +2,27 @@
 //  Rx+.swift
 //  Plock
 //
-//  Created by Haehyeon Jeong on 2019/08/09.
+//  Created by Haehyeon Jeong on 2019/08/10.
 //  Copyright © 2019 Zedd. All rights reserved.
 //
 
-import MapKit
-import RxSwift
 import RxCocoa
+import RxSwift
 
-extension Reactive where Base: MKMapView {
-    var delegate: DelegateProxy<MKMapView, MKMapViewDelegate> {
-        return RxMKMapViewDelegateProxy.proxy(for: self.base)
+extension ObservableType {
+    func asDriverOnErrorJustComplete() -> Driver<E> {
+        return asDriver { error in
+            return Driver.empty()
+        }
     }
     
-    var regionDidChangeAnimated: Observable<Bool> {
-        return delegate.methodInvoked(#selector(MKMapViewDelegate.mapView(_:regionDidChangeAnimated:)))
-            .map({ (parameters) in
-                return parameters[1] as? Bool ?? false
-            })
+    func mapToVoid() -> Observable<Void> {
+        return map { _ in }
     }
-    
-    var didUpdate: Observable<CLLocationCoordinate2D> {
-        return delegate.methodInvoked(#selector(MKMapViewDelegate.mapView(_:didUpdate:))).map({ (parameters) in
-            return (parameters[1] as? MKUserLocation)?.coordinate ?? CLLocationCoordinate2D.init(latitude: 0, longitude: 0)
-        })
+}
+
+extension SharedSequenceConvertibleType {
+    func mapToVoid() -> SharedSequence<SharingStrategy, Void> {
+        return map { _ in }
     }
 }

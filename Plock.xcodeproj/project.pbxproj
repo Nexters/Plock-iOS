@@ -21,7 +21,8 @@
 		14FDF40F22D9AA3F00AD2C65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14FDF40D22D9AA3F00AD2C65 /* LaunchScreen.storyboard */; };
 		3D274597DB0179BED56C14E8 /* Pods_Plock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1157777866724FEBF78F433C /* Pods_Plock.framework */; };
 		A10FF61522FD640200287B6D /* RxMKMapViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10FF61422FD640200287B6D /* RxMKMapViewDelegateProxy.swift */; };
-		A10FF61722FD64BA00287B6D /* Rx+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10FF61622FD64BA00287B6D /* Rx+.swift */; };
+		A10FF61722FD64BA00287B6D /* Rx+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10FF61622FD64BA00287B6D /* Rx+MKMapView.swift */; };
+		A10FF61922FEA84300287B6D /* Rx+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10FF61822FEA84300287B6D /* Rx+.swift */; };
 		A115989E22FACEAB008FB09C /* PlaceGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115989D22FACEAB008FB09C /* PlaceGridView.swift */; };
 		A11598A022FAF2C8008FB09C /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115989F22FAF2C8008FB09C /* UIView+.swift */; };
 		A11598A222FAF2E0008FB09C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11598A122FAF2E0008FB09C /* BaseViewController.swift */; };
@@ -63,7 +64,8 @@
 		14FDF41022D9AA3F00AD2C65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C22EAFE8800A4D84308AED8 /* Pods-Plock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.debug.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.debug.xcconfig"; sourceTree = "<group>"; };
 		A10FF61422FD640200287B6D /* RxMKMapViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxMKMapViewDelegateProxy.swift; sourceTree = "<group>"; };
-		A10FF61622FD64BA00287B6D /* Rx+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+.swift"; sourceTree = "<group>"; };
+		A10FF61622FD64BA00287B6D /* Rx+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+MKMapView.swift"; sourceTree = "<group>"; };
+		A10FF61822FEA84300287B6D /* Rx+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+.swift"; sourceTree = "<group>"; };
 		A115989D22FACEAB008FB09C /* PlaceGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceGridView.swift; sourceTree = "<group>"; };
 		A115989F22FAF2C8008FB09C /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		A11598A122FAF2E0008FB09C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -221,8 +223,9 @@
 			children = (
 				A115989F22FAF2C8008FB09C /* UIView+.swift */,
 				A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */,
-				A10FF61622FD64BA00287B6D /* Rx+.swift */,
 				140CB2A422FE6C86000FF0EF /* UIFont+.swift */,
+				A10FF61622FD64BA00287B6D /* Rx+MKMapView.swift */,
+				A10FF61822FEA84300287B6D /* Rx+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,
 				A1BEB79922F57491006EB852 /* MainRouter.swift in Sources */,
 				A1BEB7A322F574A5006EB852 /* RootComponent+Main.swift in Sources */,
+				A10FF61922FEA84300287B6D /* Rx+.swift in Sources */,
 				14FDF40022D9AA3D00AD2C65 /* AppDelegate.swift in Sources */,
 				140CB2E122FEA0B8000FF0EF /* CoreDataHandler.swift in Sources */,
 				A10FF61522FD640200287B6D /* RxMKMapViewDelegateProxy.swift in Sources */,
@@ -422,7 +426,7 @@
 				140CB2E322FEA16B000FF0EF /* Memory.swift in Sources */,
 				A1BEB7A222F574A5006EB852 /* RootInteractor.swift in Sources */,
 				A1BEB79A22F57491006EB852 /* MainComponent+Read.swift in Sources */,
-				A10FF61722FD64BA00287B6D /* Rx+.swift in Sources */,
+				A10FF61722FD64BA00287B6D /* Rx+MKMapView.swift in Sources */,
 				A115989E22FACEAB008FB09C /* PlaceGridView.swift in Sources */,
 				A1BEB78822F55A46006EB852 /* ReadViewController.swift in Sources */,
 				A11598A222FAF2E0008FB09C /* BaseViewController.swift in Sources */,
