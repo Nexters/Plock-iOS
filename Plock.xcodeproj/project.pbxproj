@@ -11,7 +11,6 @@
 		140CB2DB22FE9DB5000FF0EF /* GyeonggiBatang_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140CB2D722FE9DA9000FF0EF /* GyeonggiBatang_Bold.ttf */; };
 		140CB2DC22FE9DB5000FF0EF /* GyeonggiBatang_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */; };
 		140CB2E122FEA0B8000FF0EF /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CB2E022FEA0B8000FF0EF /* CoreDataHandler.swift */; };
-		140CB2E322FEA16B000FF0EF /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CB2E222FEA16B000FF0EF /* Memory.swift */; };
 		14FDF40022D9AA3D00AD2C65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDF3FF22D9AA3D00AD2C65 /* AppDelegate.swift */; };
 		14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDF40122D9AA3D00AD2C65 /* SceneDelegate.swift */; };
 		14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDF40322D9AA3D00AD2C65 /* ViewController.swift */; };
@@ -52,7 +51,6 @@
 		140CB2D722FE9DA9000FF0EF /* GyeonggiBatang_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GyeonggiBatang_Bold.ttf; sourceTree = "<group>"; };
 		140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GyeonggiBatang_Regular.ttf; sourceTree = "<group>"; };
 		140CB2E022FEA0B8000FF0EF /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
-		140CB2E222FEA16B000FF0EF /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		14FDF3FC22D9AA3D00AD2C65 /* Plock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FDF3FF22D9AA3D00AD2C65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14FDF40122D9AA3D00AD2C65 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +111,9 @@
 		140CB29722FE6BF1000FF0EF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				140CB2D722FE9DA9000FF0EF /* GyeonggiBatang_Bold.ttf */,
+				140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */,
+				14FDF40B22D9AA3F00AD2C65 /* Assets.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -145,11 +146,8 @@
 				A1BEB79022F5722E006EB852 /* View */,
 				140CB29722FE6BF1000FF0EF /* Resource */,
 				14FDF40522D9AA3D00AD2C65 /* Main.storyboard */,
-				14FDF40B22D9AA3F00AD2C65 /* Assets.xcassets */,
 				14FDF40D22D9AA3F00AD2C65 /* LaunchScreen.storyboard */,
 				14FDF41022D9AA3F00AD2C65 /* Info.plist */,
-				140CB2D722FE9DA9000FF0EF /* GyeonggiBatang_Bold.ttf */,
-				140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */,
 				14FDF40822D9AA3D00AD2C65 /* Plock.xcdatamodeld */,
 			);
 			path = Plock;
@@ -204,7 +202,6 @@
 				A174553522F465A300C9844E /* Extension */,
 				A174553222F45BE500C9844E /* Base */,
 				140CB2E022FEA0B8000FF0EF /* CoreDataHandler.swift */,
-				140CB2E222FEA16B000FF0EF /* Memory.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -423,7 +420,6 @@
 				A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */,
 				14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */,
 				A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */,
-				140CB2E322FEA16B000FF0EF /* Memory.swift in Sources */,
 				A1BEB7A222F574A5006EB852 /* RootInteractor.swift in Sources */,
 				A1BEB79A22F57491006EB852 /* MainComponent+Read.swift in Sources */,
 				A10FF61722FD64BA00287B6D /* Rx+MKMapView.swift in Sources */,

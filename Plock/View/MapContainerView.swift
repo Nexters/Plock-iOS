@@ -28,6 +28,18 @@ final class MapContainerView: BaseView {
             .asDriverOnErrorJustComplete()
     }()
     
+    lazy var regionDidChangeAnimated: Driver<Bool> = {
+        return self.mapView.rx.regionDidChangeAnimated.asDriverOnErrorJustComplete()
+    }()
+    
+    lazy var updateLocation: Driver<CLLocationCoordinate2D> = {
+        return self.mapView.rx.didUpdate.asDriverOnErrorJustComplete()
+    }()
+    
+    lazy var didChangeVisibleRegion: Driver<MKMapView> = {
+        return self.mapView.rx.didChangeVisibleRegion.asDriverOnErrorJustComplete()
+    }()
+    
     // MARK: UI Component
     lazy var mapView: MKMapView = {
         let mapView = MKMapView()
