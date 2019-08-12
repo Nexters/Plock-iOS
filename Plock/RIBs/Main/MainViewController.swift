@@ -74,6 +74,16 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hideNavigation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.showNavigation()
+    }
+    
     override func setupUI() {
         self.view.backgroundColor = .white
         self.view.addSubview(self.buttonStackView)
@@ -99,6 +109,18 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
 
 // MARK: draw UI
 extension MainViewController {
+    private func hideNavigation() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    private func showNavigation() {
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
     private func buildButtons() {
         let writeStackView = UIStackView()
         writeStackView.axis = .vertical
