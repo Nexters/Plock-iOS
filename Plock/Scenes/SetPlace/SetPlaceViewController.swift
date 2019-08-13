@@ -46,7 +46,7 @@ final class SetPlaceViewController: BaseViewController {
                                                       longitudinalMeters: (self?.regionRadius ?? 1000) * 2.0)
             self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
         }).disposed(by: self.disposeBag)
-        Z
+        
         let input = SetPlaceViewModel.Input(reverseGeocodeLocationTrigger: didChangeVisibleRegion)
         let output = self.viewModel.transform(input: input)
         
