@@ -28,6 +28,8 @@
 		A11598A422FAF2F4008FB09C /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11598A322FAF2F4008FB09C /* AppComponent.swift */; };
 		A121B5952302F0B100F7946A /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121B5942302F0B100F7946A /* UIColor+.swift */; };
 		A121B598230305C400F7946A /* SetPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121B597230305C400F7946A /* SetPlaceViewController.swift */; };
+		A155E06E230313380052ECCC /* SetPlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155E06D230313380052ECCC /* SetPlaceViewModel.swift */; };
+		A155E070230313C80052ECCC /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155E06F230313C80052ECCC /* ViewModelType.swift */; };
 		A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */; };
 		A1BEB78722F55A46006EB852 /* ReadRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78322F55A46006EB852 /* ReadRouter.swift */; };
 		A1BEB78822F55A46006EB852 /* ReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78422F55A46006EB852 /* ReadViewController.swift */; };
@@ -72,6 +74,8 @@
 		A11598A322FAF2F4008FB09C /* AppComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		A121B5942302F0B100F7946A /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		A121B597230305C400F7946A /* SetPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPlaceViewController.swift; sourceTree = "<group>"; };
+		A155E06D230313380052ECCC /* SetPlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPlaceViewModel.swift; sourceTree = "<group>"; };
+		A155E06F230313C80052ECCC /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		A1BEB78322F55A46006EB852 /* ReadRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadRouter.swift; sourceTree = "<group>"; };
 		A1BEB78422F55A46006EB852 /* ReadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +152,7 @@
 				A174552522EF181B00C9844E /* AppStart */,
 				A1BEB78F22F57223006EB852 /* RIBs */,
 				A1BEB79022F5722E006EB852 /* View */,
-				A121B5962303059500F7946A /* Scene */,
+				A121B5962303059500F7946A /* Scenes */,
 				140CB29722FE6BF1000FF0EF /* Resource */,
 				14FDF40522D9AA3D00AD2C65 /* Main.storyboard */,
 				14FDF40D22D9AA3F00AD2C65 /* LaunchScreen.storyboard */,
@@ -166,12 +170,21 @@
 			path = DelegateProxy;
 			sourceTree = "<group>";
 		};
-		A121B5962303059500F7946A /* Scene */ = {
+		A121B5962303059500F7946A /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A155E06C230313240052ECCC /* SetPlace */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A155E06C230313240052ECCC /* SetPlace */ = {
 			isa = PBXGroup;
 			children = (
 				A121B597230305C400F7946A /* SetPlaceViewController.swift */,
+				A155E06D230313380052ECCC /* SetPlaceViewModel.swift */,
 			);
-			path = Scene;
+			path = SetPlace;
 			sourceTree = "<group>";
 		};
 		A174551C22EF17E600C9844E /* Root */ = {
@@ -224,6 +237,7 @@
 			children = (
 				A11598A122FAF2E0008FB09C /* BaseViewController.swift */,
 				A1BEB78D22F5705B006EB852 /* BaseView.swift */,
+				A155E06F230313C80052ECCC /* ViewModelType.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -425,6 +439,7 @@
 				A121B598230305C400F7946A /* SetPlaceViewController.swift in Sources */,
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
 				A1BEB79C22F57491006EB852 /* MainBuilder.swift in Sources */,
+				A155E070230313C80052ECCC /* ViewModelType.swift in Sources */,
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,
 				A1BEB79922F57491006EB852 /* MainRouter.swift in Sources */,
 				A1BEB7A322F574A5006EB852 /* RootComponent+Main.swift in Sources */,
@@ -445,6 +460,7 @@
 				A1BEB78E22F5705B006EB852 /* BaseView.swift in Sources */,
 				140CB2A522FE6C86000FF0EF /* UIFont+.swift in Sources */,
 				14FDF40A22D9AA3D00AD2C65 /* Plock.xcdatamodeld in Sources */,
+				A155E06E230313380052ECCC /* SetPlaceViewModel.swift in Sources */,
 				A1BEB78922F55A46006EB852 /* ReadBuilder.swift in Sources */,
 				A11598A022FAF2C8008FB09C /* UIView+.swift in Sources */,
 			);

@@ -36,7 +36,7 @@ final class MapContainerView: BaseView {
         return self.mapView.rx.didUpdate.asDriverOnErrorJustComplete()
     }()
     
-    lazy var didChangeVisibleRegion: Driver<MKMapView> = {
+    lazy var didChangeVisibleRegion: Driver<CLLocationCoordinate2D> = {
         return self.mapView.rx.didChangeVisibleRegion.asDriverOnErrorJustComplete()
     }()
     
@@ -96,7 +96,7 @@ final class MapContainerView: BaseView {
         return button
     }()
     
-    private var searchLocationLabel: UILabel = {
+    var searchLocationLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.bold(size: 16)
         label.textColor = UIColor.grey2()

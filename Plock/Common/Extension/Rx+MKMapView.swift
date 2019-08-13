@@ -28,9 +28,9 @@ extension Reactive where Base: MKMapView {
         })
     }
     
-    var didChangeVisibleRegion: Observable<MKMapView> {
+    var didChangeVisibleRegion: Observable<CLLocationCoordinate2D> {
         return delegate.methodInvoked(#selector(MKMapViewDelegate.mapViewDidChangeVisibleRegion(_:))).map { (parameters) in
-            return parameters[0] as? MKMapView ?? MKMapView()
+            return (parameters[0] as? MKMapView ?? MKMapView()).centerCoordinate
         }
     }
 }

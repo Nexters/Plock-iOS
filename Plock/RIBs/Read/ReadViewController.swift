@@ -87,7 +87,6 @@ extension ReadViewController {
     private func setBindMap() {
         let regionDidChangeAnimated = self.mapContainerView.regionDidChangeAnimated
         let updateLocation = self.mapContainerView.updateLocation
-        let didChangeVisibleRegion = self.mapContainerView.didChangeVisibleRegion
         let foucusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
         let writeMemory = self.mapContainerView.writeMemory
         
@@ -97,10 +96,6 @@ extension ReadViewController {
         
         updateLocation.drive(self.currentLocation)
             .disposed(by: self.disposeBag)
-        
-        didChangeVisibleRegion.drive(onNext: {
-            print("didChangeVisibleRegion: \($0.centerCoordinate)")
-        }).disposed(by: self.disposeBag)
         
         foucusCamera.drive(onNext: { [weak self] location in
             let coordinateRegion = MKCoordinateRegion(center: location,
