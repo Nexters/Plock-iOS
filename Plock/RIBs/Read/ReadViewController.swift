@@ -24,8 +24,8 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     private let disposeBag = DisposeBag()
     
     // MARK: UI Component
-    private var mapContainerView: MapContainerView = {
-        let mapView = MapContainerView()
+    private lazy var mapContainerView: MapContainerView = {
+        let mapView = MapContainerView(controlBy: self)
         return mapView
     }()
     
