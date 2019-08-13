@@ -26,6 +26,7 @@
 		A11598A022FAF2C8008FB09C /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115989F22FAF2C8008FB09C /* UIView+.swift */; };
 		A11598A222FAF2E0008FB09C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11598A122FAF2E0008FB09C /* BaseViewController.swift */; };
 		A11598A422FAF2F4008FB09C /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11598A322FAF2F4008FB09C /* AppComponent.swift */; };
+		A121B5952302F0B100F7946A /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121B5942302F0B100F7946A /* UIColor+.swift */; };
 		A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */; };
 		A1BEB78722F55A46006EB852 /* ReadRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78322F55A46006EB852 /* ReadRouter.swift */; };
 		A1BEB78822F55A46006EB852 /* ReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78422F55A46006EB852 /* ReadViewController.swift */; };
@@ -68,6 +69,7 @@
 		A115989F22FAF2C8008FB09C /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		A11598A122FAF2E0008FB09C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A11598A322FAF2F4008FB09C /* AppComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		A121B5942302F0B100F7946A /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		A1BEB78322F55A46006EB852 /* ReadRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadRouter.swift; sourceTree = "<group>"; };
 		A1BEB78422F55A46006EB852 /* ReadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */,
 				140CB2A422FE6C86000FF0EF /* UIFont+.swift */,
 				A10FF61622FD64BA00287B6D /* Rx+MKMapView.swift */,
+				A121B5942302F0B100F7946A /* UIColor+.swift */,
 				A10FF61822FEA84300287B6D /* Rx+.swift */,
 			);
 			path = Extension;
@@ -413,6 +416,7 @@
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,
 				A1BEB79922F57491006EB852 /* MainRouter.swift in Sources */,
 				A1BEB7A322F574A5006EB852 /* RootComponent+Main.swift in Sources */,
+				A121B5952302F0B100F7946A /* UIColor+.swift in Sources */,
 				A10FF61922FEA84300287B6D /* Rx+.swift in Sources */,
 				14FDF40022D9AA3D00AD2C65 /* AppDelegate.swift in Sources */,
 				140CB2E122FEA0B8000FF0EF /* CoreDataHandler.swift in Sources */,

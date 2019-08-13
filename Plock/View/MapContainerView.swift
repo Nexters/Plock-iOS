@@ -71,6 +71,23 @@ final class MapContainerView: BaseView {
         return stView
     }()
     
+    private var searchContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 10
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        return view
+    }()
+    
+    private var searchDescLabel: UILabel = {
+        let label = UILabel()
+        label.text = "핀을 움직여 카드의 위치를 설정하세요."
+        label.textColor = UIColor.grey4()
+        label.font = UIFont.medium(size: 14)
+        return label
+    }()
+    
     override init() {
         super.init()
         self.locationManagerInit()
@@ -87,8 +104,11 @@ final class MapContainerView: BaseView {
     override func setupUI() {
         self.buttonStackView.addArrangedSubview(self.focusMyLocationButton)
         self.buttonStackView.addArrangedSubview(self.writeMemoryButton)
+        self.searchContainerView.addSubview(self.searchDescLabel)
+        
         self.addSubview(self.mapView)
         self.addSubview(self.buttonStackView)
+        self.addSubview(self.searchContainerView)
         
         self.layout()
     }
@@ -106,7 +126,7 @@ final class MapContainerView: BaseView {
 
 // MARK: draw UI
 extension MapContainerView {
-    func layout() {
+    private func layout() {
         self.mapView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()
@@ -116,7 +136,23 @@ extension MapContainerView {
         
         self.buttonStackView.snp.makeConstraints {
             $0.right.equalTo(self.safeArea.right).offset(-18)
-            $0.bottom.equalTo(self.safeArea.bottom)
+            $0.bottom.equalTo(self.searchContainerView.snp.top).offset(-10)
         }
+        
+        self.searchContainerView.snp.makeConstraints {
+            $0.left.equalToSuperview()
+            $0.right.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(188 + self.bottomSafeAreaInset)
+        }
+        
+        self.searchDescLabel.snp.makeConstraints{
+            $0.left.equalToSuperview().offset(24)
+            $0.top.equalToSuperview().offset(30)
+        }
+    }
+    
+    private func buildSearchContainer(){
+        
     }
 }
