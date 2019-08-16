@@ -23,23 +23,23 @@ extension UIView {
         self.layer.shadowOffset = CGSize(width: 3, height: 3)
     }
     
-    var isIphoneX: Bool{
-        get{
-            if #available(iOS 11.0, *) {
-                if topSafeAreaInset > CGFloat(0) {
-                    return true
-                }else{
-                    return false
-                }
-            }else{
+    var isIphoneX: Bool {
+        
+        if #available(iOS 11.0, *) {
+            if topSafeAreaInset > CGFloat(0) {
+                return true
+            } else {
                 return false
             }
+        } else {
+            return false
         }
+        
     }
     
-    var topSafeAreaInset: CGFloat{
+    var topSafeAreaInset: CGFloat {
         let window = UIApplication.shared.keyWindow
-        var topPadding : CGFloat = 0
+        var topPadding: CGFloat = 0
         if #available(iOS 11.0, *) {
             topPadding = window?.safeAreaInsets.top ?? 0
         }
@@ -47,9 +47,9 @@ extension UIView {
         return topPadding
     }
     
-    var bottomSafeAreaInset: CGFloat{
+    var bottomSafeAreaInset: CGFloat {
         let window = UIApplication.shared.keyWindow
-        var bottomPadding : CGFloat = 0
+        var bottomPadding: CGFloat = 0
         if #available(iOS 11.0, *) {
             bottomPadding = window?.safeAreaInsets.bottom ?? 0
         }

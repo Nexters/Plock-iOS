@@ -16,7 +16,7 @@ protocol LocationGettable {
     func searchPlace(with location: CLLocation, keyword: String) -> Driver<[MKMapItem]>
 }
 
-extension LocationGettable{
+extension LocationGettable {
     func replacePlaceMark(with location: CLLocation) -> Driver<CLPlacemark> {
         return Observable.create { emit in
             CLGeocoder().reverseGeocodeLocation(location) { (placeMarks, error) in
@@ -56,5 +56,3 @@ extension LocationGettable{
         }.asDriverOnErrorJustComplete()
     }
 }
-
-

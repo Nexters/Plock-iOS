@@ -40,7 +40,6 @@ extension UIFont {
         return UIFont(name: "AppleSDGothicNeo-UltraLight", size: size)!
     }
     
-    //
     class GyeonggiBatang {
         
         class func bold(size: CGFloat) -> UIFont {
@@ -51,6 +50,4 @@ extension UIFont {
             return UIFont(name: "GyeonggiBatangR", size: size)!
         }
     }
-    
-    
 }

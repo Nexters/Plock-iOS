@@ -11,13 +11,13 @@ import MapKit
 import RxSwift
 import RxCocoa
 
-final class SearchPlaceViewModel: ViewModelType, LocationGettable{
+final class SearchPlaceViewModel: ViewModelType, LocationGettable {
     let disposeBag = DisposeBag()
 }
 
-extension SearchPlaceViewModel{
+extension SearchPlaceViewModel {
     struct Input {
-        let searchTrigger: Driver<(String,CLLocation)>
+        let searchTrigger: Driver<(String, CLLocation)>
     }
     
     struct Output {
@@ -26,7 +26,7 @@ extension SearchPlaceViewModel{
     
     func transform(input: Input) -> Output {
         let search = input.searchTrigger
-        let places = search.debounce(0.3).flatMapLatest{
+        let places = search.debounce(0.3).flatMapLatest {
             self.searchPlace(with: $1, keyword: $0)
         }
         
