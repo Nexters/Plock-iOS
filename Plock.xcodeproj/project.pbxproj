@@ -47,6 +47,9 @@
 		A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB79F22F574A5006EB852 /* RootRouter.swift */; };
 		A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A022F574A5006EB852 /* RootBuilder.swift */; };
 		A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A122F574A5006EB852 /* RootViewController.swift */; };
+		A1D62C31230685F9009FBF0D /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */; };
+		A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C3323068F81009FBF0D /* LocationGettable.swift */; };
+		A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +96,9 @@
 		A1BEB79F22F574A5006EB852 /* RootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		A1BEB7A022F574A5006EB852 /* RootBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		A1BEB7A122F574A5006EB852 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewController.swift; sourceTree = "<group>"; };
+		A1D62C3323068F81009FBF0D /* LocationGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGettable.swift; sourceTree = "<group>"; };
+		A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewModel.swift; sourceTree = "<group>"; };
 		F02551D0C66B394311DD491A /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,6 +179,7 @@
 		A121B5962303059500F7946A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A1D62C2F230685D7009FBF0D /* SearchPlace */,
 				A155E06C230313240052ECCC /* SetPlace */,
 			);
 			path = Scenes;
@@ -224,6 +231,7 @@
 		A174553122F45BDE00C9844E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A1D62C3223068E86009FBF0D /* Protocol */,
 				A10FF61322FD63EC00287B6D /* DelegateProxy */,
 				A174553522F465A300C9844E /* Extension */,
 				A174553222F45BE500C9844E /* Base */,
@@ -283,6 +291,23 @@
 				A115989D22FACEAB008FB09C /* PlaceGridView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A1D62C2F230685D7009FBF0D /* SearchPlace */ = {
+			isa = PBXGroup;
+			children = (
+				A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */,
+				A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */,
+			);
+			path = SearchPlace;
+			sourceTree = "<group>";
+		};
+		A1D62C3223068E86009FBF0D /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				A1D62C3323068F81009FBF0D /* LocationGettable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		BE3A50755C06761C3A3AC0BC /* Pods */ = {
@@ -439,7 +464,9 @@
 				A121B598230305C400F7946A /* SetPlaceViewController.swift in Sources */,
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
 				A1BEB79C22F57491006EB852 /* MainBuilder.swift in Sources */,
+				A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */,
 				A155E070230313C80052ECCC /* ViewModelType.swift in Sources */,
+				A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */,
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,
 				A1BEB79922F57491006EB852 /* MainRouter.swift in Sources */,
 				A1BEB7A322F574A5006EB852 /* RootComponent+Main.swift in Sources */,
@@ -448,6 +475,7 @@
 				14FDF40022D9AA3D00AD2C65 /* AppDelegate.swift in Sources */,
 				140CB2E122FEA0B8000FF0EF /* CoreDataHandler.swift in Sources */,
 				A10FF61522FD640200287B6D /* RxMKMapViewDelegateProxy.swift in Sources */,
+				A1D62C31230685F9009FBF0D /* SearchPlaceViewController.swift in Sources */,
 				A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */,
 				14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */,
 				A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */,

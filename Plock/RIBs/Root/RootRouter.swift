@@ -49,7 +49,8 @@ extension RootRouter: RootRouting {
             viewController.dismiss(viewController: main.viewControllable)
             self.mainRouting = nil
         }
-        let vc = ViewController()
+//        let vc = SetPlaceViewController()
+        let vc = UINavigationController(rootViewController: SetPlaceViewController())
         self.viewController.present(viewController: vc)
     }
     

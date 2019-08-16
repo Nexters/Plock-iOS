@@ -28,6 +28,11 @@ final class MapContainerView: BaseView {
             .asDriverOnErrorJustComplete()
     }()
     
+    lazy var searchLocation: Driver<Void> = {
+        return self.searchButton.rx.tap
+            .asDriverOnErrorJustComplete()
+    }()
+    
     lazy var regionDidChangeAnimated: Driver<Bool> = {
         return self.mapView.rx.regionDidChangeAnimated.asDriverOnErrorJustComplete()
     }()

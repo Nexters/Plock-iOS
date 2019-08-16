@@ -36,6 +36,12 @@ final class SetPlaceViewController: BaseViewController {
         let foucusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
         let didChangeVisibleRegion = self.mapContainerView.didChangeVisibleRegion
         let updateLocation = self.mapContainerView.updateLocation
+        let searchLocation = self.mapContainerView.searchLocation
+        
+        searchLocation.drive(onNext: { [weak self] _ in
+            self?.navigationController?.pushViewController(SearchPlaceViewController(location: (self?.currentLocation)!),
+                                                           animated: true)
+        }).disposed(by: self.disposeBag)
         
         updateLocation.drive(self.currentLocation)
             .disposed(by: self.disposeBag)
