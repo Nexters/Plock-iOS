@@ -37,7 +37,11 @@ extension MakePlaceViewController: ViewControllable { }
 
 class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var datePickerHeight: NSLayoutConstraint!
+    @IBOutlet weak var infoContainerView: UIView!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet var datePickerContainerView: UIView!
+    
+    @IBOutlet weak var selectDateContainerView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -46,10 +50,8 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var mainImageView: UIImageView!
     
-    @IBOutlet weak var datePicker: UIDatePicker!
     var isInfoView: Bool = true
-    
-    @IBOutlet weak var selectDateContainerView: UIView!
+    var memory: MemoryPlace = MemoryPlace()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,14 +74,11 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     }
     
     func setupNavigation() {
-        self.navigationController?.navigationBar.barTintColor = .white
-        self.navigationItem.hidesBackButton = true
-        let leftNavigationItem = UIBarButtonItem(image: UIImage(named: "backoff"), style: .plain, target: self, action: #selector(backButtonDidTap))
-        self.navigationController?.navigationItem.leftBarButtonItem = leftNavigationItem
-        //
-        //        let rightNavigationItem = UIBarButtonItem(image: UIImage(named: "backoff"), style: .plain, target: self, action: #selector(flipTriggered))
-        //
-        //        self.navigationController?.navigationItem.rightBarButtonItem =  rightNavigationItem
+        //self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backOff")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backButtonDidTap))
+        
+        let rightNavigationItem = UIBarButtonItem(image: UIImage(named: "icDoneActive")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(saveMemory))
+        self.navigationItem.rightBarButtonItem = rightNavigationItem
     }
     
     @objc
@@ -88,14 +87,26 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     }
     
     @objc
+    func saveMemory() {
+        let image = UIImage(named: "alert_image_1")
+        let alert = AlertViewController.create(image: image, title: "기억해주세요!", subtitle: "현재 작성한 일기는 설정한\n위치에서만 확인, 삭제가 가능해요!\n계속하시겠습니까?", cancelText: "아니오", okText: "네", cancelType: .activate, okType: .deactivate, cancelHandler: nil, okHandler: {
+            
+        })
+        self.present(alert, animated: false, completion: nil)
+    }
+    
+    @objc
     func flipTriggered() {
         UIView.transition(with: self.backgroundImageView, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], animations: {
             self.isInfoView.toggle()
             if self.isInfoView {
                 self.contentTextView.isHidden = true
+            } else {
+                self.infoContainerView.isHidden = true
             }
         }, completion: { (_) in
             if self.isInfoView {
+                self.infoContainerView.isHidden = false
                 self.contentTextView.isHidden = true
             } else {
                 self.contentTextView.isHidden = false
@@ -133,25 +144,33 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     @objc
     func placeSelectDidTap() {
-        let viewController = SetPlaceViewController { memoryPlace in
-            print("memory : \(memoryPlace.address)")
+        let viewController = SetPlaceViewController { memory in
+            self.memory.address = memory.address
+            self.memory.latitude = memory.latitude
+            self.memory.longitude = memory.longitude
+            self.updateViews()
         }
-        
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func updateViews() {
+        self.placeLabel.text = self.memory.address
     }
     
     func setupDatePicker() {
         let dateTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectDateContainerViewDidTap))
         self.selectDateContainerView.addGestureRecognizer(dateTapGestureRecognizer)
-        self.datePicker.datePickerMode = .date
+        self.dateButton.setTitle(Date().currentDate, for: .normal)
     }
     
     @objc
     func selectDateContainerViewDidTap() {
-        UIView.animate(withDuration: 0.25) {
-            self.datePickerHeight.constant = 200
-            self.view.layoutIfNeeded()
+        self.view.endEditing(true)
+        let datePicker = DateAlertViewController.create(date: Date()) { (date) in
+            self.dateButton.setTitle(date.currentDate, for: .normal)
         }
+        self.present(datePicker, animated: false, completion: nil)
+        
     }
     
     func setupView() {
@@ -162,7 +181,6 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     @objc
     func viewDidTap() {
         self.view.endEditing(true)
-        self.datePickerHeight.constant = 0
     }
     
     @objc
@@ -218,5 +236,13 @@ public extension UIColor {
         let scanner = Scanner(string: hex)
         scanner.scanHexInt32(&rgb)
         self.init(red: CGFloat((rgb & 0xff0000) >> 16) / 255.0, green: CGFloat((rgb & 0x00ff00) >> 8) / 255.0, blue: CGFloat(rgb & 0x0000ff) / 255.0, alpha: alpha)
+    }
+}
+private extension Date {
+    
+    var currentDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        return formatter.string(from: self)
     }
 }
