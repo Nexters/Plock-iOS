@@ -18,6 +18,7 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
     // MARk: Properties
     private let viewModel = SearchPlaceViewModel()
     private var currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
+    private var searchResult = PublishSubject<SearchPlaceItemViewModel>()
     private lazy var disposeBag = self.viewModel.disposeBag
     
     // MARK: UI Component
@@ -60,8 +61,10 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
         self.addObserver()
     }
     
-    init(location: BehaviorSubject<CLLocationCoordinate2D>) {
+    init(location: BehaviorSubject<CLLocationCoordinate2D>,
+         searchResult: PublishSubject<SearchPlaceItemViewModel>) {
         self.currentLocation = location
+        self.searchResult = searchResult
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -91,10 +94,10 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
             cell.bind(viewModel)
         }.disposed(by: self.disposeBag)
         
-        self.searchResultTableView.rx.modelSelected(SearchPlaceItemViewModel.self).subscribe(onNext: { model in
-            self.navigationController?.popViewController(animated: true)
-            print("model: \(model.subTitle)")
-        }).disposed(by: self.disposeBag)
+        self.searchResultTableView.rx.modelSelected(SearchPlaceItemViewModel.self)
+            .do(onNext: { _ in self.navigationController?.popViewController(animated: true) })
+            .bind(to: self.searchResult)
+            .disposed(by: self.disposeBag)
     }
     
     private func addObserver() {
