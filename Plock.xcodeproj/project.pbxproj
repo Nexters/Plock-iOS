@@ -534,7 +534,6 @@
 				A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */,
 				140171182307DD77006AAF85 /* MakePlaceInfoView.swift in Sources */,
 				A1D62C3E2307D690009FBF0D /* SearchPlaceCell.swift in Sources */,
- 45d9b3bad852a046b927ccab82c45c6caa267600
 				A155E070230313C80052ECCC /* ViewModelType.swift in Sources */,
 				A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */,
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,

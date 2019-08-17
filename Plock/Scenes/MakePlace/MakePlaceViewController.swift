@@ -73,8 +73,9 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     func setupNavigation() {
         self.navigationController?.navigationBar.barTintColor = .white
-        //        let leftNavigationItem = UIBarButtonItem(image: UIImage(named: "backoff"), style: .plain, target: self, action: #selector(backButtonDidTap))
-        //        self.navigationController?.navigationItem.leftBarButtonItem = leftNavigationItem
+        
+        let leftNavigationItem = UIBarButtonItem(image: UIImage(named: "backoff"), style: .plain, target: self, action: #selector(backButtonDidTap))
+        self.navigationController?.navigationItem.leftBarButtonItem = leftNavigationItem
         //
         //        let rightNavigationItem = UIBarButtonItem(image: UIImage(named: "backoff"), style: .plain, target: self, action: #selector(flipTriggered))
         //
