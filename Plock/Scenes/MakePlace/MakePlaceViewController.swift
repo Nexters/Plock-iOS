@@ -73,7 +73,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     func setupNavigation() {
         self.navigationController?.navigationBar.barTintColor = .white
-        
+        self.navigationItem.hidesBackButton = true
         let leftNavigationItem = UIBarButtonItem(image: UIImage(named: "backoff"), style: .plain, target: self, action: #selector(backButtonDidTap))
         self.navigationController?.navigationItem.leftBarButtonItem = leftNavigationItem
         //
@@ -125,7 +125,16 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     func setupInfoView() {
         self.placeTextField.tintColor = UIColor(hex: "#030303")
+        self.placeLabel.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(placeSelectDidTap))
+        self.placeLabel.addGestureRecognizer(tapGestureRecognizer)
         
+    }
+    
+    @objc
+    func placeSelectDidTap() {
+        let viewController = SetPlaceViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func setupDatePicker() {
