@@ -59,6 +59,8 @@
 		A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */; };
 		A1D62C3B2307D340009FBF0D /* SearchPlaceItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C3A2307D340009FBF0D /* SearchPlaceItemViewModel.swift */; };
 		A1D62C3E2307D690009FBF0D /* SearchPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C3D2307D690009FBF0D /* SearchPlaceCell.swift */; };
+		A1EF8C3823083EB90019E621 /* MemoryAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EF8C3723083EB90019E621 /* MemoryAnnotation.swift */; };
+		A1EF8C3A23085F240019E621 /* MemoryAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EF8C3923085F240019E621 /* MemoryAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +119,8 @@
 		A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewModel.swift; sourceTree = "<group>"; };
 		A1D62C3A2307D340009FBF0D /* SearchPlaceItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceItemViewModel.swift; sourceTree = "<group>"; };
 		A1D62C3D2307D690009FBF0D /* SearchPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceCell.swift; sourceTree = "<group>"; };
+		A1EF8C3723083EB90019E621 /* MemoryAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAnnotation.swift; sourceTree = "<group>"; };
+		A1EF8C3923085F240019E621 /* MemoryAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAnnotationView.swift; sourceTree = "<group>"; };
 		F02551D0C66B394311DD491A /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -331,6 +335,7 @@
 			children = (
 				A1BEB79122F57240006EB852 /* MapContainerView.swift */,
 				A115989D22FACEAB008FB09C /* PlaceGridView.swift */,
+				A1EF8C3923085F240019E621 /* MemoryAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 		A1D62C372307D057009FBF0D /* Entries */ = {
 			isa = PBXGroup;
 			children = (
+				A1EF8C3723083EB90019E621 /* MemoryAnnotation.swift */,
 			);
 			path = Entries;
 			sourceTree = "<group>";
@@ -529,6 +535,7 @@
 				A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */,
 				A1BEB79822F57491006EB852 /* MainInteractor.swift in Sources */,
 				A11598A422FAF2F4008FB09C /* AppComponent.swift in Sources */,
+				A1EF8C3A23085F240019E621 /* MemoryAnnotationView.swift in Sources */,
 				1401710F2307C006006AAF85 /* MakePlaceViewController.swift in Sources */,
 				A1BEB78A22F55A46006EB852 /* ReadInteractor.swift in Sources */,
 				A121B598230305C400F7946A /* SetPlaceViewController.swift in Sources */,
@@ -566,6 +573,7 @@
 				A1BEB78922F55A46006EB852 /* ReadBuilder.swift in Sources */,
 				140171122307C37C006AAF85 /* AlertViewController.swift in Sources */,
 				A11598A022FAF2C8008FB09C /* UIView+.swift in Sources */,
+				A1EF8C3823083EB90019E621 /* MemoryAnnotation.swift in Sources */,
 				A1D62C3B2307D340009FBF0D /* SearchPlaceItemViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

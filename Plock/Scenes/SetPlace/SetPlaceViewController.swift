@@ -83,21 +83,6 @@ final class SetPlaceViewController: BaseViewController {
             self?.setFocus(location: location)
         }).disposed(by: self.disposeBag)
         
-        self.searchResult.do(onNext: { [weak self] place in
-            self?.setFocus(location: place.coordinate)
-            self?.mapContainerView.searchLocationLabel.text = place.title
-        }).bind(to: setLocation).disposed(by: self.disposeBag)
-        
-        let input = SetPlaceViewModel.Input(reverseGeocodeLocationTrigger: didChangeVisibleRegion)
-        let output = self.viewModel.transform(input: input)
-        
-        chagnedAnimated.withLatestFrom(output.placeMark).do(onNext: {
-            self.mapContainerView.searchLocationLabel.text = "\($0.administrativeArea ?? "") \($0.locality ?? "") \($0.subLocality ?? "") \($0.subThoroughfare ?? "")"
-            }).map {
-                    SearchPlaceItemViewModel(with: $0)
-            }
-        .drive(setLocation).disposed(by: self.disposeBag)
-        
         confirm.withLatestFrom(setLocation.asDriverOnErrorJustComplete())
             .drive(onNext: { [weak self] placemark in
                 let memory = MemoryPlace()
@@ -107,6 +92,21 @@ final class SetPlaceViewController: BaseViewController {
                 self?.confirmCompletion(memory)
                 self?.navigationController?.popViewController(animated: true)
             }).disposed(by: self.disposeBag)
+        
+        self.searchResult.do(onNext: { [weak self] place in
+            self?.setFocus(location: place.coordinate)
+            self?.mapContainerView.searchLocationLabel.text = place.title
+        }).bind(to: setLocation).disposed(by: self.disposeBag)
+        
+        let input = SetPlaceViewModel.Input(reverseGeocodeLocationTrigger: didChangeVisibleRegion)
+        let output = self.viewModel.transform(input: input)
+        chagnedAnimated.withLatestFrom(output.placeMark).do(onNext: {
+            self.mapContainerView.searchLocationLabel.text = "\($0.administrativeArea ?? "") \($0.locality ?? "") \($0.subLocality ?? "") \($0.subThoroughfare ?? "")"
+        }).map {
+            SearchPlaceItemViewModel(with: $0)
+        }
+        .drive(setLocation)
+        .disposed(by: self.disposeBag)
     }
     
     private func hideNavigation() {

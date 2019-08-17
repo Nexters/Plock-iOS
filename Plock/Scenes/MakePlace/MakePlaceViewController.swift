@@ -206,8 +206,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     }
 }
 
-class MemoryPlace {
-    
+final class MemoryPlace {
     var title: String = ""
     var address: String = ""
     var content: String = ""

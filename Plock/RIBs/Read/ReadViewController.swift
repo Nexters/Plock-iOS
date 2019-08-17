@@ -19,7 +19,8 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     // MARK: Properties
     weak var listener: ReadPresentableListener?
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
-    private let regionRadius: CLLocationDistance = 1000
+    private let memories = PublishSubject<[Memory]>()
+    private let regionRadius: CLLocationDistance = 500
     private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
     
@@ -39,6 +40,13 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        self.rx.viewDidload
+            .asDriver()
+            .mapToVoid()
+            .flatMapLatest { [weak self] in
+                self?.rxFetchObservable() ?? Driver.never()
+        }.drive(self.memories)
+            .disposed(by: self.disposeBag)
     }
     
     required init?(coder: NSCoder) {
@@ -52,7 +60,6 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("coreData: \(CoreDataHandler.fetchObject())")
     }
     
     override func setupUI() {
@@ -62,13 +69,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     override func setupBind() {
         self.setBindMap()
-        self.titleSegment.rx.value.subscribe(onNext: { [weak self] segment in
-            if segment == 0 {
-                self?.changeMap()
-            } else {
-                self?.changeList()
-            }
-        }).disposed(by: self.disposeBag)
+        self.setBindReadViewController()
     }
 }
 
@@ -83,17 +84,12 @@ extension ReadViewController {
     }
 }
 
-// MARK: Set Map
+// MARK: Set Bind
 extension ReadViewController {
     private func setBindMap() {
-        let regionDidChangeAnimated = self.mapContainerView.regionDidChangeAnimated
         let updateLocation = self.mapContainerView.updateLocation
         let foucusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
         let writeMemory = self.mapContainerView.writeMemory
-        
-        regionDidChangeAnimated.drive(onNext: {
-            print("regionDidChangeAnimated: \($0)")
-        }).disposed(by: self.disposeBag)
         
         updateLocation.drive(self.currentLocation)
             .disposed(by: self.disposeBag)
@@ -106,7 +102,52 @@ extension ReadViewController {
         }).disposed(by: self.disposeBag)
         
         writeMemory.drive(onNext: {
-            
+            //글쓰기 VC
         }).disposed(by: self.disposeBag)
+        
+        self.mapContainerView.mapView.rx.handleViewForAnnotation { mapView, annotation in
+            guard let annotation = annotation as? MemoryAnnotation else { return nil }
+            let identifier = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
+            
+            return MemoryAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+    }
+    
+    private func setBindReadViewController(){
+        self.titleSegment.rx.value.subscribe(onNext: { [weak self] segment in
+            if segment == 0 {
+                self?.changeMap()
+            } else {
+                self?.changeList()
+            }
+        }).disposed(by: self.disposeBag)
+        
+        self.memories.subscribe(onNext: { memory in
+            let memories = memory.map {
+                MemoryAnnotation(with: $0)
+            }
+            self.mapContainerView.mapView.addAnnotations(memories)
+        }).disposed(by: self.disposeBag)
+    }
+}
+
+// MARK: Create Observable
+extension ReadViewController {
+    private func rxFetchObservable() -> Driver<[Memory]> {
+        return Observable.create { emit in
+            let memories = CoreDataHandler.fetchObject()
+            guard let memory = memories else {
+                emit.onError(NSError(domain: "", code: 400, userInfo: nil))
+                return Disposables.create()
+            }
+            
+            if memory.isEmpty {
+                emit.onError(NSError(domain: "", code: 400, userInfo: nil))
+            }
+            
+            emit.onNext(memory)
+            emit.onCompleted()
+            return Disposables.create()
+        }.asDriverOnErrorJustComplete()
     }
 }

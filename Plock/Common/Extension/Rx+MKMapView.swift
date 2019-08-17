@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 extension Reactive where Base: MKMapView {
-    var delegate: DelegateProxy<MKMapView, MKMapViewDelegate> {
+    var delegate: RxMKMapViewDelegateProxy {
         return RxMKMapViewDelegateProxy.proxy(for: self.base)
     }
     
@@ -32,5 +32,9 @@ extension Reactive where Base: MKMapView {
         return delegate.methodInvoked(#selector(MKMapViewDelegate.mapViewDidChangeVisibleRegion(_:))).map { (parameters) in
             return (parameters[0] as? MKMapView ?? MKMapView()).centerCoordinate
         }
+    }
+    
+    public func handleViewForAnnotation(_ closure: RxMKHandleViewForAnnotaion?) {
+        delegate.handleViewForAnnotation = closure
     }
 }

@@ -111,6 +111,26 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
                 self?.listener?.read()
             }).disposed(by: self.disposeBag)
     }
+    
+    private func testCode() {
+//        let memory = MemoryPlace()
+//        memory.title = "제목입니다"
+//        memory.content = "오늘은 해가 떴다 핳하"
+//        memory.date = Date()
+//        memory.image = UIImage(named: "plockPicture")!.pngData()!
+//        memory.latitude = 37.497921
+//        memory.longitude = 127.027685
+//        CoreDataHandler.saveObject(memory: memory)
+        
+        let memory2 = MemoryPlace()
+        memory2.title = "제목2"
+        memory2.content = "오늘은 비가 온다 핳하"
+        memory2.date = Date()
+        memory2.image = UIImage(named: "plockPicture")!.pngData()!
+        memory2.latitude = 37.497214
+        memory2.longitude = 127.026226
+        CoreDataHandler.saveObject(memory: memory2)
+    }
 }
 
 // MARK: draw UI
