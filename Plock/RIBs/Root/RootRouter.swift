@@ -50,7 +50,9 @@ extension RootRouter: RootRouting {
             self.mainRouting = nil
         }
 //        let vc = SetPlaceViewController()
-        let vc = UINavigationController(rootViewController: SetPlaceViewController())
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "MakePlaceViewController")
+        let vc = UINavigationController(rootViewController: makePlaceViewController)
         self.viewController.present(viewController: vc)
     }
     

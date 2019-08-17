@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1401710F2307C006006AAF85 /* MakePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401710E2307C006006AAF85 /* MakePlaceViewController.swift */; };
+		140171122307C37C006AAF85 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140171112307C37C006AAF85 /* AlertViewController.swift */; };
 		140CB2A522FE6C86000FF0EF /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CB2A422FE6C86000FF0EF /* UIFont+.swift */; };
 		140CB2DB22FE9DB5000FF0EF /* GyeonggiBatang_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140CB2D722FE9DA9000FF0EF /* GyeonggiBatang_Bold.ttf */; };
 		140CB2DC22FE9DB5000FF0EF /* GyeonggiBatang_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */; };
@@ -54,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		1157777866724FEBF78F433C /* Pods_Plock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1401710E2307C006006AAF85 /* MakePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePlaceViewController.swift; sourceTree = "<group>"; };
+		140171112307C37C006AAF85 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		140CB2A422FE6C86000FF0EF /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		140CB2D722FE9DA9000FF0EF /* GyeonggiBatang_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GyeonggiBatang_Bold.ttf; sourceTree = "<group>"; };
 		140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GyeonggiBatang_Regular.ttf; sourceTree = "<group>"; };
@@ -122,6 +126,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1401710D2307BFDA006AAF85 /* MakePlace */ = {
+			isa = PBXGroup;
+			children = (
+				1401710E2307C006006AAF85 /* MakePlaceViewController.swift */,
+			);
+			path = MakePlace;
+			sourceTree = "<group>";
+		};
+		140171102307C356006AAF85 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				140171112307C37C006AAF85 /* AlertViewController.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		140CB29722FE6BF1000FF0EF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +199,8 @@
 		A121B5962303059500F7946A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				140171102307C356006AAF85 /* Alert */,
+				1401710D2307BFDA006AAF85 /* MakePlace */,
 				A1D62C2F230685D7009FBF0D /* SearchPlace */,
 				A155E06C230313240052ECCC /* SetPlace */,
 			);
@@ -460,6 +482,7 @@
 				A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */,
 				A1BEB79822F57491006EB852 /* MainInteractor.swift in Sources */,
 				A11598A422FAF2F4008FB09C /* AppComponent.swift in Sources */,
+				1401710F2307C006006AAF85 /* MakePlaceViewController.swift in Sources */,
 				A1BEB78A22F55A46006EB852 /* ReadInteractor.swift in Sources */,
 				A121B598230305C400F7946A /* SetPlaceViewController.swift in Sources */,
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
@@ -490,6 +513,7 @@
 				14FDF40A22D9AA3D00AD2C65 /* Plock.xcdatamodeld in Sources */,
 				A155E06E230313380052ECCC /* SetPlaceViewModel.swift in Sources */,
 				A1BEB78922F55A46006EB852 /* ReadBuilder.swift in Sources */,
+				140171122307C37C006AAF85 /* AlertViewController.swift in Sources */,
 				A11598A022FAF2C8008FB09C /* UIView+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,7 +590,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -620,7 +644,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -637,7 +661,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 594TR8CRP9;
+				DEVELOPMENT_TEAM = 9BD2FZATPN;
 				INFOPLIST_FILE = Plock/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -659,7 +683,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 594TR8CRP9;
+				DEVELOPMENT_TEAM = 9BD2FZATPN;
 				INFOPLIST_FILE = Plock/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
