@@ -49,8 +49,14 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
     
     private var logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        imageView.image = UIImage(named: "plockPicture")
         return imageView
+    }()
+    
+    private var logoWordImageView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.image = UIImage(named: "plockWord")
+        return imgView
     }()
     
     private var buttonStackView: UIStackView = {
@@ -88,9 +94,9 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
         self.view.backgroundColor = .white
         self.view.addSubview(self.buttonStackView)
         self.view.addSubview(self.logoImageView)
+        self.view.addSubview(self.logoWordImageView)
         
         self.buildButtons()
-        self.buildMainImageViews()
         self.layout()
     }
     
@@ -139,7 +145,7 @@ extension MainViewController {
         let lineView = UIView()
         lineView.backgroundColor = .lightGray
         lineView.snp.makeConstraints {
-            $0.width.equalTo(2)
+            $0.width.equalTo(1)
             $0.height.equalTo(76)
         }
         
@@ -149,21 +155,24 @@ extension MainViewController {
         
     }
     
-    private func buildMainImageViews() {
-        
-    }
-    
     private func layout() {
         self.logoImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(112)
             $0.width.equalTo(233)
-            $0.height.equalTo(280)
+            $0.height.equalTo(207)
         }
         
         self.buttonStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(self.view.safeArea.bottom).offset(-80)
+        }
+        
+        self.logoWordImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(self.logoImageView.snp.bottom).offset(14)
+            $0.width.equalTo(168)
+            $0.height.equalTo(52)
         }
     }
 }
