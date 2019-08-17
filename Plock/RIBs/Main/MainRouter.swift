@@ -40,8 +40,9 @@ extension MainRouter: MainRouting {
     }
     
     func goWrite() {
-        let vc = SetPlaceViewController()
-        self.viewController.uiviewController.navigationController?.pushViewController(vc, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "MakePlaceViewController")
+        self.viewController.uiviewController.navigationController?.pushViewController(makePlaceViewController, animated: true)
     }
     
     func detachDetail() {
