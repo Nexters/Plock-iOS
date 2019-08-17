@@ -27,6 +27,11 @@ final class SetPlaceViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hideNavigation()
+    }
+    
     override func loadView() {
         super.loadView()
         self.view = self.mapContainerView
@@ -60,5 +65,11 @@ final class SetPlaceViewController: BaseViewController {
             print("placeMark: \($0)")
             self.mapContainerView.searchLocationLabel.text = $0.name
         }).disposed(by: self.disposeBag)
+    }
+    
+    private func hideNavigation() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 }
