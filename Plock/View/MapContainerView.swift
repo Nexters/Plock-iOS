@@ -45,6 +45,8 @@ final class MapContainerView: BaseView {
         return self.mapView.rx.didChangeVisibleRegion.asDriverOnErrorJustComplete()
     }()
     
+    lazy var confirmChangeLocation: Driver<Void> = self.searchConfirmButton.rx.tap.asDriverOnErrorJustComplete()
+    
     // MARK: UI Component
     lazy var mapView: MKMapView = {
         let mapView = MKMapView()

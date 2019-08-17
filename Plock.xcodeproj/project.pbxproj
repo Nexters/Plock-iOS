@@ -56,6 +56,8 @@
 		A1D62C31230685F9009FBF0D /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */; };
 		A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C3323068F81009FBF0D /* LocationGettable.swift */; };
 		A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */; };
+		A1D62C3B2307D340009FBF0D /* SearchPlaceItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C3A2307D340009FBF0D /* SearchPlaceItemViewModel.swift */; };
+		A1D62C3E2307D690009FBF0D /* SearchPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C3D2307D690009FBF0D /* SearchPlaceCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +113,8 @@
 		A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewController.swift; sourceTree = "<group>"; };
 		A1D62C3323068F81009FBF0D /* LocationGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGettable.swift; sourceTree = "<group>"; };
 		A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewModel.swift; sourceTree = "<group>"; };
+		A1D62C3A2307D340009FBF0D /* SearchPlaceItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceItemViewModel.swift; sourceTree = "<group>"; };
+		A1D62C3D2307D690009FBF0D /* SearchPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceCell.swift; sourceTree = "<group>"; };
 		F02551D0C66B394311DD491A /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -265,6 +269,7 @@
 		A174553122F45BDE00C9844E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A1D62C372307D057009FBF0D /* Entries */,
 				A1D62C3223068E86009FBF0D /* Protocol */,
 				A10FF61322FD63EC00287B6D /* DelegateProxy */,
 				A174553522F465A300C9844E /* Extension */,
@@ -330,8 +335,8 @@
 		A1D62C2F230685D7009FBF0D /* SearchPlace */ = {
 			isa = PBXGroup;
 			children = (
-				A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */,
-				A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */,
+				A1D62C3F2307D6AB009FBF0D /* ViewModel */,
+				A1D62C3C2307D67C009FBF0D /* View */,
 			);
 			path = SearchPlace;
 			sourceTree = "<group>";
@@ -342,6 +347,31 @@
 				A1D62C3323068F81009FBF0D /* LocationGettable.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		A1D62C372307D057009FBF0D /* Entries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entries;
+			sourceTree = "<group>";
+		};
+		A1D62C3C2307D67C009FBF0D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */,
+				A1D62C3D2307D690009FBF0D /* SearchPlaceCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A1D62C3F2307D6AB009FBF0D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */,
+				A1D62C3A2307D340009FBF0D /* SearchPlaceItemViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BE3A50755C06761C3A3AC0BC /* Pods */ = {
@@ -503,6 +533,8 @@
 				A1BEB79C22F57491006EB852 /* MainBuilder.swift in Sources */,
 				A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */,
 				140171182307DD77006AAF85 /* MakePlaceInfoView.swift in Sources */,
+				A1D62C3E2307D690009FBF0D /* SearchPlaceCell.swift in Sources */,
+ 45d9b3bad852a046b927ccab82c45c6caa267600
 				A155E070230313C80052ECCC /* ViewModelType.swift in Sources */,
 				A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */,
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,
@@ -531,6 +563,7 @@
 				A1BEB78922F55A46006EB852 /* ReadBuilder.swift in Sources */,
 				140171122307C37C006AAF85 /* AlertViewController.swift in Sources */,
 				A11598A022FAF2C8008FB09C /* UIView+.swift in Sources */,
+				A1D62C3B2307D340009FBF0D /* SearchPlaceItemViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

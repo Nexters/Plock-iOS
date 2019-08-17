@@ -18,6 +18,7 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
     // MARk: Properties
     private let viewModel = SearchPlaceViewModel()
     private var currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
+    private var searchResult = PublishSubject<SearchPlaceItemViewModel>()
     private lazy var disposeBag = self.viewModel.disposeBag
     
     // MARK: UI Component
@@ -43,16 +44,27 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
     }()
     
     private var searchResultTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+        tableView.rowHeight = 46
+        tableView.backgroundColor = .white
+        tableView.register(SearchPlaceCell.self, forCellReuseIdentifier: "SearchPlaceCell")
+        tableView.separatorStyle = .none
+        var frame = CGRect.zero
+        frame.size.height = .leastNormalMagnitude
+        tableView.tableHeaderView = UIView(frame: frame)
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.searchTextField.becomeFirstResponder()
+        self.addObserver()
     }
     
-    init(location: BehaviorSubject<CLLocationCoordinate2D>) {
+    init(location: BehaviorSubject<CLLocationCoordinate2D>,
+         searchResult: PublishSubject<SearchPlaceItemViewModel>) {
         self.currentLocation = location
+        self.searchResult = searchResult
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -78,9 +90,32 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
         
         let input = SearchPlaceViewModel.Input(searchTrigger: searchTrigger.asDriverOnErrorJustComplete())
         let output = self.viewModel.transform(input: input)
-        output.places.drive(onNext: {
-            print("search: \($0)")
-        }).disposed(by: self.disposeBag)
+        output.itemViewModel.drive(self.searchResultTableView.rx.items(cellIdentifier: "SearchPlaceCell", cellType: SearchPlaceCell.self)){tableView, viewModel, cell in
+            cell.bind(viewModel)
+        }.disposed(by: self.disposeBag)
+        
+        self.searchResultTableView.rx.modelSelected(SearchPlaceItemViewModel.self)
+            .do(onNext: { _ in self.navigationController?.popViewController(animated: true) })
+            .bind(to: self.searchResult)
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onUIKeyboardWillShowNotification(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    @objc
+    func onUIKeyboardWillShowNotification(noti: Notification) {
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.searchResultTableView.snp.makeConstraints {
+                $0.top.equalTo(self.searchTextFieldContainer.snp.bottom).offset(15)
+                $0.left.equalToSuperview()
+                $0.right.equalToSuperview()
+                $0.bottom.equalToSuperview().offset(-keyboardHeight)
+            }
+        }
     }
 }
 
@@ -105,13 +140,6 @@ extension SearchPlaceViewController {
             $0.centerY.equalTo(self.searchTextFieldContainer)
             $0.left.equalTo(self.searchImage.snp.right).offset(4)
             $0.right.equalTo(self.searchTextFieldContainer).offset(-10)
-        }
-        
-        self.searchResultTableView.snp.makeConstraints {
-            $0.top.equalTo(self.searchTextFieldContainer.snp.bottom).offset(15)
-            $0.left.equalToSuperview().offset(24)
-            $0.right.equalToSuperview().offset(-24)
-            $0.bottom.equalTo(self.view.safeArea.bottom).offset(5)
         }
     }
 }

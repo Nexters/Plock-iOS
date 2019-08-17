@@ -21,15 +21,22 @@ extension SearchPlaceViewModel {
     }
     
     struct Output {
-        let places: Driver<[MKMapItem]>
+        let itemViewModel: Driver<[SearchPlaceItemViewModel]>
     }
     
     func transform(input: Input) -> Output {
         let search = input.searchTrigger
-        let places = search.debounce(0.3).flatMapLatest {
+        let mapItem = PublishSubject<[MKMapItem]>()
+        
+        search.debounce(0.3).flatMapLatest {
             self.searchPlace(with: $1, keyword: $0)
+        }.drive(mapItem)
+            .disposed(by: self.disposeBag)
+        
+        let itemViewModel = mapItem.debug("itemViewModel").filter { !$0.isEmpty }
+            .map { $0.map { SearchPlaceItemViewModel(with: $0) }
         }
         
-        return Output(places: places)
+        return Output(itemViewModel: itemViewModel.asDriverOnErrorJustComplete())
     }
 }
