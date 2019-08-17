@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1401710F2307C006006AAF85 /* MakePlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1401710E2307C006006AAF85 /* MakePlaceViewController.swift */; };
 		140171122307C37C006AAF85 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140171112307C37C006AAF85 /* AlertViewController.swift */; };
+		140171142307DD19006AAF85 /* MakePlaceInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140171132307DD19006AAF85 /* MakePlaceInfoView.xib */; };
+		140171162307DD29006AAF85 /* MakePlaceContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140171152307DD29006AAF85 /* MakePlaceContentView.xib */; };
+		140171182307DD77006AAF85 /* MakePlaceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140171172307DD77006AAF85 /* MakePlaceInfoView.swift */; };
+		1401711A2307DD82006AAF85 /* MakePlaceContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140171192307DD82006AAF85 /* MakePlaceContentView.swift */; };
 		140CB2A522FE6C86000FF0EF /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CB2A422FE6C86000FF0EF /* UIFont+.swift */; };
 		140CB2DB22FE9DB5000FF0EF /* GyeonggiBatang_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140CB2D722FE9DA9000FF0EF /* GyeonggiBatang_Bold.ttf */; };
 		140CB2DC22FE9DB5000FF0EF /* GyeonggiBatang_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */; };
@@ -58,6 +62,10 @@
 		1157777866724FEBF78F433C /* Pods_Plock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1401710E2307C006006AAF85 /* MakePlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePlaceViewController.swift; sourceTree = "<group>"; };
 		140171112307C37C006AAF85 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		140171132307DD19006AAF85 /* MakePlaceInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MakePlaceInfoView.xib; sourceTree = "<group>"; };
+		140171152307DD29006AAF85 /* MakePlaceContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MakePlaceContentView.xib; sourceTree = "<group>"; };
+		140171172307DD77006AAF85 /* MakePlaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePlaceInfoView.swift; sourceTree = "<group>"; };
+		140171192307DD82006AAF85 /* MakePlaceContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePlaceContentView.swift; sourceTree = "<group>"; };
 		140CB2A422FE6C86000FF0EF /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		140CB2D722FE9DA9000FF0EF /* GyeonggiBatang_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GyeonggiBatang_Bold.ttf; sourceTree = "<group>"; };
 		140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GyeonggiBatang_Regular.ttf; sourceTree = "<group>"; };
@@ -130,6 +138,10 @@
 			isa = PBXGroup;
 			children = (
 				1401710E2307C006006AAF85 /* MakePlaceViewController.swift */,
+				140171172307DD77006AAF85 /* MakePlaceInfoView.swift */,
+				140171132307DD19006AAF85 /* MakePlaceInfoView.xib */,
+				140171192307DD82006AAF85 /* MakePlaceContentView.swift */,
+				140171152307DD29006AAF85 /* MakePlaceContentView.xib */,
 			);
 			path = MakePlace;
 			sourceTree = "<group>";
@@ -402,11 +414,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				140171142307DD19006AAF85 /* MakePlaceInfoView.xib in Resources */,
 				14FDF40F22D9AA3F00AD2C65 /* LaunchScreen.storyboard in Resources */,
 				140CB2DC22FE9DB5000FF0EF /* GyeonggiBatang_Regular.ttf in Resources */,
 				140CB2DB22FE9DB5000FF0EF /* GyeonggiBatang_Bold.ttf in Resources */,
 				14FDF40C22D9AA3F00AD2C65 /* Assets.xcassets in Resources */,
 				14FDF40722D9AA3D00AD2C65 /* Main.storyboard in Resources */,
+				140171162307DD29006AAF85 /* MakePlaceContentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +502,7 @@
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
 				A1BEB79C22F57491006EB852 /* MainBuilder.swift in Sources */,
 				A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */,
+				140171182307DD77006AAF85 /* MakePlaceInfoView.swift in Sources */,
 				A155E070230313C80052ECCC /* ViewModelType.swift in Sources */,
 				A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */,
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,
@@ -500,6 +515,7 @@
 				A10FF61522FD640200287B6D /* RxMKMapViewDelegateProxy.swift in Sources */,
 				A1D62C31230685F9009FBF0D /* SearchPlaceViewController.swift in Sources */,
 				A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */,
+				1401711A2307DD82006AAF85 /* MakePlaceContentView.swift in Sources */,
 				14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */,
 				A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */,
 				A1BEB7A222F574A5006EB852 /* RootInteractor.swift in Sources */,
