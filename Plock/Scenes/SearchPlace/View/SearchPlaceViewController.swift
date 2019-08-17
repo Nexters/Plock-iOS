@@ -34,6 +34,7 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
         let textField = UITextField()
         textField.font = .bold(size: 16)
         textField.textColor = .grey2()
+        textField.returnKeyType = .done
         return textField
     }()
     
@@ -72,6 +73,10 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        self.removeObservers()
+    }
+    
     override func setupUI() {
         self.title = "위치 설정"
         self.view.backgroundColor = .white
@@ -90,7 +95,7 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
         
         let input = SearchPlaceViewModel.Input(searchTrigger: searchTrigger.asDriverOnErrorJustComplete())
         let output = self.viewModel.transform(input: input)
-        output.itemViewModel.drive(self.searchResultTableView.rx.items(cellIdentifier: "SearchPlaceCell", cellType: SearchPlaceCell.self)){tableView, viewModel, cell in
+        output.itemViewModel.drive(self.searchResultTableView.rx.items(cellIdentifier: "SearchPlaceCell", cellType: SearchPlaceCell.self)) {tableView, viewModel, cell in
             cell.bind(viewModel)
         }.disposed(by: self.disposeBag)
         
@@ -102,6 +107,11 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
     
     private func addObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(onUIKeyboardWillShowNotification(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onUIKeyboardWillHideNotification(noti:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc
@@ -109,11 +119,25 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
         if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
-            self.searchResultTableView.snp.makeConstraints {
+            UIView.animate(withDuration: 0.3) {
+                self.searchResultTableView.snp.remakeConstraints {
+                    $0.top.equalTo(self.searchTextFieldContainer.snp.bottom).offset(15)
+                    $0.left.equalToSuperview()
+                    $0.right.equalToSuperview()
+                    $0.bottom.equalToSuperview().offset(-keyboardHeight)
+                }
+            }
+        }
+    }
+    
+    @objc
+    func onUIKeyboardWillHideNotification(noti: Notification) {
+        UIView.animate(withDuration: 0.3) {
+            self.searchResultTableView.snp.remakeConstraints {
                 $0.top.equalTo(self.searchTextFieldContainer.snp.bottom).offset(15)
                 $0.left.equalToSuperview()
                 $0.right.equalToSuperview()
-                $0.bottom.equalToSuperview().offset(-keyboardHeight)
+                $0.bottom.equalTo(self.view.safeArea.bottom)
             }
         }
     }

@@ -33,6 +33,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
         let segment: UISegmentedControl = UISegmentedControl(items: ["지도", "리스트"])
         segment.sizeToFit()
         segment.selectedSegmentIndex = 0
+        segment.tintColor = .mainBlue()
         return segment
     }()
     
