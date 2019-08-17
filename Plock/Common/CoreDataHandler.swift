@@ -16,6 +16,7 @@ class CoreDataHandler: NSObject {
         let manageObject = NSManagedObject(entity: entity!, insertInto: context)
         
         manageObject.setValue(memory.title, forKey: "title")
+        manageObject.setValue(memory.address, forKey: "address")
         manageObject.setValue(memory.content, forKey: "content")
         manageObject.setValue(memory.date, forKey: "date")
         manageObject.setValue(memory.latitude, forKey: "latitude")
