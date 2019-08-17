@@ -38,6 +38,19 @@ final class SetPlaceViewController: BaseViewController {
         self.view = self.mapContainerView
     }
     
+    override func setupUI() {
+        let frameImage = UIImageView()
+        frameImage.image = UIImage(named: "alram")
+        self.view.addSubview(frameImage)
+        
+        frameImage.snp.makeConstraints {
+            $0.width.equalTo(64)
+            $0.height.equalTo(74.5)
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-(74.5 / 2))
+        }
+    }
+    
     override func setupBind() {
         let foucusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
         let didChangeVisibleRegion = self.mapContainerView.didChangeVisibleRegion
@@ -66,7 +79,7 @@ final class SetPlaceViewController: BaseViewController {
         let input = SetPlaceViewModel.Input(reverseGeocodeLocationTrigger: didChangeVisibleRegion)
         let output = self.viewModel.transform(input: input)
         output.placeMark.do(onNext: {
-            self.mapContainerView.searchLocationLabel.text = $0.name
+            self.mapContainerView.searchLocationLabel.text = "\($0.administrativeArea ?? "") \($0.locality ?? "") \($0.subLocality ?? "") \($0.subThoroughfare ?? "")"
         })
             .map {
                 SearchPlaceItemViewModel(with: $0)
