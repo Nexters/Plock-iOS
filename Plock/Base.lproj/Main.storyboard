@@ -50,10 +50,10 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="K6V-rb-yzb">
                                         <rect key="frame" x="0.0" y="0.0" width="338" height="728"/>
-                                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EtE-Rl-rB5">
-                                        <rect key="frame" x="0.0" y="0.0" width="338" height="728"/>
+                                        <rect key="frame" x="18" y="40" width="302" height="688"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -65,6 +65,14 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aFD-Rs-TnY">
                                                 <rect key="frame" x="0.0" y="0.0" width="302" height="531"/>
+                                                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group" translatesAutoresizingMaskIntoConstraints="NO" id="cYF-0y-XT6">
+                                                <rect key="frame" x="119" y="233.5" width="64" height="64"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="64" id="68h-SN-c0i"/>
+                                                    <constraint firstAttribute="width" constant="64" id="bMA-hy-VF8"/>
+                                                </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksp-Ot-btE">
                                                 <rect key="frame" x="0.0" y="570" width="302" height="94"/>
@@ -105,15 +113,8 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icMoreActive" translatesAutoresizingMaskIntoConstraints="NO" id="9Nr-U8-2fF">
-                                                                <rect key="frame" x="284" y="27" width="18" height="18"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="18" id="03T-oq-H0q"/>
-                                                                    <constraint firstAttribute="height" constant="18" id="H5r-DD-pU1"/>
-                                                                </constraints>
-                                                            </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDH-g8-SQr">
-                                                                <rect key="frame" x="24" y="27" width="260" height="18"/>
+                                                                <rect key="frame" x="24" y="27" width="42" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -130,12 +131,9 @@
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="neK-Dc-aZw" secondAttribute="bottom" id="0Ta-GI-TT8"/>
                                                             <constraint firstItem="neK-Dc-aZw" firstAttribute="leading" secondItem="NGx-kU-TRw" secondAttribute="leading" id="506-mT-9cU"/>
-                                                            <constraint firstAttribute="trailing" secondItem="9Nr-U8-2fF" secondAttribute="trailing" id="8Cv-7H-zUn"/>
-                                                            <constraint firstItem="9Nr-U8-2fF" firstAttribute="leading" secondItem="IDH-g8-SQr" secondAttribute="trailing" id="8PZ-g6-fTA"/>
                                                             <constraint firstAttribute="trailing" secondItem="7rh-xb-sUg" secondAttribute="trailing" id="S4e-B6-DkB"/>
                                                             <constraint firstItem="neK-Dc-aZw" firstAttribute="top" secondItem="7rh-xb-sUg" secondAttribute="bottom" id="Sc6-Wm-V6b"/>
                                                             <constraint firstItem="IDH-g8-SQr" firstAttribute="leading" secondItem="neK-Dc-aZw" secondAttribute="trailing" constant="6" id="fmM-6g-p7O"/>
-                                                            <constraint firstItem="9Nr-U8-2fF" firstAttribute="bottom" secondItem="IDH-g8-SQr" secondAttribute="bottom" id="tBD-7Z-ETL"/>
                                                             <constraint firstAttribute="bottom" secondItem="IDH-g8-SQr" secondAttribute="bottom" id="u6S-zl-pjn"/>
                                                             <constraint firstItem="IDH-g8-SQr" firstAttribute="top" secondItem="7rh-xb-sUg" secondAttribute="bottom" id="ugk-Pg-3pg"/>
                                                             <constraint firstItem="7rh-xb-sUg" firstAttribute="top" secondItem="NGx-kU-TRw" secondAttribute="top" id="z2I-eW-x9A"/>
@@ -158,7 +156,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="aFD-Rs-TnY" firstAttribute="top" secondItem="Ulk-kp-FRn" secondAttribute="top" id="Ama-xx-w0U"/>
+                                            <constraint firstItem="cYF-0y-XT6" firstAttribute="centerY" secondItem="aFD-Rs-TnY" secondAttribute="centerY" id="JoF-t6-NXw"/>
                                             <constraint firstAttribute="bottom" secondItem="ksp-Ot-btE" secondAttribute="bottom" id="KET-Y9-iXS"/>
+                                            <constraint firstItem="cYF-0y-XT6" firstAttribute="centerX" secondItem="aFD-Rs-TnY" secondAttribute="centerX" id="S3M-Q7-Dsd"/>
                                             <constraint firstItem="ksp-Ot-btE" firstAttribute="top" secondItem="aFD-Rs-TnY" secondAttribute="bottom" constant="39" id="ViZ-HL-6iV"/>
                                             <constraint firstAttribute="trailing" secondItem="aFD-Rs-TnY" secondAttribute="trailing" id="W2C-Fj-xSN"/>
                                             <constraint firstItem="aFD-Rs-TnY" firstAttribute="leading" secondItem="Ulk-kp-FRn" secondAttribute="leading" id="cz3-aE-t1a"/>
@@ -166,20 +166,33 @@
                                             <constraint firstAttribute="trailing" secondItem="ksp-Ot-btE" secondAttribute="trailing" id="gWT-k7-Q1r"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiJ-ry-Mrz">
+                                        <rect key="frame" x="288" y="657" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="OjG-TM-w8K"/>
+                                            <constraint firstAttribute="width" constant="32" id="a1Y-d2-jZx"/>
+                                        </constraints>
+                                        <state key="normal" image="icFlipActive"/>
+                                        <connections>
+                                            <action selector="flipButtonDidTap:" destination="rDT-RR-hlC" eventType="touchUpInside" id="zIX-PX-qcO"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="BiJ-ry-Mrz" firstAttribute="bottom" secondItem="NGx-kU-TRw" secondAttribute="bottom" id="5my-5T-zFU"/>
                                     <constraint firstItem="K6V-rb-yzb" firstAttribute="leading" secondItem="LFa-mq-YCe" secondAttribute="leading" id="7x3-cL-3Sz"/>
                                     <constraint firstAttribute="trailing" secondItem="Ulk-kp-FRn" secondAttribute="trailing" constant="18" id="9Tb-gA-MNQ"/>
                                     <constraint firstAttribute="bottom" secondItem="K6V-rb-yzb" secondAttribute="bottom" id="9ae-Bg-hCy"/>
                                     <constraint firstAttribute="bottom" secondItem="Ulk-kp-FRn" secondAttribute="bottom" constant="24" id="GUe-Jz-9DR"/>
                                     <constraint firstAttribute="bottom" secondItem="EtE-Rl-rB5" secondAttribute="bottom" id="Gr4-Gm-DP0"/>
                                     <constraint firstItem="Ulk-kp-FRn" firstAttribute="top" secondItem="LFa-mq-YCe" secondAttribute="top" constant="40" id="QKp-Ow-eoH"/>
-                                    <constraint firstAttribute="trailing" secondItem="EtE-Rl-rB5" secondAttribute="trailing" id="S2W-zv-6lt"/>
-                                    <constraint firstItem="EtE-Rl-rB5" firstAttribute="top" secondItem="LFa-mq-YCe" secondAttribute="top" id="YaS-8Z-dMS"/>
+                                    <constraint firstAttribute="trailing" secondItem="EtE-Rl-rB5" secondAttribute="trailing" constant="18" id="S2W-zv-6lt"/>
+                                    <constraint firstItem="EtE-Rl-rB5" firstAttribute="top" secondItem="LFa-mq-YCe" secondAttribute="top" constant="40" id="YaS-8Z-dMS"/>
                                     <constraint firstItem="K6V-rb-yzb" firstAttribute="top" secondItem="LFa-mq-YCe" secondAttribute="top" id="dPC-xu-rj7"/>
                                     <constraint firstAttribute="trailing" secondItem="K6V-rb-yzb" secondAttribute="trailing" id="iPo-mf-VEa"/>
-                                    <constraint firstItem="EtE-Rl-rB5" firstAttribute="leading" secondItem="LFa-mq-YCe" secondAttribute="leading" id="ltf-Tp-hiE"/>
+                                    <constraint firstItem="EtE-Rl-rB5" firstAttribute="leading" secondItem="LFa-mq-YCe" secondAttribute="leading" constant="18" id="ltf-Tp-hiE"/>
+                                    <constraint firstItem="BiJ-ry-Mrz" firstAttribute="trailing" secondItem="Ulk-kp-FRn" secondAttribute="trailing" id="pZs-m3-erW"/>
                                     <constraint firstItem="Ulk-kp-FRn" firstAttribute="leading" secondItem="LFa-mq-YCe" secondAttribute="leading" constant="18" id="t37-Gz-KrS"/>
                                 </constraints>
                             </view>
@@ -199,6 +212,8 @@
                         <outlet property="contentTextView" destination="EtE-Rl-rB5" id="B4X-kz-irV"/>
                         <outlet property="dateButton" destination="PKc-kr-kwT" id="fDt-cz-xLv"/>
                         <outlet property="datePickerContainerView" destination="qca-cy-iSr" id="jvD-Fe-OFo"/>
+                        <outlet property="emptyImageView" destination="cYF-0y-XT6" id="XYy-Y9-w2d"/>
+                        <outlet property="flipButton" destination="BiJ-ry-Mrz" id="lHg-VL-dda"/>
                         <outlet property="infoContainerView" destination="Ulk-kp-FRn" id="f5S-7u-gnh"/>
                         <outlet property="mainImageView" destination="aFD-Rs-TnY" id="9gX-cb-cOr"/>
                         <outlet property="placeLabel" destination="IDH-g8-SQr" id="gme-Dd-h7J"/>
@@ -418,6 +433,8 @@
     <resources>
         <image name="33622" width="7" height="11"/>
         <image name="background" width="317" height="515"/>
+        <image name="group" width="64" height="64"/>
+        <image name="icFlipActive" width="32" height="32"/>
         <image name="icMoreActive" width="18" height="18"/>
     </resources>
 </document>
