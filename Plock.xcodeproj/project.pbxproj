@@ -18,6 +18,7 @@
 		140CB2DC22FE9DB5000FF0EF /* GyeonggiBatang_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */; };
 		140CB2E122FEA0B8000FF0EF /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CB2E022FEA0B8000FF0EF /* CoreDataHandler.swift */; };
 		144F7E10230820F600F20232 /* DateAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144F7E0F230820F600F20232 /* DateAlertViewController.swift */; };
+		144F7E1323082F7400F20232 /* DetailMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144F7E1223082F7400F20232 /* DetailMemoryViewController.swift */; };
 		14FDF40022D9AA3D00AD2C65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDF3FF22D9AA3D00AD2C65 /* AppDelegate.swift */; };
 		14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDF40122D9AA3D00AD2C65 /* SceneDelegate.swift */; };
 		14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDF40322D9AA3D00AD2C65 /* ViewController.swift */; };
@@ -74,6 +75,7 @@
 		140CB2D922FE9DAA000FF0EF /* GyeonggiBatang_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GyeonggiBatang_Regular.ttf; sourceTree = "<group>"; };
 		140CB2E022FEA0B8000FF0EF /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		144F7E0F230820F600F20232 /* DateAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAlertViewController.swift; sourceTree = "<group>"; };
+		144F7E1223082F7400F20232 /* DetailMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoryViewController.swift; sourceTree = "<group>"; };
 		14FDF3FC22D9AA3D00AD2C65 /* Plock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FDF3FF22D9AA3D00AD2C65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14FDF40122D9AA3D00AD2C65 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +173,14 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		144F7E1123082F5F00F20232 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				144F7E1223082F7400F20232 /* DetailMemoryViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		14FDF3F322D9AA3D00AD2C65 = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +228,7 @@
 		A121B5962303059500F7946A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				144F7E1123082F5F00F20232 /* Detail */,
 				140171102307C356006AAF85 /* Alert */,
 				1401710D2307BFDA006AAF85 /* MakePlace */,
 				A1D62C2F230685D7009FBF0D /* SearchPlace */,
@@ -538,6 +549,7 @@
 				140171182307DD77006AAF85 /* MakePlaceInfoView.swift in Sources */,
 				A1D62C3E2307D690009FBF0D /* SearchPlaceCell.swift in Sources */,
 				A155E070230313C80052ECCC /* ViewModelType.swift in Sources */,
+				144F7E1323082F7400F20232 /* DetailMemoryViewController.swift in Sources */,
 				A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */,
 				A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */,
 				144F7E10230820F600F20232 /* DateAlertViewController.swift in Sources */,
