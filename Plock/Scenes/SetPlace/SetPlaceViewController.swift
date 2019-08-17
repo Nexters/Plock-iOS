@@ -23,6 +23,16 @@ final class SetPlaceViewController: BaseViewController {
     private let regionRadius: CLLocationDistance = 500
     private let viewModel = SetPlaceViewModel()
     private let disposeBag = DisposeBag()
+    private let confirmCompletion: (MemoryPlace) -> Void
+    
+    init(confirmCompletion: @escaping (MemoryPlace) -> Void) {
+        self.confirmCompletion = confirmCompletion
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,8 +96,13 @@ final class SetPlaceViewController: BaseViewController {
         }.drive(setLocation).disposed(by: self.disposeBag)
         
         confirm.withLatestFrom(setLocation.asDriverOnErrorJustComplete())
-            .drive(onNext: {
-                print("selected Data: \($0.title)")
+            .drive(onNext: { [weak self] placemark in
+                let memory = MemoryPlace()
+                memory.address = placemark.subTitle
+                memory.latitude = placemark.coordinate.latitude
+                memory.longitude = placemark.coordinate.longitude
+                self?.confirmCompletion(memory)
+                self?.navigationController?.popViewController(animated: true)
             }).disposed(by: self.disposeBag)
     }
     

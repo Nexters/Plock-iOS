@@ -133,7 +133,10 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     @objc
     func placeSelectDidTap() {
-        let viewController = SetPlaceViewController()
+        let viewController = SetPlaceViewController { memoryPlace in
+            print("memory : \(memoryPlace.address)")
+        }
+        
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
