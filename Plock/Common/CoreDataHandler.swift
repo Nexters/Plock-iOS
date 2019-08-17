@@ -10,10 +10,11 @@ class CoreDataHandler: NSObject {
     }
     
     @discardableResult
-    class func saveObject(memory: Memory) -> Bool {
+    class func saveObject(memory: MemoryPlace) -> Bool {
         let context = getContext()
         let entity = NSEntityDescription.entity(forEntityName: "Memory", in: context)
         let manageObject = NSManagedObject(entity: entity!, insertInto: context)
+        
         manageObject.setValue(memory.title, forKey: "title")
         manageObject.setValue(memory.content, forKey: "content")
         manageObject.setValue(memory.date, forKey: "date")
