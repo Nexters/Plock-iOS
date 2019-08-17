@@ -12,6 +12,7 @@ import RxSwift
 protocol MainRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
     func goRead()
+    func goWrite()
 }
 
 protocol MainPresentable: Presentable {
@@ -21,7 +22,7 @@ protocol MainPresentable: Presentable {
 
 protocol MainListener: class {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
-    func goWrite()
+    
 }
 
 final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable {
@@ -52,6 +53,7 @@ extension MainInteractor: MainPresentableListener {
     }
     
     func write() {
-        self.listener?.goWrite()
+        self.router?.goWrite()
+//        self.listener?.goWrite()
     }
 }

@@ -39,22 +39,6 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable> {
 
 // MARK: - Private
 extension RootRouter: RootRouting {
-    func routeToWrite() {
-        print("routeToWrite")
-        /*
-         제드꺼 붙이면 됨
-         */
-        if let main = self.mainRouting {
-            self.detachChild(main)
-            viewController.dismiss(viewController: main.viewControllable)
-            self.mainRouting = nil
-        }
-//        let vc = SetPlaceViewController()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "MakePlaceViewController")
-        let vc = UINavigationController(rootViewController: makePlaceViewController)
-        self.viewController.present(viewController: vc)
-    }
     
     // MARK: Private
     private func routeToViewController() {

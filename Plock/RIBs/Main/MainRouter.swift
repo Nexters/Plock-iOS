@@ -39,6 +39,11 @@ extension MainRouter: MainRouting {
                                                                                       animated: true)
     }
     
+    func goWrite() {
+        let vc = SetPlaceViewController()
+        self.viewController.uiviewController.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func detachDetail() {
         if let currentChild = self.currentChild {
             detachChild(currentChild)

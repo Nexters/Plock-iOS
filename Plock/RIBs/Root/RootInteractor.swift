@@ -10,7 +10,6 @@ import RIBs
 import RxSwift
 
 protocol RootRouting: ViewableRouting {
-    func routeToWrite()
 }
 
 protocol RootPresentable: Presentable {
@@ -42,8 +41,5 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         super.willResignActive()
         // TODO: Pause any business logic.
     }
-    
-    func goWrite() {
-        self.router?.routeToWrite()
-    }
+
 }
