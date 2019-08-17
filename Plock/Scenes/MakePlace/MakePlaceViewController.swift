@@ -11,12 +11,12 @@ import RIBs
 import CoreData
 extension UIViewController {
     
-    func updateNavigationBarAsTransparent() {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    func updateNavigationBarAsDefault() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.barTintColor = .clear
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.getImage(color: .clear), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage.getImage(color: .clear)
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage.getImage(color: .white), for: .default)
+        //self.navigationController?.navigationBar.shadowImage = UIImage.navigationShadow
     }
 }
 extension UIImage {
@@ -35,20 +35,23 @@ extension UIImage {
 
 extension MakePlaceViewController: ViewControllable { }
 
-class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var infoContainerView: UIView!
-    @IBOutlet weak var datePicker: UIDatePicker!
+
     @IBOutlet var datePickerContainerView: UIView!
     
     @IBOutlet weak var selectDateContainerView: UIView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var placeTextField: UITextField!
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var mainImageView: UIImageView!
+    
+    @IBOutlet weak var flipButton: UIButton!
     
     var isInfoView: Bool = true
     var memory: MemoryPlace = MemoryPlace()
@@ -63,6 +66,11 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         self.setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateNavigationBarAsDefault()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
@@ -74,7 +82,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     }
     
     func setupNavigation() {
-        //self.navigationController?.navigationBar.barTintColor = .white
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backOff")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backButtonDidTap))
         
         let rightNavigationItem = UIBarButtonItem(image: UIImage(named: "icDoneActive")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(saveMemory))
@@ -95,8 +103,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         self.present(alert, animated: false, completion: nil)
     }
     
-    @objc
-    func flipTriggered() {
+    @IBAction func flipButtonDidTap(_ sender: UIButton) {
         UIView.transition(with: self.backgroundImageView, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], animations: {
             self.isInfoView.toggle()
             if self.isInfoView {
@@ -136,10 +143,14 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     func setupInfoView() {
         self.placeTextField.tintColor = UIColor(hex: "#030303")
+        self.placeTextField.delegate = self
         self.placeLabel.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(placeSelectDidTap))
         self.placeLabel.addGestureRecognizer(tapGestureRecognizer)
-        
+    }
+    
+    func setupContentTextView() {
+        self.contentTextView.delegate = self
     }
     
     @objc
@@ -189,7 +200,9 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         let height = self.view.convert(keyboardFrame, from: nil).height
         let rate = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
         UIView.animate(withDuration: rate ?? 0.25, animations: {
-            self.view.frame.origin.y -= height
+            if self.isInfoView {
+                self.view.frame.origin.y -= height
+            }
         })
     }
     
@@ -200,6 +213,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.emptyImageView.isHidden = true
             self.mainImageView.image = image
             picker.dismiss(animated: true, completion: nil)
         }
