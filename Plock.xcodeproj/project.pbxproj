@@ -56,6 +56,7 @@
 		A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A022F574A5006EB852 /* RootBuilder.swift */; };
 		A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A122F574A5006EB852 /* RootViewController.swift */; };
 		A1C2C3DF230C0B0F00762682 /* ContestedAnnotationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2C3DE230C0B0F00762682 /* ContestedAnnotationTool.swift */; };
+		A1C2C3E2230C23AA00762682 /* SectionOfMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2C3E1230C23AA00762682 /* SectionOfMemory.swift */; };
 		A1D62C31230685F9009FBF0D /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */; };
 		A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C3323068F81009FBF0D /* LocationGettable.swift */; };
 		A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */; };
@@ -118,6 +119,7 @@
 		A1BEB7A022F574A5006EB852 /* RootBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		A1BEB7A122F574A5006EB852 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A1C2C3DE230C0B0F00762682 /* ContestedAnnotationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestedAnnotationTool.swift; sourceTree = "<group>"; };
+		A1C2C3E1230C23AA00762682 /* SectionOfMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfMemory.swift; sourceTree = "<group>"; };
 		A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewController.swift; sourceTree = "<group>"; };
 		A1D62C3323068F81009FBF0D /* LocationGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGettable.swift; sourceTree = "<group>"; };
 		A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewModel.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				A1EF8C3723083EB90019E621 /* MemoryAnnotation.swift */,
+				A1C2C3E1230C23AA00762682 /* SectionOfMemory.swift */,
 			);
 			path = Entries;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				1401711A2307DD82006AAF85 /* MakePlaceContentView.swift in Sources */,
 				14FDF40222D9AA3D00AD2C65 /* SceneDelegate.swift in Sources */,
 				A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */,
+				A1C2C3E2230C23AA00762682 /* SectionOfMemory.swift in Sources */,
 				A1BEB7A222F574A5006EB852 /* RootInteractor.swift in Sources */,
 				A1BEB79A22F57491006EB852 /* MainComponent+Read.swift in Sources */,
 				A10FF61722FD64BA00287B6D /* Rx+MKMapView.swift in Sources */,
