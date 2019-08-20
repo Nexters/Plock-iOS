@@ -64,10 +64,17 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
             self?.presenter.addAnnotations(annotations: newAnnotations)
         }).disposed(by: self.disposeBag)
         
-        self.triggerMemories.debug("triggerMemories").flatMapLatest {
-            self.rxFetchObservable()
-        }.asDriverOnErrorJustComplete()
-            .drive(self.memories).disposed(by: self.disposeBag)
+        self.memories.map {
+            $0.map{
+                self.convertMemoryPlace(memory: $0)
+            }
+        }
+        
+        self.triggerMemories
+            .flatMapLatest { self.rxFetchObservable() }
+            .asDriverOnErrorJustComplete()
+            .drive(self.memories)
+            .disposed(by: self.disposeBag)
     }
 }
 
@@ -94,5 +101,16 @@ extension ReadInteractor {
             emit.onCompleted()
             return Disposables.create()
         }.asDriverOnErrorJustComplete()
+    }
+    
+    private func convertMemoryPlace(memory: Memory) -> MemoryPlace {
+        return MemoryPlace(title: memory.title ?? "",
+                           address: memory.address ?? "",
+                           content: memory.content ?? "",
+                           date: memory.date ?? Date(),
+                           latitude: memory.latitude ,
+                           longitude: memory.latitude ,
+                           image: memory.image ?? Data(),
+                           id: Int(memory.id ))
     }
 }

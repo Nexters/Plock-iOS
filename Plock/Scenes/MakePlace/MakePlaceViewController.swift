@@ -221,13 +221,32 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
 }
 
 final class MemoryPlace {
-    var title: String = ""
-    var address: String = ""
-    var content: String = ""
-    var date: Date = Date()
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
-    var image: Data = Data()
+    var title: String
+    var address: String
+    var content: String
+    var date: Date
+    var latitude: Double
+    var longitude: Double
+    var image: Data
+    var id: Int
+    
+    init(title: String = "",
+         address: String = "",
+         content: String = "",
+         date: Date = Date(),
+         latitude: Double = 0.0,
+         longitude: Double = 0.0,
+         image: Data = Data(),
+         id: Int = 0 ) {
+        self.title = title
+        self.address = address
+        self.content = content
+        self.date = date
+        self.latitude = latitude
+        self.longitude = longitude
+        self.image = image
+        self.id = id
+    }
 }
 
 public extension UIColor {
