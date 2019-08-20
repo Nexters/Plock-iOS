@@ -57,6 +57,7 @@
 		A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A122F574A5006EB852 /* RootViewController.swift */; };
 		A1C2C3DF230C0B0F00762682 /* ContestedAnnotationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2C3DE230C0B0F00762682 /* ContestedAnnotationTool.swift */; };
 		A1C2C3E2230C23AA00762682 /* SectionOfMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2C3E1230C23AA00762682 /* SectionOfMemory.swift */; };
+		A1C2C3E4230C302900762682 /* PlaceGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2C3E3230C302900762682 /* PlaceGridCell.swift */; };
 		A1D62C31230685F9009FBF0D /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */; };
 		A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C3323068F81009FBF0D /* LocationGettable.swift */; };
 		A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */; };
@@ -120,6 +121,7 @@
 		A1BEB7A122F574A5006EB852 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A1C2C3DE230C0B0F00762682 /* ContestedAnnotationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestedAnnotationTool.swift; sourceTree = "<group>"; };
 		A1C2C3E1230C23AA00762682 /* SectionOfMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfMemory.swift; sourceTree = "<group>"; };
+		A1C2C3E3230C302900762682 /* PlaceGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceGridCell.swift; sourceTree = "<group>"; };
 		A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewController.swift; sourceTree = "<group>"; };
 		A1D62C3323068F81009FBF0D /* LocationGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGettable.swift; sourceTree = "<group>"; };
 		A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewModel.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				A1BEB79122F57240006EB852 /* MapContainerView.swift */,
 				A115989D22FACEAB008FB09C /* PlaceGridView.swift */,
 				A1EF8C3923085F240019E621 /* MemoryAnnotationView.swift */,
+				A1C2C3E3230C302900762682 /* PlaceGridCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				A1BEB78722F55A46006EB852 /* ReadRouter.swift in Sources */,
 				A1BEB79B22F57491006EB852 /* MainViewController.swift in Sources */,
 				A1BEB79222F57240006EB852 /* MapContainerView.swift in Sources */,
+				A1C2C3E4230C302900762682 /* PlaceGridCell.swift in Sources */,
 				A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */,
 				A1BEB79822F57491006EB852 /* MainInteractor.swift in Sources */,
 				A11598A422FAF2F4008FB09C /* AppComponent.swift in Sources */,

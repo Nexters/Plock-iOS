@@ -20,6 +20,7 @@ protocol ReadPresentable: Presentable {
     var listener: ReadPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
     func addAnnotations(annotations: [MKAnnotation])
+    var triggerDrawCollectionView: PublishSubject<[SectionOfMemory]> { get }
 }
 
 protocol ReadListener: class {
@@ -64,11 +65,10 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
             self?.presenter.addAnnotations(annotations: newAnnotations)
         }).disposed(by: self.disposeBag)
         
-        self.memories.map {
-            $0.map{
-                self.convertMemoryPlace(memory: $0)
-            }
-        }
+        self.memories.map { $0.map { self.convertMemoryPlace(memory: $0) } }
+            .map{[SectionOfMemory(header: 0, items: $0)]}
+            .bind(to: self.presenter.triggerDrawCollectionView)
+            .disposed(by: self.disposeBag)
         
         self.triggerMemories
             .flatMapLatest { self.rxFetchObservable() }

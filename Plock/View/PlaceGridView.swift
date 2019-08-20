@@ -9,7 +9,7 @@
 import UIKit
 
 final class PlaceGridView: BaseView {
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)

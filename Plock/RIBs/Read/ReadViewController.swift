@@ -7,24 +7,26 @@
 //
 
 import RIBs
-import RxSwift
-import RxCocoa
 import MapKit
 import UIKit
+
+import RxSwift
+import RxCocoa
+import RxDataSources
 
 protocol ReadPresentableListener: class {
     func triggerFetchMemories()
 }
 
 final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable {
-    
     // MARK: Properties
     weak var listener: ReadPresentableListener?
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
-    
     private let regionRadius: CLLocationDistance = 500
     private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
+    private var dataSource: RxCollectionViewSectionedAnimatedDataSource<SectionOfMemory>?
+    var triggerDrawCollectionView: PublishSubject<[SectionOfMemory]> = PublishSubject<[SectionOfMemory]>()
     
     // MARK: UI Component
     private lazy var mapContainerView: MapContainerView = {
@@ -42,15 +44,13 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     init() {
         super.init(nibName: nil, bundle: nil)
-//        if let trigger = self.listener?.triggerFetchMemories {
-            self.rx
-                .viewDidload
-                .mapToVoid()
-                .subscribe(onNext: {
-                    self.listener?.triggerFetchMemories()
-                })
-                .disposed(by: self.disposeBag)
-//        }
+        self.rx
+            .viewDidload
+            .mapToVoid()
+            .subscribe(onNext: {
+                self.listener?.triggerFetchMemories()
+            })
+            .disposed(by: self.disposeBag)
     }
     
     required init?(coder: NSCoder) {
@@ -69,11 +69,19 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     override func setupUI() {
         self.view.backgroundColor = .white
         self.navigationItem.titleView = self.titleSegment
+        self.setupCollectionView()
+        self.setupCollectionViewLayout()
     }
     
     override func setupBind() {
         self.setBindMap()
         self.setBindReadViewController()
+        self.triggerDrawCollectionView
+            .bind(to: self.gridView
+                .collectionView
+                .rx
+                .items(dataSource: self.dataSource!))
+            .disposed(by: self.disposeBag)
     }
 }
 
@@ -81,10 +89,24 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
 extension ReadViewController {
     private func changeMap() {
         self.view = self.mapContainerView
+        self.showNavigation()
     }
     
     private func changeList() {
         self.view = self.gridView
+        self.hideNavigation()
+    }
+    
+    private func hideNavigation() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    private func showNavigation() {
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 }
 
@@ -128,5 +150,49 @@ extension ReadViewController {
     
     func addAnnotations(annotations: [MKAnnotation]) {
         self.mapContainerView.mapView.addAnnotations(annotations)
+    }
+}
+
+// MARK: CollectionView
+extension ReadViewController {
+    private func setupCollectionView() {
+        self.dataSource = RxCollectionViewSectionedAnimatedDataSource(configureCell: self.collectionViewDataSourceUI())
+        self.gridView.collectionView.contentInset = UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
+        self.gridView.collectionView.delegate = self
+        self.gridView.collectionView.register(PlaceGridCell.self, forCellWithReuseIdentifier: "PlaceGridCell")
+    }
+    
+    private func setupCollectionViewLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 11
+        layout.minimumInteritemSpacing = 11
+        self.gridView.collectionView.collectionViewLayout = layout
+    }
+}
+
+// MARK: CollectionView DataSoruce
+extension ReadViewController {
+    private func collectionViewDataSourceUI() -> CollectionViewSectionedDataSource<SectionOfMemory>.ConfigureCell {
+            return collectionViewDataSourceConfigureCell()
+    }
+    
+    private func collectionViewDataSourceConfigureCell() -> CollectionViewSectionedDataSource<SectionOfMemory>.ConfigureCell {
+        return { (dataSource, collectionView, indexPath, item) in
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlaceGridCell", for: indexPath) as? PlaceGridCell {
+                cell.content = item
+                cell.setupUI()
+                return cell
+            }
+
+            return UICollectionViewCell()
+        }
+    }
+}
+
+// MARK: CollectionView FlowLayout
+extension ReadViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = collectionView.frame.width / 2 - 24
+        return CGSize(width: size, height: 220)
     }
 }
