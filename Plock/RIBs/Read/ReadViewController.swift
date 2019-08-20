@@ -12,14 +12,16 @@ import RxCocoa
 import MapKit
 import UIKit
 
-protocol ReadPresentableListener: class { }
+protocol ReadPresentableListener: class {
+    func triggerFetchMemories()
+}
 
 final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable {
     
     // MARK: Properties
     weak var listener: ReadPresentableListener?
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
-    private let memories = PublishSubject<[Memory]>()
+    
     private let regionRadius: CLLocationDistance = 500
     private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
@@ -40,13 +42,15 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.rx.viewDidload
-            .asDriver()
-            .mapToVoid()
-            .flatMapLatest { [weak self] in
-                self?.rxFetchObservable() ?? Driver.never()
-        }.drive(self.memories)
-            .disposed(by: self.disposeBag)
+//        if let trigger = self.listener?.triggerFetchMemories {
+            self.rx
+                .viewDidload
+                .mapToVoid()
+                .subscribe(onNext: {
+                    self.listener?.triggerFetchMemories()
+                })
+                .disposed(by: self.disposeBag)
+//        }
     }
     
     required init?(coder: NSCoder) {
@@ -108,12 +112,11 @@ extension ReadViewController {
         self.mapContainerView.mapView.rx.handleViewForAnnotation { mapView, annotation in
             guard let annotation = annotation as? MemoryAnnotation else { return nil }
             let identifier = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
-            
             return MemoryAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         }
     }
     
-    private func setBindReadViewController(){
+    private func setBindReadViewController() {
         self.titleSegment.rx.value.subscribe(onNext: { [weak self] segment in
             if segment == 0 {
                 self?.changeMap()
@@ -121,33 +124,9 @@ extension ReadViewController {
                 self?.changeList()
             }
         }).disposed(by: self.disposeBag)
-        
-        self.memories.subscribe(onNext: { memory in
-            let memories = memory.map {
-                MemoryAnnotation(with: $0)
-            }
-            self.mapContainerView.mapView.addAnnotations(memories)
-        }).disposed(by: self.disposeBag)
     }
-}
-
-// MARK: Create Observable
-extension ReadViewController {
-    private func rxFetchObservable() -> Driver<[Memory]> {
-        return Observable.create { emit in
-            let memories = CoreDataHandler.fetchObject()
-            guard let memory = memories else {
-                emit.onError(NSError(domain: "", code: 400, userInfo: nil))
-                return Disposables.create()
-            }
-            
-            if memory.isEmpty {
-                emit.onError(NSError(domain: "", code: 400, userInfo: nil))
-            }
-            
-            emit.onNext(memory)
-            emit.onCompleted()
-            return Disposables.create()
-        }.asDriverOnErrorJustComplete()
+    
+    func addAnnotations(annotations: [MKAnnotation]) {
+        self.mapContainerView.mapView.addAnnotations(annotations)
     }
 }

@@ -41,7 +41,7 @@ extension MainRouter: MainRouting {
     
     func goWrite() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "DetailMemoryViewController")
+        let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "MakePlaceViewController")
         self.viewController.uiviewController.navigationController?.pushViewController(makePlaceViewController, animated: true)
     }
     

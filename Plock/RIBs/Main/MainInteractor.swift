@@ -54,6 +54,5 @@ extension MainInteractor: MainPresentableListener {
     
     func write() {
         self.router?.goWrite()
-//        self.listener?.goWrite()
     }
 }

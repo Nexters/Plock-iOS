@@ -55,6 +55,7 @@
 		A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB79F22F574A5006EB852 /* RootRouter.swift */; };
 		A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A022F574A5006EB852 /* RootBuilder.swift */; };
 		A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A122F574A5006EB852 /* RootViewController.swift */; };
+		A1C2C3DF230C0B0F00762682 /* ContestedAnnotationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2C3DE230C0B0F00762682 /* ContestedAnnotationTool.swift */; };
 		A1D62C31230685F9009FBF0D /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */; };
 		A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C3323068F81009FBF0D /* LocationGettable.swift */; };
 		A1D62C362306971D009FBF0D /* SearchPlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */; };
@@ -116,6 +117,7 @@
 		A1BEB79F22F574A5006EB852 /* RootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		A1BEB7A022F574A5006EB852 /* RootBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		A1BEB7A122F574A5006EB852 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		A1C2C3DE230C0B0F00762682 /* ContestedAnnotationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestedAnnotationTool.swift; sourceTree = "<group>"; };
 		A1D62C30230685F9009FBF0D /* SearchPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewController.swift; sourceTree = "<group>"; };
 		A1D62C3323068F81009FBF0D /* LocationGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGettable.swift; sourceTree = "<group>"; };
 		A1D62C352306971D009FBF0D /* SearchPlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewModel.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				A174553522F465A300C9844E /* Extension */,
 				A174553222F45BE500C9844E /* Base */,
 				140CB2E022FEA0B8000FF0EF /* CoreDataHandler.swift */,
+				A1C2C3DE230C0B0F00762682 /* ContestedAnnotationTool.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				1401710F2307C006006AAF85 /* MakePlaceViewController.swift in Sources */,
 				A1BEB78A22F55A46006EB852 /* ReadInteractor.swift in Sources */,
 				A121B598230305C400F7946A /* SetPlaceViewController.swift in Sources */,
+				A1C2C3DF230C0B0F00762682 /* ContestedAnnotationTool.swift in Sources */,
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
 				A1BEB79C22F57491006EB852 /* MainBuilder.swift in Sources */,
 				A1D62C3423068F81009FBF0D /* LocationGettable.swift in Sources */,
