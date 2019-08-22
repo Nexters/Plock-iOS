@@ -78,6 +78,7 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        testCode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,12 +124,12 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
 //        CoreDataHandler.saveObject(memory: memory)
         
         let memory2 = MemoryPlace()
-        memory2.title = "제목2"
-        memory2.content = "오늘은 비가 온다 핳하"
+        memory2.title = "제목3"
+        memory2.content = "여기는 낙성대다."
         memory2.date = Date()
         memory2.image = UIImage(named: "plockPicture")!.pngData()!
-        memory2.latitude = 37.497214
-        memory2.longitude = 127.026226
+        memory2.latitude = 37.471889
+        memory2.longitude = 126.967932
         CoreDataHandler.saveObject(memory: memory2)
     }
 }

@@ -12,11 +12,14 @@ import MapKit
 final class MemoryAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var image: UIImage
+    var isLock = false
     
     init(coordinate: CLLocationCoordinate2D,
-         image: UIImage) {
+         image: UIImage,
+         isLock: Bool) {
         self.coordinate = coordinate
         self.image = image
+        self.isLock = isLock
         super.init()
     }
     

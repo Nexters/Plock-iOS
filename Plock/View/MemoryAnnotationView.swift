@@ -34,8 +34,17 @@ final class MemoryAnnotationView: MKAnnotationView {
         let contentImageView = UIImageView()
         contentImageView.image = memory.image
         
+        let lockImageView = UIImageView()
+        lockImageView.image = UIImage(named: "lock")
+        
+        let dimView = UIView()
+        dimView.backgroundColor = .black
+        dimView.alpha = 0.3
+        
         containerView.addSubview(backgroundFrame)
         containerView.addSubview(contentImageView)
+        containerView.addSubview(dimView)
+        containerView.addSubview(lockImageView)
         
         backgroundFrame.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -54,6 +63,26 @@ final class MemoryAnnotationView: MKAnnotationView {
         containerView.snp.makeConstraints {
             $0.width.equalTo(64)
             $0.height.equalTo(74.5)
+        }
+        
+        dimView.snp.makeConstraints {
+            $0.top.equalTo(contentImageView.snp.top)
+            $0.left.equalTo(contentImageView.snp.left)
+            $0.right.equalTo(contentImageView.snp.right)
+            $0.bottom.equalTo(contentImageView.snp.bottom)
+        }
+        
+        lockImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(dimView)
+        }
+        
+        if memory.isLock {
+            dimView.isHidden = false
+            lockImageView.isHidden = false
+        } else {
+            dimView.isHidden = true
+            lockImageView.isHidden = true
         }
         
         self.addSubview(containerView)

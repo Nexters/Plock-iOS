@@ -16,6 +16,7 @@ import RxDataSources
 
 protocol ReadPresentableListener: class {
     func triggerFetchMemories()
+    func triggerMeasureDistance(with currentLocation: CLLocation)
 }
 
 final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable {
@@ -125,6 +126,11 @@ extension ReadViewController {
                                                       latitudinalMeters: (self?.regionRadius ?? 1000) * 2.0,
                                                       longitudinalMeters: (self?.regionRadius ?? 1000) * 2.0)
             self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
+        }).disposed(by: self.disposeBag)
+        
+        self.currentLocation.subscribe(onNext: { [weak self] location in
+            self?.listener?.triggerMeasureDistance(with: CLLocation(latitude: location.latitude,
+                                                                    longitude: location.longitude))
         }).disposed(by: self.disposeBag)
         
         writeMemory.drive(onNext: {

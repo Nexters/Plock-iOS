@@ -29,8 +29,10 @@ protocol ReadListener: class {
 final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteractable {
 
     private let memories = PublishSubject<[Memory]>()
+    private let currentLocation = PublishSubject<CLLocation>()
     private let triggerMemories = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
+    private let allowableDistance = 100.0
     weak var router: ReadRouting?
     weak var listener: ReadListener?
     
@@ -53,27 +55,37 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
     }
     
     private func setBind() {
-        self.memories.subscribe(onNext: { [weak self] memory in
-            let memories = memory.map {
+        self.triggerMemories
+            .flatMapLatest { self.rxFetchObservable() }
+            .asDriverOnErrorJustComplete()
+            .drive(self.memories)
+            .disposed(by: self.disposeBag)
+
+        let convertMemories = Observable.combineLatest(self.memories, self.currentLocation) { ($0, $1) }
+        convertMemories.subscribe(onNext: { [weak self] (memories, currentLocation) in
+            let memories = memories.map {
                 MemoryAnnotation(with: $0)
             }
             
             let newAnnotations = ContestedAnnotationTool.annotationsByDistributingAnnotations(annotations: memories) { (oldAnnotation: MemoryAnnotation, newCoordinate: CLLocationCoordinate2D) in
-                MemoryAnnotation(coordinate: newCoordinate, image: oldAnnotation.image)
+                let differ = currentLocation.distance(from: CLLocation(latitude: oldAnnotation.coordinate.latitude, longitude: oldAnnotation.coordinate.longitude))
+                
+                var isLock = true
+                if differ < self?.allowableDistance ?? 0.0 {
+                    isLock = false
+                }
+                
+                return MemoryAnnotation(coordinate: newCoordinate,
+                                 image: oldAnnotation.image,
+                                 isLock: isLock)
             }
             
             self?.presenter.addAnnotations(annotations: newAnnotations)
         }).disposed(by: self.disposeBag)
         
         self.memories.map { $0.map { self.convertMemoryPlace(memory: $0) } }
-            .map{[SectionOfMemory(header: 0, items: $0)]}
+            .map { [SectionOfMemory(header: 0, items: $0)] }
             .bind(to: self.presenter.triggerDrawCollectionView)
-            .disposed(by: self.disposeBag)
-        
-        self.triggerMemories
-            .flatMapLatest { self.rxFetchObservable() }
-            .asDriverOnErrorJustComplete()
-            .drive(self.memories)
             .disposed(by: self.disposeBag)
     }
 }
@@ -81,6 +93,10 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
 extension ReadInteractor: ReadPresentableListener {
     func triggerFetchMemories() {
         self.triggerMemories.onNext(())
+    }
+    
+    func triggerMeasureDistance(with currentLocation: CLLocation) {
+        self.currentLocation.onNext(currentLocation)
     }
 }
 
