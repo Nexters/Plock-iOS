@@ -83,8 +83,13 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
             self?.presenter.addAnnotations(annotations: newAnnotations)
         }).disposed(by: self.disposeBag)
         
-        self.memories.map { $0.map { self.convertMemoryPlace(memory: $0) } }
-            .map { [SectionOfMemory(header: 0, items: $0)] }
+        convertMemories.debounce(1, scheduler: MainScheduler.instance).map { (memories, currentLocation) in
+            memories.map { self.convertMemoryPlace(currentLocation: currentLocation, memory: $0) } }
+            .map { (memories)  in
+                let random = Int(Date().timeIntervalSince1970) + Int(arc4random())
+                let sorted = memories.sorted(by: { !$0.isLock && $1.isLock })
+                return [SectionOfMemory(header: random, items: sorted)]
+            }
             .bind(to: self.presenter.triggerDrawCollectionView)
             .disposed(by: self.disposeBag)
     }
@@ -119,7 +124,15 @@ extension ReadInteractor {
         }.asDriverOnErrorJustComplete()
     }
     
-    private func convertMemoryPlace(memory: Memory) -> MemoryPlace {
+    private func convertMemoryPlace(currentLocation: CLLocation,
+                                    memory: Memory) -> MemoryPlace {
+        let differ = currentLocation.distance(from: CLLocation(latitude: memory.latitude, longitude: memory.longitude))
+        var isLock = true
+        
+        if differ < self.allowableDistance {
+            isLock = false
+        }
+        
         return MemoryPlace(title: memory.title ?? "",
                            address: memory.address ?? "",
                            content: memory.content ?? "",
@@ -127,6 +140,8 @@ extension ReadInteractor {
                            latitude: memory.latitude ,
                            longitude: memory.latitude ,
                            image: memory.image ?? Data(),
-                           id: Int(memory.id ))
+                           id: Int(memory.id ),
+                           isLock: isLock
+        )
     }
 }

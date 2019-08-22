@@ -22,6 +22,8 @@ class CoreDataHandler: NSObject {
         manageObject.setValue(memory.latitude, forKey: "latitude")
         manageObject.setValue(memory.longitude, forKey: "longitude")
         manageObject.setValue(memory.image, forKey: "image")
+        manageObject.setValue(memory.id, forKey: "id")
+        
         do {
             try context.save()
             return true

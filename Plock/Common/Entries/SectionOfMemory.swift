@@ -16,9 +16,9 @@ struct SectionOfMemory {
 
 extension SectionOfMemory: AnimatableSectionModelType {
     typealias Identity = Int
-    typealias Item     = MemoryPlace
+    typealias Item = MemoryPlace
     
-    var identity: Int{
+    var identity: Int {
         return header
     }
     
@@ -35,6 +35,9 @@ extension MemoryPlace: IdentifiableType, Equatable {
     }
     
     static func == (lhs: MemoryPlace, rhs: MemoryPlace) -> Bool {
-        return lhs.address == rhs.address && lhs.content == rhs.content
+        return lhs.address == rhs.address &&
+            lhs.content == rhs.content
+            && lhs.id == rhs.id
+        
     }
 }

@@ -229,6 +229,7 @@ final class MemoryPlace {
     var longitude: Double
     var image: Data
     var id: Int
+    var isLock: Bool
     
     init(title: String = "",
          address: String = "",
@@ -237,7 +238,8 @@ final class MemoryPlace {
          latitude: Double = 0.0,
          longitude: Double = 0.0,
          image: Data = Data(),
-         id: Int = 0 ) {
+         id: Int = Int(Date().timeIntervalSince1970) + Int(arc4random()),
+         isLock: Bool = false) {
         self.title = title
         self.address = address
         self.content = content
@@ -246,6 +248,7 @@ final class MemoryPlace {
         self.longitude = longitude
         self.image = image
         self.id = id
+        self.isLock = isLock
     }
 }
 

@@ -77,8 +77,8 @@ final class PlaceGridCell: UICollectionViewCell {
         }
         
         self.lockImageView.snp.makeConstraints {
-            $0.right.equalToSuperview().offset(13)
-            $0.bottom.equalToSuperview().offset(12)
+            $0.right.equalToSuperview().offset(-13)
+            $0.bottom.equalToSuperview().offset(-12)
         }
         
         self.dimBackView.snp.makeConstraints {
@@ -86,6 +86,14 @@ final class PlaceGridCell: UICollectionViewCell {
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
             $0.bottom.equalToSuperview()
+        }
+        
+        if content!.isLock {
+            self.lockImageView.isHidden = false
+            self.dimBackView.isHidden = false
+        } else {
+            self.lockImageView.isHidden = true
+            self.dimBackView.isHidden = true
         }
     }
     

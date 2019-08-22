@@ -78,7 +78,6 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        testCode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,23 +113,23 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
     }
     
     private func testCode() {
-//        let memory = MemoryPlace()
-//        memory.title = "제목입니다"
-//        memory.content = "오늘은 해가 떴다 핳하"
-//        memory.date = Date()
-//        memory.image = UIImage(named: "plockPicture")!.pngData()!
-//        memory.latitude = 37.497921
-//        memory.longitude = 127.027685
-//        CoreDataHandler.saveObject(memory: memory)
-        
-        let memory2 = MemoryPlace()
-        memory2.title = "제목3"
-        memory2.content = "여기는 낙성대다."
-        memory2.date = Date()
-        memory2.image = UIImage(named: "plockPicture")!.pngData()!
-        memory2.latitude = 37.471889
-        memory2.longitude = 126.967932
-        CoreDataHandler.saveObject(memory: memory2)
+        let memory = MemoryPlace()
+        memory.title = "제목입니다"
+        memory.content = "오늘은 해가 떴다 핳하"
+        memory.date = Date()
+        memory.image = UIImage(named: "plockPicture")!.pngData()!
+        memory.latitude = 37.497921
+        memory.longitude = 127.027685
+        CoreDataHandler.saveObject(memory: memory)
+//
+//        let memory2 = MemoryPlace()
+//        memory2.title = "제목3"
+//        memory2.content = "여기는 낙성대다."
+//        memory2.date = Date()
+//        memory2.image = UIImage(named: "plockPicture")!.pngData()!
+//        memory2.latitude = 37.471889
+//        memory2.longitude = 126.967932
+//        CoreDataHandler.saveObject(memory: memory2)
     }
 }
 
