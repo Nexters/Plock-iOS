@@ -20,7 +20,7 @@ final class SetPlaceViewController: BaseViewController {
     private lazy var mapContainerView = MapContainerView(controlBy: self)
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     private let searchResult = PublishSubject<SearchPlaceItemViewModel>()
-    private let regionRadius: CLLocationDistance = 500
+    private let regionRadius: CLLocationDistance = 100
     private let viewModel = SetPlaceViewModel()
     private let disposeBag = DisposeBag()
     private let confirmCompletion: (MemoryPlace) -> Void
@@ -57,7 +57,7 @@ final class SetPlaceViewController: BaseViewController {
             $0.width.equalTo(64)
             $0.height.equalTo(74.5)
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(-(74.5 / 2))
+            $0.centerY.equalToSuperview().offset(-((74.5 / 2) - 20))
         }
     }
     
@@ -98,9 +98,11 @@ final class SetPlaceViewController: BaseViewController {
             self?.mapContainerView.searchLocationLabel.text = place.title
         }).bind(to: setLocation).disposed(by: self.disposeBag)
         
-        let input = SetPlaceViewModel.Input(reverseGeocodeLocationTrigger: didChangeVisibleRegion)
+        let locationTrigger = chagnedAnimated.withLatestFrom(didChangeVisibleRegion)
+        
+        let input = SetPlaceViewModel.Input(reverseGeocodeLocationTrigger: locationTrigger)
         let output = self.viewModel.transform(input: input)
-        chagnedAnimated.withLatestFrom(output.placeMark).do(onNext: {
+        output.placeMark.do(onNext: {
             self.mapContainerView.searchLocationLabel.text = "\($0.administrativeArea ?? "") \($0.locality ?? "") \($0.subLocality ?? "") \($0.subThoroughfare ?? "")"
         }).map {
             SearchPlaceItemViewModel(with: $0)

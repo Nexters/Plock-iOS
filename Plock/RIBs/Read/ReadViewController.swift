@@ -123,8 +123,8 @@ extension ReadViewController {
         
         foucusCamera.drive(onNext: { [weak self] location in
             let coordinateRegion = MKCoordinateRegion(center: location,
-                                                      latitudinalMeters: (self?.regionRadius ?? 1000) * 2.0,
-                                                      longitudinalMeters: (self?.regionRadius ?? 1000) * 2.0)
+                                                      latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
+                                                      longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
             self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
         }).disposed(by: self.disposeBag)
         

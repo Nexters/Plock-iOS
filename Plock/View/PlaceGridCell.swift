@@ -107,4 +107,3 @@ final class PlaceGridCell: UICollectionViewCell {
         self.titleLabel.text = self.content!.title
     }
 }
-

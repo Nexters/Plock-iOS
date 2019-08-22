@@ -28,7 +28,6 @@ extension SetPlaceViewModel: ViewModelType, LocationGettable {
         let placeTrigger = input.reverseGeocodeLocationTrigger
         let placeMark = placeTrigger.map { CLLocation(latitude: $0.latitude,
                                                      longitude: $0.longitude) }
-            .debounce(1)
             .flatMapLatest {
                 self.replacePlaceMark(with: $0)
         }
