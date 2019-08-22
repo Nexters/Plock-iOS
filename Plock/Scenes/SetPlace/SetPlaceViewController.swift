@@ -40,7 +40,7 @@ final class SetPlaceViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.hideNavigation()
+        self.showNavigation()
     }
     
     override func loadView() {
@@ -49,15 +49,27 @@ final class SetPlaceViewController: BaseViewController {
     }
     
     override func setupUI() {
+        self.title = "위치 설정"
         let frameImage = UIImageView()
         frameImage.image = UIImage(named: "alram")
         self.view.addSubview(frameImage)
+        
+        let contentImage = UIImageView()
+        contentImage.image = UIImage(named: "empty")
+        self.view.addSubview(contentImage)
         
         frameImage.snp.makeConstraints {
             $0.width.equalTo(64)
             $0.height.equalTo(74.5)
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview().offset(-((74.5 / 2) - 20))
+        }
+        
+        contentImage.snp.makeConstraints {
+            $0.top.equalTo(frameImage.snp.top).offset(5)
+            $0.left.equalTo(frameImage.snp.left).offset(5)
+            $0.right.equalTo(frameImage.snp.right).offset(-5)
+            $0.bottom.equalTo(frameImage.snp.bottom).offset(-16)
         }
     }
     
@@ -109,6 +121,12 @@ final class SetPlaceViewController: BaseViewController {
         }
         .drive(setLocation)
         .disposed(by: self.disposeBag)
+    }
+    
+    private func showNavigation() {
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.isTranslucent = true
     }
     
     private func hideNavigation() {

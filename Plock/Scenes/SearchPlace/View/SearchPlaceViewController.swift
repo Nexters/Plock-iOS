@@ -62,6 +62,11 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
         self.addObserver()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hideNavigation()
+    }
+    
     init(location: BehaviorSubject<CLLocationCoordinate2D>,
          searchResult: PublishSubject<SearchPlaceItemViewModel>) {
         self.currentLocation = location
@@ -112,6 +117,12 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
     
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func hideNavigation() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
     }
     
     @objc

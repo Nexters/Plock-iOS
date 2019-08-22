@@ -23,7 +23,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     // MARK: Properties
     weak var listener: ReadPresentableListener?
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
-    private let regionRadius: CLLocationDistance = 500
+    private let regionRadius: CLLocationDistance = 100
     private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedAnimatedDataSource<SectionOfMemory>?

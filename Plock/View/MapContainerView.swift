@@ -57,15 +57,13 @@ final class MapContainerView: BaseView {
     
     private var focusMyLocationButton: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Focus", for: .normal)
-        btn.backgroundColor = .red
+        btn.setImage(UIImage(named: "location"), for: .normal)
         return btn
     }()
     
     private var writeMemoryButton: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Write", for: .normal)
-        btn.backgroundColor = .red
+        btn.setImage(UIImage(named: "edit"), for: .normal)
         return btn
     }()
     
@@ -74,7 +72,7 @@ final class MapContainerView: BaseView {
         stView.axis = .vertical
         stView.distribution = .equalSpacing
         stView.alignment    = .leading
-        stView.spacing = 10
+        stView.spacing = 0
         return stView
     }()
     
@@ -82,7 +80,7 @@ final class MapContainerView: BaseView {
         let view = UIView()
         view.backgroundColor = .white
         view.clipsToBounds = true
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 25
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return view
     }()
@@ -183,7 +181,7 @@ extension MapContainerView {
         
         self.buttonStackView.snp.makeConstraints {
             $0.right.equalTo(self.safeArea.right).offset(-18)
-            $0.bottom.equalTo(self.searchContainerView.snp.top).offset(-10)
+            $0.bottom.equalTo(self.searchContainerView.snp.top).offset(-20)
         }
         
         self.searchContainerView.snp.makeConstraints {
