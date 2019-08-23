@@ -20,7 +20,6 @@ extension UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.setBackgroundImage(UIImage.getImage(color: .white), for: .default)
-        //self.navigationController?.navigationBar.shadowImage = UIImage.navigationShadow
     }
 }
 
@@ -70,6 +69,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         self.setupInfoView()
         self.setupDatePicker()
         self.setupView()
+        self.setupContentTextView()
         self.locationManager.requestAlwaysAuthorization()
 
         if CLLocationManager.locationServicesEnabled() {
@@ -100,6 +100,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateNavigationBarAsDefault()
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,7 +127,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     @objc
     func saveMemory() {
-        let image = UIImage(named: "alert_image_1")
+        let image = UIImage(named: "alert_image_2")
         let alert = AlertViewController.create(image: image, title: "기억해주세요!", subtitle: "현재 작성한 일기는 설정한\n위치에서만 확인, 삭제가 가능해요!\n계속하시겠습니까?", cancelText: "아니오", okText: "네", cancelType: .activate, okType: .deactivate, cancelHandler: nil, okHandler: {
             CoreDataHandler.saveObject(memory: self.memory)
             self.navigationController?.popViewController(animated: true)
