@@ -32,4 +32,9 @@ final class ReadRouter: ViewableRouter<ReadInteractable, ReadViewControllable>, 
         let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "MakePlaceViewController")
         self.viewController.uiviewController.navigationController?.pushViewController(makePlaceViewController, animated: true)
     }
+    
+    func goDetail(memories: [MemoryPlace]) {
+        let detailVC = DetailMemoryViewController.create(memory: memories)
+        self.viewController.uiviewController.navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
