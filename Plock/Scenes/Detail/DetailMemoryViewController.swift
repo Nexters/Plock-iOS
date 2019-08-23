@@ -13,7 +13,14 @@ class DetailMemoryViewController: UIViewController, UICollectionViewDelegate, UI
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var memory: [Memory] = [Memory(), Memory(), Memory()]
+    var memory: [Memory] = []
+    
+    static func create(memory: [Memory]) -> DetailMemoryViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailMemoryViewController") as! DetailMemoryViewController
+        viewController.memory = memory
+        return viewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
