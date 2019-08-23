@@ -83,18 +83,18 @@
                                         <rect key="frame" x="18" y="40" width="302" height="664"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aFD-Rs-TnY">
-                                                <rect key="frame" x="0.0" y="0.0" width="302" height="531"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="302" height="538"/>
                                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group" translatesAutoresizingMaskIntoConstraints="NO" id="cYF-0y-XT6">
-                                                <rect key="frame" x="119" y="233.5" width="64" height="64"/>
+                                                <rect key="frame" x="119" y="237" width="64" height="64"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="64" id="68h-SN-c0i"/>
                                                     <constraint firstAttribute="width" constant="64" id="bMA-hy-VF8"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksp-Ot-btE">
-                                                <rect key="frame" x="0.0" y="570" width="302" height="94"/>
+                                                <rect key="frame" x="0.0" y="577" width="302" height="87"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izf-zV-09N">
                                                         <rect key="frame" x="0.0" y="0.0" width="302" height="18"/>
@@ -122,27 +122,30 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGx-kU-TRw">
-                                                        <rect key="frame" x="0.0" y="34" width="302" height="45"/>
+                                                        <rect key="frame" x="0.0" y="34" width="302" height="38"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="장소 이름을 지어주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7rh-xb-sUg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="27"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="27" id="g3J-Nx-rXc"/>
-                                                                </constraints>
+                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <action selector="textFieldDidChanged:" destination="rDT-RR-hlC" eventType="editingChanged" id="q81-Hf-NoS"/>
+                                                                </connections>
                                                             </textField>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDH-g8-SQr">
-                                                                <rect key="frame" x="24" y="27" width="42" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDH-g8-SQr">
+                                                                <rect key="frame" x="17" y="24" width="233" height="14"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="14" id="O8S-PO-0CB"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="33622" translatesAutoresizingMaskIntoConstraints="NO" id="neK-Dc-aZw">
-                                                                <rect key="frame" x="0.0" y="27" width="18" height="18"/>
+                                                                <rect key="frame" x="0.0" y="27" width="11" height="11"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="18" id="IgJ-eN-M4L"/>
-                                                                    <constraint firstAttribute="width" constant="18" id="tI4-1Q-d2L"/>
+                                                                    <constraint firstAttribute="height" constant="11" id="IgJ-eN-M4L"/>
+                                                                    <constraint firstAttribute="width" constant="11" id="tI4-1Q-d2L"/>
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
@@ -151,10 +154,9 @@
                                                             <constraint firstAttribute="bottom" secondItem="neK-Dc-aZw" secondAttribute="bottom" id="0Ta-GI-TT8"/>
                                                             <constraint firstItem="neK-Dc-aZw" firstAttribute="leading" secondItem="NGx-kU-TRw" secondAttribute="leading" id="506-mT-9cU"/>
                                                             <constraint firstAttribute="trailing" secondItem="7rh-xb-sUg" secondAttribute="trailing" id="S4e-B6-DkB"/>
-                                                            <constraint firstItem="neK-Dc-aZw" firstAttribute="top" secondItem="7rh-xb-sUg" secondAttribute="bottom" id="Sc6-Wm-V6b"/>
+                                                            <constraint firstItem="neK-Dc-aZw" firstAttribute="top" secondItem="7rh-xb-sUg" secondAttribute="bottom" constant="10" id="Sc6-Wm-V6b"/>
                                                             <constraint firstItem="IDH-g8-SQr" firstAttribute="leading" secondItem="neK-Dc-aZw" secondAttribute="trailing" constant="6" id="fmM-6g-p7O"/>
                                                             <constraint firstAttribute="bottom" secondItem="IDH-g8-SQr" secondAttribute="bottom" id="u6S-zl-pjn"/>
-                                                            <constraint firstItem="IDH-g8-SQr" firstAttribute="top" secondItem="7rh-xb-sUg" secondAttribute="bottom" id="ugk-Pg-3pg"/>
                                                             <constraint firstItem="7rh-xb-sUg" firstAttribute="top" secondItem="NGx-kU-TRw" secondAttribute="top" id="z2I-eW-x9A"/>
                                                             <constraint firstItem="7rh-xb-sUg" firstAttribute="leading" secondItem="NGx-kU-TRw" secondAttribute="leading" id="zxs-KQ-poE"/>
                                                         </constraints>
@@ -213,6 +215,7 @@
                                     <constraint firstItem="EtE-Rl-rB5" firstAttribute="leading" secondItem="LFa-mq-YCe" secondAttribute="leading" constant="18" id="ltf-Tp-hiE"/>
                                     <constraint firstItem="BiJ-ry-Mrz" firstAttribute="trailing" secondItem="Ulk-kp-FRn" secondAttribute="trailing" id="pZs-m3-erW"/>
                                     <constraint firstItem="Ulk-kp-FRn" firstAttribute="leading" secondItem="LFa-mq-YCe" secondAttribute="leading" constant="18" id="t37-Gz-KrS"/>
+                                    <constraint firstItem="BiJ-ry-Mrz" firstAttribute="leading" secondItem="IDH-g8-SQr" secondAttribute="trailing" constant="20" id="uec-ui-fD3"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -236,7 +239,7 @@
                         <outlet property="infoContainerView" destination="Ulk-kp-FRn" id="f5S-7u-gnh"/>
                         <outlet property="mainImageView" destination="aFD-Rs-TnY" id="9gX-cb-cOr"/>
                         <outlet property="placeLabel" destination="IDH-g8-SQr" id="gme-Dd-h7J"/>
-                        <outlet property="placeTextField" destination="7rh-xb-sUg" id="B4u-9e-SKO"/>
+                        <outlet property="placeTitleTextField" destination="7rh-xb-sUg" id="Umn-mj-DzE"/>
                         <outlet property="selectDateContainerView" destination="izf-zV-09N" id="6T3-hY-UNm"/>
                     </connections>
                 </viewController>

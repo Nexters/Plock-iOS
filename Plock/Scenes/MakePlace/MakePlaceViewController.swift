@@ -9,6 +9,10 @@
 import UIKit
 import RIBs
 import CoreData
+import MapKit
+import CoreLocation
+
+
 extension UIViewController {
     
     func updateNavigationBarAsDefault() {
@@ -19,6 +23,7 @@ extension UIViewController {
         //self.navigationController?.navigationBar.shadowImage = UIImage.navigationShadow
     }
 }
+
 extension UIImage {
     
     class func getImage(color: UIColor) -> UIImage {
@@ -35,10 +40,10 @@ extension UIImage {
 
 extension MakePlaceViewController: ViewControllable { }
 
-class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var infoContainerView: UIView!
-
+    
     @IBOutlet var datePickerContainerView: UIView!
     
     @IBOutlet weak var selectDateContainerView: UIView!
@@ -47,12 +52,13 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var placeLabel: UILabel!
-    @IBOutlet weak var placeTextField: UITextField!
+    @IBOutlet weak var placeTitleTextField: UITextField!
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var mainImageView: UIImageView!
     
     @IBOutlet weak var flipButton: UIButton!
-    
+    let locationManager = CLLocationManager()
+
     var isInfoView: Bool = true
     var memory: MemoryPlace = MemoryPlace()
     
@@ -64,6 +70,31 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         self.setupInfoView()
         self.setupDatePicker()
         self.setupView()
+        self.locationManager.requestAlwaysAuthorization()
+
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        let location = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            guard let placemark = placemarks?.first else {
+                let errorString = error?.localizedDescription ?? "Unexpected Error"
+                print("Unable to reverse geocode the given location. Error: \(errorString)")
+                return
+            }
+            let address = "\(placemark.country ?? "") \(placemark.administrativeArea ?? "") \(placemark.locality ?? "") \(placemark.subLocality ?? "") \(placemark.subThoroughfare ?? "") \(placemark.postalCode ?? "")"
+
+            self.placeLabel.text = address
+            self.memory.address = address
+            self.memory.latitude = locValue.latitude
+            self.memory.longitude = locValue.longitude
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +113,6 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     }
     
     func setupNavigation() {
-        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backOff")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backButtonDidTap))
         
         let rightNavigationItem = UIBarButtonItem(image: UIImage(named: "icDoneActive")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(saveMemory))
@@ -98,7 +128,8 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     func saveMemory() {
         let image = UIImage(named: "alert_image_1")
         let alert = AlertViewController.create(image: image, title: "기억해주세요!", subtitle: "현재 작성한 일기는 설정한\n위치에서만 확인, 삭제가 가능해요!\n계속하시겠습니까?", cancelText: "아니오", okText: "네", cancelType: .activate, okType: .deactivate, cancelHandler: nil, okHandler: {
-            
+            CoreDataHandler.saveObject(memory: self.memory)
+            self.navigationController?.popViewController(animated: true)
         })
         self.present(alert, animated: false, completion: nil)
     }
@@ -142,11 +173,29 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     }
     
     func setupInfoView() {
-        self.placeTextField.tintColor = UIColor(hex: "#030303")
-        self.placeTextField.delegate = self
+        
+        self.dateButton.setAttributedTitle(NSAttributedString(string: Date().currentDate, attributes: [
+            .font: UIFont.regular(size: 16),
+            .foregroundColor: UIColor(hex: "#495057")!,
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .underlineColor: UIColor(hex: "#495057")!
+        ]), for: .normal)
+            
+        self.placeTitleTextField.tintColor = UIColor(hex: "#030303")
+        self.placeTitleTextField.delegate = self
+        self.placeTitleTextField.attributedPlaceholder = NSAttributedString(string: "장소 이름을 지어주세요.", attributes: [
+            .font: UIFont.bold(size: 18),
+            .foregroundColor: UIColor(hex: "#adb5bd")!
+        ])
+        self.placeTitleTextField.font = UIFont.bold(size: 18)
+        self.placeTitleTextField.textColor = UIColor(hex: "#494949")!
+        
+        self.placeLabel.font = UIFont.regular(size: 12)
+        self.placeLabel.textColor = UIColor(hex: "#495057")
         self.placeLabel.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(placeSelectDidTap))
         self.placeLabel.addGestureRecognizer(tapGestureRecognizer)
+        
     }
     
     func setupContentTextView() {
@@ -171,7 +220,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     func setupDatePicker() {
         let dateTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectDateContainerViewDidTap))
         self.selectDateContainerView.addGestureRecognizer(dateTapGestureRecognizer)
-        self.dateButton.setTitle(Date().currentDate, for: .normal)
+        self.memory.date = Date()
     }
     
     @objc
@@ -179,6 +228,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         self.view.endEditing(true)
         let datePicker = DateAlertViewController.create(date: Date()) { (date) in
             self.dateButton.setTitle(date.currentDate, for: .normal)
+            self.memory.date = date
         }
         self.present(datePicker, animated: false, completion: nil)
         
@@ -192,6 +242,14 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     @objc
     func viewDidTap() {
         self.view.endEditing(true)
+    }
+    
+    @IBAction func textFieldDidChanged(_ sender: UITextField) {
+        self.memory.title = sender.text ?? ""
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.memory.content = textView.text
     }
     
     @objc
@@ -215,6 +273,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.emptyImageView.isHidden = true
             self.mainImageView.image = image
+            self.memory.image = image.jpegData(compressionQuality: 0.5) ?? Data()
             picker.dismiss(animated: true, completion: nil)
         }
     }
