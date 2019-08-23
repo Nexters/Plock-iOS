@@ -58,11 +58,13 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
     
     private func setBind() {
         self.triggerMemories
+            .debug("triggerMemories")
             .flatMapLatest { self.rxFetchObservable() }
             .asDriverOnErrorJustComplete()
+            .debug("triggerMemories2")
             .drive(self.memories)
             .disposed(by: self.disposeBag)
-
+        
         let convertMemories = Observable.combineLatest(self.memories, self.currentLocation) { ($0, $1) }
         convertMemories.subscribe(onNext: { [weak self] (memories, currentLocation) in
             let memories = memories.map {
@@ -125,10 +127,6 @@ extension ReadInteractor {
             guard let memory = memories else {
                 emit.onError(NSError(domain: "", code: 400, userInfo: nil))
                 return Disposables.create()
-            }
-            
-            if memory.isEmpty {
-                emit.onError(NSError(domain: "", code: 400, userInfo: nil))
             }
             
             emit.onNext(memory)

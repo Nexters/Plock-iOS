@@ -21,7 +21,7 @@ protocol ReadPresentableListener: class {
     func goDetail(memories: [MemoryPlace])
 }
 
-final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable, SettableUINavigationBar {
+final class ReadViewController: BaseViewController, ReadViewControllable, SettableUINavigationBar {
     // MARK: Properties
     weak var listener: ReadPresentableListener?
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
@@ -82,11 +82,20 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
         self.setBindMap()
         self.setBindReadViewController()
         self.triggerDrawCollectionView
+            .do(onNext: { _ in self.gridView.hideEmptyView() })
             .bind(to: self.gridView
                 .collectionView
                 .rx
                 .items(dataSource: self.dataSource!))
             .disposed(by: self.disposeBag)
+        
+        self.triggerDrawCollectionView.subscribe(onNext: { [weak self] sections in
+            if sections[0].items.isEmpty {
+                self?.gridView.showEmptyView()
+            } else {
+                self?.gridView.hideEmptyView()
+            }
+        }).disposed(by: self.disposeBag)
         
         self.gridView.collectionView.rx
             .modelSelected(MemoryPlace.self)
@@ -137,19 +146,6 @@ extension ReadViewController {
             self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
         }).disposed(by: self.disposeBag)
         
-//        didTapAnnotation.drive(onNext: { [weak self] annotation in
-//            guard let memory = annotation as? MemoryAnnotation else { return }
-//            let tapMemory = self?.prevAnnotations.filter({ prevAnnotation in
-//                (prevAnnotation as? MemoryAnnotation)?.id == memory.id
-//            })
-//
-//            if !tapMemory!.isEmpty{
-//
-//            }
-//
-////            self?.listener?.goDetail(memories: [tapMemory![0]])
-//        }).disposed(by: self.disposeBag)
-        
         writeMemory.drive(onNext: {
             self.listener?.goWrite()
         }).disposed(by: self.disposeBag)
@@ -175,9 +171,11 @@ extension ReadViewController {
             }
         }).disposed(by: self.disposeBag)
     }
-    
+}
+
+extension ReadViewController: ReadPresentable {
     func addAnnotations(annotations: [MKAnnotation]) {
-        if prevAnnotations.isEmpty {
+        if !prevAnnotations.isEmpty {
             self.mapContainerView.mapView.removeAnnotations(prevAnnotations)
         }
         self.prevAnnotations = annotations
