@@ -96,7 +96,7 @@ final class PlaceGridCell: UICollectionViewCell {
             self.lockImageView.isHidden = true
             self.dimBackView.isHidden = false
             
-            self.dimBackView.alpha = 0.2
+            self.dimBackView.alpha = 0.3
         }
     }
     
