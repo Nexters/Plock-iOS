@@ -14,7 +14,7 @@ import RxSwift
 import RxCocoa
 
 extension SetPlaceViewController: ViewControllable { }
-final class SetPlaceViewController: BaseViewController {
+final class SetPlaceViewController: BaseViewController, SettableUINavigwationBar {
     
     // MARK: Properties
     private lazy var mapContainerView = MapContainerView(controlBy: self)
@@ -121,18 +121,6 @@ final class SetPlaceViewController: BaseViewController {
         }
         .drive(setLocation)
         .disposed(by: self.disposeBag)
-    }
-    
-    private func showNavigation() {
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.isTranslucent = true
-    }
-    
-    private func hideNavigation() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
     }
 }
 

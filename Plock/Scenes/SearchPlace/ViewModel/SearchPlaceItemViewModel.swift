@@ -16,13 +16,13 @@ final class SearchPlaceItemViewModel {
     
     init(with item: MKMapItem) {
         self.title = item.placemark.name ?? ""
-        self.subTitle = "\(item.placemark.country ?? "") \(item.placemark.administrativeArea ?? "") \(item.placemark.locality ?? "") \(item.placemark.subLocality ?? "") \(item.placemark.subThoroughfare ?? "") \(item.placemark.postalCode ?? "")"
+        self.subTitle = "\(item.placemark.administrativeArea ?? "") \(item.placemark.locality ?? "") \(item.placemark.subLocality ?? "") \(item.placemark.subThoroughfare ?? "") \(item.placemark.postalCode ?? "")"
         self.coordinate = item.placemark.coordinate
     }
     
     init(with placemark: CLPlacemark) {
         self.title = placemark.name ?? ""
-        self.subTitle = "\(placemark.country ?? "") \(placemark.administrativeArea ?? "") \(placemark.locality ?? "") \(placemark.subLocality ?? "") \(placemark.subThoroughfare ?? "") \(placemark.postalCode ?? "")"
+        self.subTitle = "\(placemark.administrativeArea ?? "") \(placemark.locality ?? "") \(placemark.subLocality ?? "") \(placemark.subThoroughfare ?? "") \(placemark.postalCode ?? "")"
         self.coordinate = placemark.location?.coordinate ?? CLLocationCoordinate2D()
     }
 }

@@ -55,6 +55,7 @@
 		A1BEB7A422F574A5006EB852 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB79F22F574A5006EB852 /* RootRouter.swift */; };
 		A1BEB7A522F574A5006EB852 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A022F574A5006EB852 /* RootBuilder.swift */; };
 		A1BEB7A622F574A5006EB852 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB7A122F574A5006EB852 /* RootViewController.swift */; };
+		A1C1C95123100301008579D0 /* SettableUINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C1C95023100301008579D0 /* SettableUINavigationBar.swift */; };
 		A1C2C3DF230C0B0F00762682 /* ContestedAnnotationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2C3DE230C0B0F00762682 /* ContestedAnnotationTool.swift */; };
 		A1C2C3E2230C23AA00762682 /* SectionOfMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2C3E1230C23AA00762682 /* SectionOfMemory.swift */; };
 		A1C2C3E4230C302900762682 /* PlaceGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2C3E3230C302900762682 /* PlaceGridCell.swift */; };
@@ -119,6 +120,7 @@
 		A1BEB79F22F574A5006EB852 /* RootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		A1BEB7A022F574A5006EB852 /* RootBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
 		A1BEB7A122F574A5006EB852 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		A1C1C95023100301008579D0 /* SettableUINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettableUINavigationBar.swift; sourceTree = "<group>"; };
 		A1C2C3DE230C0B0F00762682 /* ContestedAnnotationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestedAnnotationTool.swift; sourceTree = "<group>"; };
 		A1C2C3E1230C23AA00762682 /* SectionOfMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfMemory.swift; sourceTree = "<group>"; };
 		A1C2C3E3230C302900762682 /* PlaceGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceGridCell.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				A1D62C3323068F81009FBF0D /* LocationGettable.swift */,
+				A1C1C95023100301008579D0 /* SettableUINavigationBar.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				A1BEB78E22F5705B006EB852 /* BaseView.swift in Sources */,
 				140CB2A522FE6C86000FF0EF /* UIFont+.swift in Sources */,
 				14FDF40A22D9AA3D00AD2C65 /* Plock.xcdatamodeld in Sources */,
+				A1C1C95123100301008579D0 /* SettableUINavigationBar.swift in Sources */,
 				A155E06E230313380052ECCC /* SetPlaceViewModel.swift in Sources */,
 				A1BEB78922F55A46006EB852 /* ReadBuilder.swift in Sources */,
 				140171122307C37C006AAF85 /* AlertViewController.swift in Sources */,
