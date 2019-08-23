@@ -39,7 +39,7 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="afp-lk-uvF">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="658"/>
+                                                    <rect key="frame" x="22" y="70" width="299" height="588"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -108,14 +108,14 @@
                                                 <constraint firstItem="Zel-mW-YYq" firstAttribute="leading" secondItem="fbf-Fv-E3N" secondAttribute="leading" id="2DL-2r-xOH"/>
                                                 <constraint firstItem="e2c-wQ-SrX" firstAttribute="top" secondItem="NVa-p1-1We" secondAttribute="top" id="3Yl-En-G4n"/>
                                                 <constraint firstItem="fbf-Fv-E3N" firstAttribute="top" secondItem="e2c-wQ-SrX" secondAttribute="top" constant="80" id="KaY-Qi-nTC"/>
-                                                <constraint firstItem="afp-lk-uvF" firstAttribute="top" secondItem="e2c-wQ-SrX" secondAttribute="top" id="L6g-XI-qcb"/>
+                                                <constraint firstItem="afp-lk-uvF" firstAttribute="top" secondItem="e2c-wQ-SrX" secondAttribute="top" constant="70" id="L6g-XI-qcb"/>
                                                 <constraint firstItem="hKq-zZ-fhX" firstAttribute="bottom" secondItem="Zel-mW-YYq" secondAttribute="bottom" id="Xel-2h-4NU"/>
                                                 <constraint firstItem="fbf-Fv-E3N" firstAttribute="trailing" secondItem="e2c-wQ-SrX" secondAttribute="trailing" constant="-22" id="YHN-lb-veO"/>
-                                                <constraint firstItem="afp-lk-uvF" firstAttribute="leading" secondItem="e2c-wQ-SrX" secondAttribute="leading" id="fP8-NN-09u"/>
+                                                <constraint firstItem="afp-lk-uvF" firstAttribute="leading" secondItem="e2c-wQ-SrX" secondAttribute="leading" constant="22" id="fP8-NN-09u"/>
                                                 <constraint firstAttribute="bottom" secondItem="e2c-wQ-SrX" secondAttribute="bottom" id="k5V-jq-app"/>
                                                 <constraint firstItem="e2c-wQ-SrX" firstAttribute="leading" secondItem="NVa-p1-1We" secondAttribute="leading" id="lr3-5M-mWf"/>
                                                 <constraint firstAttribute="trailing" secondItem="e2c-wQ-SrX" secondAttribute="trailing" id="n8C-ok-jDz"/>
-                                                <constraint firstItem="afp-lk-uvF" firstAttribute="trailing" secondItem="e2c-wQ-SrX" secondAttribute="trailing" id="nLt-f9-PtB"/>
+                                                <constraint firstItem="afp-lk-uvF" firstAttribute="trailing" secondItem="e2c-wQ-SrX" secondAttribute="trailing" constant="-22" id="nLt-f9-PtB"/>
                                                 <constraint firstItem="afp-lk-uvF" firstAttribute="bottom" secondItem="e2c-wQ-SrX" secondAttribute="bottom" id="pwn-zs-eg9"/>
                                                 <constraint firstItem="Zel-mW-YYq" firstAttribute="top" secondItem="fbf-Fv-E3N" secondAttribute="bottom" constant="20" id="rWa-Ci-e8Q"/>
                                                 <constraint firstItem="hKq-zZ-fhX" firstAttribute="trailing" secondItem="Zel-mW-YYq" secondAttribute="trailing" id="sNJ-gU-fMs"/>
@@ -182,7 +182,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ulk-kp-FRn">
                                         <rect key="frame" x="18" y="40" width="302" height="664"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aFD-Rs-TnY">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aFD-Rs-TnY">
                                                 <rect key="frame" x="0.0" y="0.0" width="302" height="538"/>
                                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>

@@ -71,6 +71,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         self.setupView()
         self.setupContentTextView()
         self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
 
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
