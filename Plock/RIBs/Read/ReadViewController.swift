@@ -25,7 +25,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     // MARK: Properties
     weak var listener: ReadPresentableListener?
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
-    private let regionRadius: CLLocationDistance = 100
+    private let regionRadius: CLLocationDistance = 10
     private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedAnimatedDataSource<SectionOfMemory>?
@@ -49,7 +49,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     init() {
         super.init(nibName: nil, bundle: nil)
         self.rx
-            .viewDidload
+            .viewWillAppear
             .mapToVoid()
             .subscribe(onNext: {
                 self.listener?.triggerFetchMemories()

@@ -20,7 +20,7 @@ final class SetPlaceViewController: BaseViewController, SettableUINavigationBar 
     private lazy var mapContainerView = MapContainerView(controlBy: self)
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     private let searchResult = PublishSubject<SearchPlaceItemViewModel>()
-    private let regionRadius: CLLocationDistance = 100
+    private let regionRadius: CLLocationDistance = 10
     private let viewModel = SetPlaceViewModel()
     private let disposeBag = DisposeBag()
     private let confirmCompletion: (MemoryPlace) -> Void
