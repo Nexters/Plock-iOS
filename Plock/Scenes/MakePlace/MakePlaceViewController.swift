@@ -88,7 +88,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
                 print("Unable to reverse geocode the given location. Error: \(errorString)")
                 return
             }
-            let address = "\(placemark.country ?? "") \(placemark.administrativeArea ?? "") \(placemark.locality ?? "") \(placemark.subLocality ?? "") \(placemark.subThoroughfare ?? "") \(placemark.postalCode ?? "")"
+            let address = "\(placemark.administrativeArea ?? "") \(placemark.locality ?? "") \(placemark.subLocality ?? "") \(placemark.subThoroughfare ?? "") \(placemark.postalCode ?? "")"
 
             self.placeLabel.text = address
             self.memory.address = address

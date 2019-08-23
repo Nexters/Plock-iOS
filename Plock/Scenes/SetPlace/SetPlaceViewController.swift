@@ -93,6 +93,13 @@ final class SetPlaceViewController: BaseViewController, SettableUINavigationBar 
         updateLocation.drive(self.currentLocation)
             .disposed(by: self.disposeBag)
         
+        updateLocation.asObservable().take(1).subscribe(onNext: { [weak self] location in
+            let coordinateRegion = MKCoordinateRegion(center: location,
+                                                      latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
+                                                      longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
+            self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
+        }).disposed(by: self.disposeBag)
+        
         foucusCamera.drive(onNext: { [weak self] location in
             self?.setFocus(location: location)
         }).disposed(by: self.disposeBag)

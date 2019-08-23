@@ -120,6 +120,13 @@ extension ReadViewController {
         let writeMemory = self.mapContainerView.writeMemory
         let didTapAnnotation = self.mapContainerView.didTapAnnotationView
         
+        updateLocation.asObservable().take(1).subscribe(onNext: { [weak self] location in
+            let coordinateRegion = MKCoordinateRegion(center: location,
+                                                      latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
+                                                      longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
+            self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
+        }).disposed(by: self.disposeBag)
+        
         updateLocation.drive(self.currentLocation)
             .disposed(by: self.disposeBag)
         
@@ -135,9 +142,9 @@ extension ReadViewController {
 //            let tapMemory = self?.prevAnnotations.filter({ prevAnnotation in
 //                (prevAnnotation as? MemoryAnnotation)?.id == memory.id
 //            })
-//            
+//
 //            if !tapMemory!.isEmpty{
-//                
+//
 //            }
 //
 ////            self?.listener?.goDetail(memories: [tapMemory![0]])
