@@ -17,7 +17,7 @@ protocol MainPresentableListener: class {
     func write()
 }
 
-final class MainViewController: BaseViewController, MainPresentable, MainViewControllable, SettableUINavigwationBar {
+final class MainViewController: BaseViewController, MainPresentable, MainViewControllable, SettableUINavigationBar {
     
     // MARK: Property
     private let disposeBag = DisposeBag()

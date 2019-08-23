@@ -20,7 +20,7 @@ protocol ReadPresentableListener: class {
     func goWrite()
 }
 
-final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable, SettableUINavigwationBar {
+final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable, SettableUINavigationBar {
     // MARK: Properties
     weak var listener: ReadPresentableListener?
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))

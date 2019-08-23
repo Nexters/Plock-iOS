@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol SettableUINavigwationBar where Self: UIViewController {
+protocol SettableUINavigationBar where Self: UIViewController {
     func showNavigation()
     func hideNavigation()
     func setupBackButton()
 }
 
-extension SettableUINavigwationBar {
+extension SettableUINavigationBar {
     func hideNavigation() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()

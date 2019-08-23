@@ -14,7 +14,7 @@ import RxSwift
 import RxCocoa
 
 extension SetPlaceViewController: ViewControllable { }
-final class SetPlaceViewController: BaseViewController, SettableUINavigwationBar {
+final class SetPlaceViewController: BaseViewController, SettableUINavigationBar {
     
     // MARK: Properties
     private lazy var mapContainerView = MapContainerView(controlBy: self)
