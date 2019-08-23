@@ -57,7 +57,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     @IBOutlet weak var flipButton: UIButton!
     let locationManager = CLLocationManager()
-
+    
     var isInfoView: Bool = true
     var memory: MemoryPlace = MemoryPlace()
     
@@ -72,7 +72,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         self.setupContentTextView()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
-
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -90,8 +90,13 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
                 return
             }
             let address = "\(placemark.administrativeArea ?? "") \(placemark.locality ?? "") \(placemark.subLocality ?? "") \(placemark.subThoroughfare ?? "") \(placemark.postalCode ?? "")"
-
-            self.placeLabel.text = address
+            
+            self.placeLabel.attributedText = NSAttributedString(string: address, attributes: [
+                .font: UIFont.regular(size: 12),
+                .foregroundColor: UIColor(hex: "#495057")!,
+                .underlineStyle: NSUnderlineStyle.single.rawValue,
+                .underlineColor: UIColor(hex: "#495057")!
+            ])
             self.memory.address = address
             self.memory.latitude = locValue.latitude
             self.memory.longitude = locValue.longitude
@@ -137,6 +142,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func flipButtonDidTap(_ sender: UIButton) {
+        self.view.endEditing(true)
         UIView.transition(with: self.backgroundImageView, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], animations: {
             self.isInfoView.toggle()
             if self.isInfoView {
@@ -150,6 +156,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
                 self.contentTextView.isHidden = true
             } else {
                 self.contentTextView.isHidden = false
+                self.contentTextView.becomeFirstResponder()
             }
         })
     }
@@ -182,7 +189,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
             .underlineStyle: NSUnderlineStyle.single.rawValue,
             .underlineColor: UIColor(hex: "#495057")!
         ]), for: .normal)
-            
+        
         self.placeTitleTextField.tintColor = UIColor(hex: "#030303")
         self.placeTitleTextField.delegate = self
         self.placeTitleTextField.attributedPlaceholder = NSAttributedString(string: "장소 이름을 지어주세요.", attributes: [
@@ -192,8 +199,6 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
         self.placeTitleTextField.font = UIFont.bold(size: 18)
         self.placeTitleTextField.textColor = UIColor(hex: "#494949")!
         
-        self.placeLabel.font = UIFont.regular(size: 12)
-        self.placeLabel.textColor = UIColor(hex: "#495057")
         self.placeLabel.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(placeSelectDidTap))
         self.placeLabel.addGestureRecognizer(tapGestureRecognizer)
@@ -202,6 +207,8 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     func setupContentTextView() {
         self.contentTextView.delegate = self
+        self.contentTextView.font = UIFont.semibold(size: 18)
+        self.contentTextView.textColor = UIColor(hex: "#495057")
     }
     
     @objc
@@ -216,7 +223,12 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     }
     
     func updateViews() {
-        self.placeLabel.text = self.memory.address
+        self.placeLabel.attributedText = NSAttributedString(string: self.memory.address, attributes: [
+            .font: UIFont.regular(size: 12),
+            .foregroundColor: UIColor(hex: "#495057")!,
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .underlineColor: UIColor(hex: "#495057")!
+        ])
     }
     
     func setupDatePicker() {
@@ -229,7 +241,12 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     func selectDateContainerViewDidTap() {
         self.view.endEditing(true)
         let datePicker = DateAlertViewController.create(date: Date()) { (date) in
-            self.dateButton.setTitle(date.currentDate, for: .normal)
+            self.dateButton.setAttributedTitle(NSAttributedString(string: date.currentDate, attributes: [
+                .font: UIFont.regular(size: 16),
+                .foregroundColor: UIColor(hex: "#495057")!,
+                .underlineStyle: NSUnderlineStyle.single.rawValue,
+                .underlineColor: UIColor(hex: "#495057")!
+            ]), for: .normal)
             self.memory.date = date
         }
         self.present(datePicker, animated: false, completion: nil)

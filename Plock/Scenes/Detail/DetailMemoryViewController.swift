@@ -113,6 +113,9 @@ class DetailMemoryCollectionViewCell: UICollectionViewCell {
         self.titleLabel.textColor = UIColor(hex: "#495057")
         self.addressLabel.font = UIFont.light(size: 12)
         self.addressLabel.textColor = UIColor(hex: "#495057")
+        
+        self.contentTextView.font = UIFont.semibold(size: 18)
+        self.contentTextView.textColor = UIColor(hex: "#495057")
     }
     
     @IBAction func flipButtonDidTap(_ sender: Any) {
