@@ -40,7 +40,12 @@ class DetailMemoryViewController: UIViewController, UICollectionViewDelegate, UI
     func deleteMemory() {
         let image = UIImage(named: "alert_image_1")
         let alert = AlertViewController.create(image: image, title: "잠시만요!", subtitle: "삭제된 일기는 되돌릴 수 없어요.\n일기를 삭제하겠습니까?", cancelText: "아니오", okText: "네", cancelType: .activate, okType: .deactivate, cancelHandler: nil, okHandler: {
-           self.navigationController?.popViewController(animated: true)
+            guard let memory = CoreDataHandler.fetchObject() else { return }
+            for index in memory where index.id == Int64(self.memory.first?.id ?? 0) {
+                CoreDataHandler.deleteObject(memory: index)
+            }
+            _ = CoreDataHandler.fetchObject()
+            self.navigationController?.popViewController(animated: true)
         })
         self.present(alert, animated: false, completion: nil)
     }
