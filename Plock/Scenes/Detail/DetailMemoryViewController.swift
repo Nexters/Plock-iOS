@@ -13,9 +13,9 @@ class DetailMemoryViewController: UIViewController, UICollectionViewDelegate, UI
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var memory: [Memory] = []
+    var memory: [MemoryPlace] = []
     
-    static func create(memory: [Memory]) -> DetailMemoryViewController {
+    static func create(memory: [MemoryPlace]) -> DetailMemoryViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "DetailMemoryViewController") as! DetailMemoryViewController
         viewController.memory = memory

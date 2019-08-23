@@ -15,6 +15,7 @@ import RxCocoa
 protocol ReadRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
     func goWrite()
+    func goDetail(memories: [MemoryPlace])
 }
 
 protocol ReadPresentable: Presentable {
@@ -109,6 +110,10 @@ extension ReadInteractor: ReadPresentableListener {
     
     func goWrite() {
         self.router?.goWrite()
+    }
+    
+    func goDetail(memories: [MemoryPlace]) {
+        self.router?.goDetail(memories: memories)
     }
 }
 

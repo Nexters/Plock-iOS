@@ -18,6 +18,7 @@ protocol ReadPresentableListener: class {
     func triggerFetchMemories()
     func triggerMeasureDistance(with currentLocation: CLLocation)
     func goWrite()
+    func goDetail(memories: [MemoryPlace])
 }
 
 final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable, SettableUINavigationBar {
@@ -86,6 +87,15 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
                 .rx
                 .items(dataSource: self.dataSource!))
             .disposed(by: self.disposeBag)
+        
+        self.gridView.collectionView.rx
+            .modelSelected(MemoryPlace.self)
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                if !$0.isLock {
+                    self.listener?.goDetail(memories: [$0])
+                }
+        }).disposed(by: self.disposeBag)
     }
 }
 
