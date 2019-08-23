@@ -20,7 +20,6 @@ extension UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.setBackgroundImage(UIImage.getImage(color: .white), for: .default)
-        //self.navigationController?.navigationBar.shadowImage = UIImage.navigationShadow
     }
 }
 

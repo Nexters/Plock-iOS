@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DetailMemoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class DetailMemoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SettableUINavigationBar {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -24,12 +24,8 @@ class DetailMemoryViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupNavigation()
+        self.setupBackButton()
         self.setupCollectionView()
-    }
-    
-    func setupNavigation() {
-       // let leftNavigation = UIBarButtonItem
     }
     
     func setupCollectionView() {
@@ -57,5 +53,12 @@ class DetailMemoryViewController: UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 16
+    }
+}
+
+class DetailMemoryCollectionViewCell: UICollectionViewCell {
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
     }
 }
