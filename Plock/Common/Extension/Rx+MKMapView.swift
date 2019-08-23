@@ -34,6 +34,12 @@ extension Reactive where Base: MKMapView {
         }
     }
     
+    var didTapAnnotationView: Observable<MKAnnotation> {
+        return delegate.methodInvoked(#selector(MKMapViewDelegate.mapView(_:annotationView:calloutAccessoryControlTapped:))).map { (parameters) in
+            return (parameters[1] as! MKAnnotationView).annotation!
+        }
+    }
+    
     public func handleViewForAnnotation(_ closure: RxMKHandleViewForAnnotaion?) {
         delegate.handleViewForAnnotation = closure
     }

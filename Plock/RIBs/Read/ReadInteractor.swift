@@ -79,7 +79,8 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
                 
                 return MemoryAnnotation(coordinate: newCoordinate,
                                  image: oldAnnotation.image,
-                                 isLock: isLock)
+                                 isLock: isLock,
+                                 id: oldAnnotation.id)
             }
             
             self?.presenter.addAnnotations(annotations: newAnnotations)

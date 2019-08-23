@@ -118,6 +118,7 @@ extension ReadViewController {
         let updateLocation = self.mapContainerView.updateLocation
         let foucusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
         let writeMemory = self.mapContainerView.writeMemory
+        let didTapAnnotation = self.mapContainerView.didTapAnnotationView
         
         updateLocation.drive(self.currentLocation)
             .disposed(by: self.disposeBag)
@@ -129,13 +130,26 @@ extension ReadViewController {
             self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
         }).disposed(by: self.disposeBag)
         
-        self.currentLocation.subscribe(onNext: { [weak self] location in
-            self?.listener?.triggerMeasureDistance(with: CLLocation(latitude: location.latitude,
-                                                                    longitude: location.longitude))
-        }).disposed(by: self.disposeBag)
+//        didTapAnnotation.drive(onNext: { [weak self] annotation in
+//            guard let memory = annotation as? MemoryAnnotation else { return }
+//            let tapMemory = self?.prevAnnotations.filter({ prevAnnotation in
+//                (prevAnnotation as? MemoryAnnotation)?.id == memory.id
+//            })
+//            
+//            if !tapMemory!.isEmpty{
+//                
+//            }
+//
+////            self?.listener?.goDetail(memories: [tapMemory![0]])
+//        }).disposed(by: self.disposeBag)
         
         writeMemory.drive(onNext: {
             self.listener?.goWrite()
+        }).disposed(by: self.disposeBag)
+        
+        self.currentLocation.subscribe(onNext: { [weak self] location in
+            self?.listener?.triggerMeasureDistance(with: CLLocation(latitude: location.latitude,
+                                                                    longitude: location.longitude))
         }).disposed(by: self.disposeBag)
         
         self.mapContainerView.mapView.rx.handleViewForAnnotation { mapView, annotation in

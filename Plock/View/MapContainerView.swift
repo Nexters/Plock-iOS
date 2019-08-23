@@ -33,6 +33,10 @@ final class MapContainerView: BaseView {
             .asDriverOnErrorJustComplete()
     }()
     
+    lazy var didTapAnnotationView: Driver<MKAnnotation> = {
+        return self.mapView.rx.didTapAnnotationView.asDriverOnErrorJustComplete()
+    }()
+    
     lazy var regionDidChangeAnimated: Driver<Bool> = {
         return self.mapView.rx.regionDidChangeAnimated.asDriverOnErrorJustComplete()
     }()

@@ -13,7 +13,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class SearchPlaceViewController: BaseViewController, LocationGettable {
+final class SearchPlaceViewController: BaseViewController, LocationGettable, SettableUINavigationBar {
 
     // MARk: Properties
     private let viewModel = SearchPlaceViewModel()
@@ -84,6 +84,8 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
     
     override func setupUI() {
         self.title = "위치 설정"
+        self.setupBackButton()
+        
         self.view.backgroundColor = .white
         self.view.addSubview(self.searchTextFieldContainer)
         self.view.addSubview(self.searchTextField)
@@ -117,12 +119,6 @@ final class SearchPlaceViewController: BaseViewController, LocationGettable {
     
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    private func hideNavigation() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
     }
     
     @objc

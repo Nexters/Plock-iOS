@@ -50,6 +50,8 @@ final class SetPlaceViewController: BaseViewController, SettableUINavigationBar 
     
     override func setupUI() {
         self.title = "위치 설정"
+        self.setupBackButton()
+        
         let frameImage = UIImageView()
         frameImage.image = UIImage(named: "alram")
         self.view.addSubview(frameImage)
