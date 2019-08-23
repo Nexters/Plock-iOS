@@ -17,7 +17,8 @@ protocol MainPresentableListener: class {
     func write()
 }
 
-final class MainViewController: BaseViewController, MainPresentable, MainViewControllable {
+final class MainViewController: BaseViewController, MainPresentable, MainViewControllable, SettableUINavigationBar {
+    
     // MARK: Property
     private let disposeBag = DisposeBag()
     weak var listener: MainPresentableListener?
@@ -78,6 +79,7 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        testCode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,9 +120,10 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
         memory.content = "오늘은 해가 떴다 핳하"
         memory.date = Date()
         memory.image = UIImage(named: "plockPicture")!.pngData()!
-        memory.latitude = 37.497921
-        memory.longitude = 127.027685
+        memory.latitude = 37.478084
+        memory.longitude = 126.961573
         CoreDataHandler.saveObject(memory: memory)
+        //37.478084, 126.961573
 //
 //        let memory2 = MemoryPlace()
 //        memory2.title = "제목3"
@@ -135,18 +138,6 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
 
 // MARK: draw UI
 extension MainViewController {
-    private func hideNavigation() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-    }
-    
-    private func showNavigation() {
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.isTranslucent = true
-    }
-    
     private func buildButtons() {
         let writeStackView = UIStackView()
         writeStackView.axis = .vertical

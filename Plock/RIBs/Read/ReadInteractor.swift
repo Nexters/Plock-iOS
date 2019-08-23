@@ -14,6 +14,7 @@ import RxCocoa
 
 protocol ReadRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func goWrite()
 }
 
 protocol ReadPresentable: Presentable {
@@ -83,15 +84,17 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
             self?.presenter.addAnnotations(annotations: newAnnotations)
         }).disposed(by: self.disposeBag)
         
-        convertMemories.debounce(1, scheduler: MainScheduler.instance).map { (memories, currentLocation) in
-            memories.map { self.convertMemoryPlace(currentLocation: currentLocation, memory: $0) } }
+        convertMemories
+            .debounce(1, scheduler: MainScheduler.instance)
+            .map { (memories, currentLocation) in
+                memories.map { self.convertMemoryPlace(currentLocation: currentLocation, memory: $0) } }
             .map { (memories)  in
                 let random = Int(Date().timeIntervalSince1970) + Int(arc4random())
                 let sorted = memories.sorted(by: { !$0.isLock && $1.isLock })
                 return [SectionOfMemory(header: random, items: sorted)]
-            }
-            .bind(to: self.presenter.triggerDrawCollectionView)
-            .disposed(by: self.disposeBag)
+        }
+        .bind(to: self.presenter.triggerDrawCollectionView)
+        .disposed(by: self.disposeBag)
     }
 }
 
@@ -102,6 +105,10 @@ extension ReadInteractor: ReadPresentableListener {
     
     func triggerMeasureDistance(with currentLocation: CLLocation) {
         self.currentLocation.onNext(currentLocation)
+    }
+    
+    func goWrite() {
+        self.router?.goWrite()
     }
 }
 

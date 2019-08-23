@@ -17,9 +17,10 @@ import RxDataSources
 protocol ReadPresentableListener: class {
     func triggerFetchMemories()
     func triggerMeasureDistance(with currentLocation: CLLocation)
+    func goWrite()
 }
 
-final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable {
+final class ReadViewController: BaseViewController, ReadPresentable, ReadViewControllable, SettableUINavigationBar {
     // MARK: Properties
     weak var listener: ReadPresentableListener?
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
@@ -27,6 +28,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
     private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedAnimatedDataSource<SectionOfMemory>?
+    private var prevAnnotations: [MKAnnotation] = [MKAnnotation]()
     var triggerDrawCollectionView: PublishSubject<[SectionOfMemory]> = PublishSubject<[SectionOfMemory]>()
     
     // MARK: UI Component
@@ -72,6 +74,7 @@ final class ReadViewController: BaseViewController, ReadPresentable, ReadViewCon
         self.navigationItem.titleView = self.titleSegment
         self.setupCollectionView()
         self.setupCollectionViewLayout()
+        self.setupBackButton()
     }
     
     override func setupBind() {
@@ -96,18 +99,6 @@ extension ReadViewController {
     private func changeList() {
         self.view = self.gridView
         self.hideNavigation()
-    }
-    
-    private func hideNavigation() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-    }
-    
-    private func showNavigation() {
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.isTranslucent = true
     }
 }
 
@@ -134,7 +125,7 @@ extension ReadViewController {
         }).disposed(by: self.disposeBag)
         
         writeMemory.drive(onNext: {
-            //글쓰기 VC
+            self.listener?.goWrite()
         }).disposed(by: self.disposeBag)
         
         self.mapContainerView.mapView.rx.handleViewForAnnotation { mapView, annotation in
@@ -155,6 +146,10 @@ extension ReadViewController {
     }
     
     func addAnnotations(annotations: [MKAnnotation]) {
+        if prevAnnotations.isEmpty {
+            self.mapContainerView.mapView.removeAnnotations(prevAnnotations)
+        }
+        self.prevAnnotations = annotations
         self.mapContainerView.mapView.addAnnotations(annotations)
     }
 }

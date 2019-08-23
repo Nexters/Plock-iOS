@@ -26,4 +26,10 @@ final class ReadRouter: ViewableRouter<ReadInteractable, ReadViewControllable>, 
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
+    
+    func goWrite() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "MakePlaceViewController")
+        self.viewController.uiviewController.navigationController?.pushViewController(makePlaceViewController, animated: true)
+    }
 }
