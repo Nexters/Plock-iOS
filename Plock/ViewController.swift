@@ -7,15 +7,42 @@
 //
 
 import UIKit
+import RIBs
+import SnapKit
 
-class ViewController: UIViewController {
+extension ViewController: ViewControllable { }
 
+final class ViewController: UIViewController {
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel, handler : nil )
+        self.view.backgroundColor = .white
+        let tempLabel = UILabel()
+        tempLabel.text = "하윙"
+        self.printAllFontNames()
 
-        // Do any additional setup after loading the view.
+        tempLabel.font = UIFont.GyeonggiBatang.regular(size: 14)
+        self.view.addSubview(tempLabel)
+        tempLabel.snp.makeConstraints {
+
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+    }
+    
+     func printAllFontNames() {
+        for familyname in UIFont.familyNames {
+            print(familyname, "familyname")
+            for fname in UIFont.fontNames(forFamilyName: familyname) {
+                print(fname)
+            }
+        }
     }
 }

@@ -4,7 +4,11 @@
 target 'Plock' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-	pod 'SnapKit', '~> 5.0.0'
+  pod 'RIBs'
+  pod 'SnapKit'
+  pod 'SwiftLint'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
   # Pods for Plock
 
 end
