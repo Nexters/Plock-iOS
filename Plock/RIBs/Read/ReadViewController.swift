@@ -29,7 +29,6 @@ final class ReadViewController: BaseViewController, ReadViewControllable, Settab
     private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedAnimatedDataSource<SectionOfMemory>?
-    private var prevAnnotations: [MKAnnotation] = [MKAnnotation]()
     var triggerDrawCollectionView: PublishSubject<[SectionOfMemory]> = PublishSubject<[SectionOfMemory]>()
     
     // MARK: UI Component
@@ -175,10 +174,7 @@ extension ReadViewController {
 
 extension ReadViewController: ReadPresentable {
     func addAnnotations(annotations: [MKAnnotation]) {
-        if !prevAnnotations.isEmpty {
-            self.mapContainerView.mapView.removeAnnotations(prevAnnotations)
-        }
-        self.prevAnnotations = annotations
+        self.mapContainerView.mapView.removeAnnotations(self.mapContainerView.mapView.annotations)
         self.mapContainerView.mapView.addAnnotations(annotations)
     }
 }

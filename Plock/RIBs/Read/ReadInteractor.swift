@@ -65,7 +65,9 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
             .disposed(by: self.disposeBag)
         
         let convertMemories = Observable.combineLatest(self.memories, self.currentLocation) { ($0, $1) }
-        convertMemories.subscribe(onNext: { [weak self] (memories, currentLocation) in
+        convertMemories
+            .debug("convertMemories")
+            .subscribe(onNext: { [weak self] (memories, currentLocation) in
             let memories = memories.map {
                 MemoryAnnotation(with: $0)
             }
