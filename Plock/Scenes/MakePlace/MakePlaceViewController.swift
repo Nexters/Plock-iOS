@@ -217,6 +217,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
             self.memory.address = memory.address
             self.memory.latitude = memory.latitude
             self.memory.longitude = memory.longitude
+            self.locationManager.delegate = nil
             self.updateViews()
         }
         self.navigationController?.pushViewController(viewController, animated: true)
