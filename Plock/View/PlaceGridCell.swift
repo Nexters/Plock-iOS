@@ -91,11 +91,12 @@ final class PlaceGridCell: UICollectionViewCell {
         if content!.isLock {
             self.lockImageView.isHidden = false
             self.dimBackView.isHidden = false
-            self.dimBackView.alpha = 0.6
+            self.dimBackView.alpha = 0.7
+            self.dimBackView.backgroundColor = .black
         } else {
             self.lockImageView.isHidden = true
             self.dimBackView.isHidden = false
-            
+            self.dimBackView.backgroundColor = .gray
             self.dimBackView.alpha = 0.3
         }
     }

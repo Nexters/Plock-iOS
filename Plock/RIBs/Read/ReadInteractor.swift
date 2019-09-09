@@ -58,8 +58,7 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
     
     private func setBind() {
         self.triggerMemories
-            .debug("triggerMemories")
-            .flatMapLatest { self.rxFetchObservable() }
+            .flatMapLatest { [weak self] _ in self!.rxFetchObservable() }
             .asDriverOnErrorJustComplete()
             .debug("triggerMemories2")
             .drive(self.memories)
@@ -70,32 +69,32 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
             let memories = memories.map {
                 MemoryAnnotation(with: $0)
             }
-            
+
             let newAnnotations = ContestedAnnotationTool.annotationsByDistributingAnnotations(annotations: memories) { (oldAnnotation: MemoryAnnotation, newCoordinate: CLLocationCoordinate2D) in
                 let differ = currentLocation.distance(from: CLLocation(latitude: oldAnnotation.coordinate.latitude, longitude: oldAnnotation.coordinate.longitude))
-                
+
                 var isLock = true
                 if differ < self?.allowableDistance ?? 0.0 {
                     isLock = false
                 }
-                
+
                 return MemoryAnnotation(coordinate: newCoordinate,
                                  image: oldAnnotation.image,
                                  isLock: isLock,
                                  id: oldAnnotation.id)
             }
-            
+
             self?.presenter.addAnnotations(annotations: newAnnotations)
         }).disposed(by: self.disposeBag)
         
         convertMemories
             .debounce(1, scheduler: MainScheduler.instance)
-            .map { (memories, currentLocation) in
-                memories.map { self.convertMemoryPlace(currentLocation: currentLocation, memory: $0) } }
+            .map { [weak self] (memories, currentLocation) in
+                memories.map { self?.convertMemoryPlace(currentLocation: currentLocation, memory: $0) } }
             .map { (memories)  in
                 let random = Int(Date().timeIntervalSince1970) + Int(arc4random())
-                let sorted = memories.sorted(by: { !$0.isLock && $1.isLock })
-                return [SectionOfMemory(header: random, items: sorted)]
+                let sorted = memories.sorted(by: { !$0!.isLock && $1!.isLock })
+                return [SectionOfMemory(header: random, items: sorted as! [MemoryPlace])]
         }
         .bind(to: self.presenter.triggerDrawCollectionView)
         .disposed(by: self.disposeBag)
