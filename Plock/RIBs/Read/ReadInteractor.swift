@@ -88,7 +88,7 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
 
             self?.presenter.addAnnotations(annotations: newAnnotations)
         }).disposed(by: self.disposeBag)
-        
+
         convertMemories
             .debounce(1, scheduler: MainScheduler.instance)
             .map { [weak self] (memories, currentLocation) in

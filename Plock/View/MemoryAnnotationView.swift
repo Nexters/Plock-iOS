@@ -10,29 +10,29 @@ import Foundation
 import MapKit
 
 final class MemoryAnnotationView: MKAnnotationView {
-    private lazy var containerView: UIView? = {
+    private lazy var containerView: UIView = {
         let view = UIView()
         return view
     }()
     
-    private lazy var backgroundFrameImgView: UIImageView? = {
+    private lazy var backgroundFrameImgView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "alram")
         return imgView
     }()
     
-    private lazy var contentImageView: UIImageView? = {
+    private lazy var contentImageView: UIImageView = {
         let imgView = UIImageView()
         return imgView
     }()
     
-    private lazy var lockImageView: UIImageView? = {
+    private lazy var lockImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "lock")
         return imgView
     }()
     
-    private lazy var dimView: UIView? = {
+    private lazy var dimView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
         view.alpha = 0.3
@@ -41,7 +41,9 @@ final class MemoryAnnotationView: MKAnnotationView {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        
+        displayPriority = .defaultHigh
+        self.calloutOffset = CGPoint(x: -5, y: 5)
+        self.setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,63 +53,54 @@ final class MemoryAnnotationView: MKAnnotationView {
     override func prepareForDisplay() {
         super.prepareForDisplay()
         guard let memory = self.annotation as? MemoryAnnotation else { return }
-        displayPriority = .defaultHigh
-        self.canShowCallout = true
-        self.calloutOffset = CGPoint(x: -5, y: 5)
-        self.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-
-        guard let contentImageView = self.contentImageView,
-            let containerView = self.containerView,
-            let backgroundFrameImgView = self.backgroundFrameImgView,
-            let dimView = self.dimView,
-            let lockImageView = self.lockImageView else { return }
         
-        contentImageView.image = memory.image
-        containerView.addSubview(backgroundFrameImgView)
-        containerView.addSubview(contentImageView)
-        containerView.addSubview(dimView)
-        containerView.addSubview(lockImageView)
+        self.contentImageView.image = memory.image
+        if memory.isLock {
+            self.dimView.isHidden = false
+            self.lockImageView.isHidden = false
+        } else {
+            self.dimView.isHidden = true
+            self.lockImageView.isHidden = true
+        }
+    }
+    
+    private func setupUI() {
+        self.containerView.addSubview(backgroundFrameImgView)
+        self.containerView.addSubview(contentImageView)
+        self.containerView.addSubview(dimView)
+        self.containerView.addSubview(lockImageView)
         
-        
-        backgroundFrameImgView.snp.makeConstraints {
+        self.backgroundFrameImgView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
 
-        contentImageView.snp.makeConstraints {
-            $0.top.equalTo(backgroundFrameImgView.snp.top).offset(5)
-            $0.left.equalTo(backgroundFrameImgView.snp.left).offset(5)
-            $0.right.equalTo(backgroundFrameImgView.snp.right).offset(-5)
-            $0.bottom.equalTo(backgroundFrameImgView.snp.bottom).offset(-17)
+        self.contentImageView.snp.makeConstraints {
+            $0.top.equalTo(self.backgroundFrameImgView.snp.top).offset(5)
+            $0.left.equalTo(self.backgroundFrameImgView.snp.left).offset(5)
+            $0.right.equalTo(self.backgroundFrameImgView.snp.right).offset(-5)
+            $0.bottom.equalTo(self.backgroundFrameImgView.snp.bottom).offset(-17)
         }
 
-        containerView.snp.makeConstraints {
+        self.containerView.snp.makeConstraints {
             $0.width.equalTo(64)
             $0.height.equalTo(74.5)
         }
 
-        dimView.snp.makeConstraints {
+        self.dimView.snp.makeConstraints {
             $0.top.equalTo(contentImageView.snp.top)
             $0.left.equalTo(contentImageView.snp.left)
             $0.right.equalTo(contentImageView.snp.right)
             $0.bottom.equalTo(contentImageView.snp.bottom)
         }
 
-        lockImageView.snp.makeConstraints {
+        self.lockImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(dimView)
         }
 
-        if memory.isLock {
-            dimView.isHidden = false
-            lockImageView.isHidden = false
-        } else {
-            dimView.isHidden = true
-            lockImageView.isHidden = true
-        }
-
-        self.addSubview(containerView)
+        self.addSubview(self.containerView)
     }
 }

@@ -17,10 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        /*
-         to 쏭이
-         여기 지우고 님 뷰컨 붙이시면 될듯요
-         */
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         

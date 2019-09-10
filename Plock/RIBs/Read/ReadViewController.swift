@@ -157,7 +157,15 @@ extension ReadViewController {
         self.mapContainerView.mapView.rx.handleViewForAnnotation { mapView, annotation in
             guard let annotation = annotation as? MemoryAnnotation else { return nil }
             let identifier = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
-            return MemoryAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            var view: MemoryAnnotationView
+            if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MemoryAnnotationView {
+                dequedView.annotation = annotation
+                view = dequedView
+            } else {
+                view = MemoryAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            }
+
+            return view
         }
     }
     
