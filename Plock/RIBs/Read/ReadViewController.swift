@@ -149,6 +149,12 @@ extension ReadViewController {
             self.listener?.goWrite()
         }).disposed(by: self.disposeBag)
         
+        didTapAnnotation.drive(onNext:{ annotation in
+            guard let memory = annotation as? MemoryAnnotation else { return }
+            
+            
+        }).disposed(by: self.disposeBag)
+        
         self.currentLocation.subscribe(onNext: { [weak self] location in
             self?.listener?.triggerMeasureDistance(with: CLLocation(latitude: location.latitude,
                                                                     longitude: location.longitude))

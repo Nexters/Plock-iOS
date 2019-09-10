@@ -38,6 +38,7 @@
 		A121B598230305C400F7946A /* SetPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121B597230305C400F7946A /* SetPlaceViewController.swift */; };
 		A155E06E230313380052ECCC /* SetPlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155E06D230313380052ECCC /* SetPlaceViewModel.swift */; };
 		A155E070230313C80052ECCC /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155E06F230313C80052ECCC /* ViewModelType.swift */; };
+		A163E35F2327C6EB003BAA7A /* MemoryPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163E35E2327C6EB003BAA7A /* MemoryPlace.swift */; };
 		A1BEB78122F54A7A006EB852 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */; };
 		A1BEB78722F55A46006EB852 /* ReadRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78322F55A46006EB852 /* ReadRouter.swift */; };
 		A1BEB78822F55A46006EB852 /* ReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BEB78422F55A46006EB852 /* ReadViewController.swift */; };
@@ -103,6 +104,7 @@
 		A121B597230305C400F7946A /* SetPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPlaceViewController.swift; sourceTree = "<group>"; };
 		A155E06D230313380052ECCC /* SetPlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPlaceViewModel.swift; sourceTree = "<group>"; };
 		A155E06F230313C80052ECCC /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		A163E35E2327C6EB003BAA7A /* MemoryPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoryPlace.swift; path = Plock/Common/Base/MemoryPlace.swift; sourceTree = SOURCE_ROOT; };
 		A1BEB78022F54A7A006EB852 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		A1BEB78322F55A46006EB852 /* ReadRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadRouter.swift; sourceTree = "<group>"; };
 		A1BEB78422F55A46006EB852 /* ReadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadViewController.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 			children = (
 				A1EF8C3723083EB90019E621 /* MemoryAnnotation.swift */,
 				A1C2C3E1230C23AA00762682 /* SectionOfMemory.swift */,
+				A163E35E2327C6EB003BAA7A /* MemoryPlace.swift */,
 			);
 			path = Entries;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				A1EF8C3A23085F240019E621 /* MemoryAnnotationView.swift in Sources */,
 				1401710F2307C006006AAF85 /* MakePlaceViewController.swift in Sources */,
 				A1BEB78A22F55A46006EB852 /* ReadInteractor.swift in Sources */,
+				A163E35F2327C6EB003BAA7A /* MemoryPlace.swift in Sources */,
 				A121B598230305C400F7946A /* SetPlaceViewController.swift in Sources */,
 				A1C2C3DF230C0B0F00762682 /* ContestedAnnotationTool.swift in Sources */,
 				14FDF40422D9AA3D00AD2C65 /* ViewController.swift in Sources */,
