@@ -2,6 +2,10 @@
 
 ## Libraries
 - SnapKit
+- RIBs
+- SwiftLint
+- RxCocoa
+- RxDataSources
 
 ## Requirements
 - Xcode 11 (Beta 3)
