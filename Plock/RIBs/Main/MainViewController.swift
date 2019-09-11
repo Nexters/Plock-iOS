@@ -79,7 +79,7 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        testCode()
+        //        testCode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -124,15 +124,6 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
         memory.longitude = 126.961573
         CoreDataHandler.saveObject(memory: memory)
         //37.478084, 126.961573
-//
-//        let memory2 = MemoryPlace()
-//        memory2.title = "제목3"
-//        memory2.content = "여기는 낙성대다."
-//        memory2.date = Date()
-//        memory2.image = UIImage(named: "plockPicture")!.pngData()!
-//        memory2.latitude = 37.471889
-//        memory2.longitude = 126.967932
-//        CoreDataHandler.saveObject(memory: memory2)
     }
 }
 
@@ -169,14 +160,9 @@ extension MainViewController {
     private func layout() {
         self.logoImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(112)
+            $0.centerY.equalToSuperview().offset(-50)
             $0.width.equalTo(233)
             $0.height.equalTo(207)
-        }
-        
-        self.buttonStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(self.view.safeArea.bottom).offset(-80)
         }
         
         self.logoWordImageView.snp.makeConstraints {
@@ -184,6 +170,11 @@ extension MainViewController {
             $0.top.equalTo(self.logoImageView.snp.bottom).offset(14)
             $0.width.equalTo(168)
             $0.height.equalTo(52)
+        }
+        
+        self.buttonStackView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(self.logoWordImageView.snp.bottom).offset(60)
         }
     }
 }

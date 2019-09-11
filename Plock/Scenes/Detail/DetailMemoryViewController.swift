@@ -68,7 +68,7 @@ class DetailMemoryViewController: UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
-        return CGSize(width: width - 68, height: 505)
+        return CGSize(width: width - 68, height: self.collectionView.frame.height - 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -105,7 +105,6 @@ class DetailMemoryCollectionViewCell: UICollectionViewCell {
     
     func setupViews() {
         self.memoryImageView.clipsToBounds = true
-        self.memoryImageView.contentMode = .scaleAspectFill
         
         self.dateLabel.font = UIFont.regular(size: 16)
         self.dateLabel.textColor = UIColor(hex: "#495057")
