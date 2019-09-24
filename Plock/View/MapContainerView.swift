@@ -41,8 +41,8 @@ final class MapContainerView: BaseView {
         return self.mapView.rx.regionDidChangeAnimated.asDriverOnErrorJustComplete()
     }()
     
-    lazy var updateLocation: Driver<CLLocationCoordinate2D> = {
-        return self.mapView.rx.didUpdate.asDriverOnErrorJustComplete()
+    lazy var updateLocation: Observable<CLLocationCoordinate2D?> = {
+        return self.mapView.rx.didUpdate
     }()
     
     lazy var didChangeVisibleRegion: Driver<CLLocationCoordinate2D> = {

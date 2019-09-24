@@ -43,7 +43,7 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
     override init(presenter: ReadPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
-        self.setBind()
+        self.setBind() 
     }
 
     override func didBecomeActive() {
@@ -109,6 +109,7 @@ extension ReadInteractor: ReadPresentableListener {
     }
     
     func triggerMeasureDistance(with currentLocation: CLLocation) {
+        print("update triggerMeasureDistance")
         self.currentLocation.onNext(currentLocation)
     }
     

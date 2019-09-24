@@ -19,6 +19,7 @@ protocol MainViewControllable: ViewControllable {
 
 final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable> {
     private let readBuilder: ReadBuildable
+    private var readRouter: ViewableRouting?
     private weak var currentChild: ViewableRouting?
     
     init(interactor: MainInteractable,
@@ -37,6 +38,7 @@ extension MainRouter: MainRouting {
         attachChild(router)
         self.viewController.uiviewController.navigationController?.pushViewController(router.viewControllable.uiviewController,
                                                                                       animated: true)
+        self.readRouter = router
     }
     
     func goWrite() {
@@ -45,7 +47,7 @@ extension MainRouter: MainRouting {
         self.viewController.uiviewController.navigationController?.pushViewController(makePlaceViewController, animated: true)
     }
     
-    func detachDetail() {
+    private func detachDetail() {
         if let currentChild = self.currentChild {
             detachChild(currentChild)
         }

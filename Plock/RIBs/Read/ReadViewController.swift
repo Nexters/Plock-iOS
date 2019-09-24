@@ -50,8 +50,8 @@ final class ReadViewController: BaseViewController, ReadViewControllable, Settab
         self.rx
             .viewWillAppear
             .mapToVoid()
-            .subscribe(onNext: {
-                self.listener?.triggerFetchMemories()
+            .subscribe(onNext: { [weak self] in
+                self?.listener?.triggerFetchMemories()
             })
             .disposed(by: self.disposeBag)
     }
@@ -81,7 +81,7 @@ final class ReadViewController: BaseViewController, ReadViewControllable, Settab
         self.setBindMap()
         self.setBindReadViewController()
         self.triggerDrawCollectionView
-            .do(onNext: { _ in self.gridView.hideEmptyView() })
+            .do(onNext: { [weak self] _ in self?.gridView.hideEmptyView() })
             .bind(to: self.gridView
                 .collectionView
                 .rx
@@ -120,39 +120,52 @@ extension ReadViewController {
     }
 }
 
+//todo: after didUpdate unwrap, didChangeVisibleRegion.withLatest(didUpdate){ ... }
 // MARK: Set Bind
 extension ReadViewController {
     private func setBindMap() {
         let updateLocation = self.mapContainerView.updateLocation
         let foucusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
         let writeMemory = self.mapContainerView.writeMemory
-        let didTapAnnotation = self.mapContainerView.didTapAnnotationView
+        let didChangeVisibleRegion = self.mapContainerView.didChangeVisibleRegion
+        let isTrackingCamera = BehaviorSubject<Bool>(value: true)
+        let chagnedAnimated = self.mapContainerView.regionDidChangeAnimated
+        let touchedOutMap = chagnedAnimated.withLatestFrom(didChangeVisibleRegion).asDriver()
         
-        updateLocation.asObservable().take(1).subscribe(onNext: { [weak self] location in
-            let coordinateRegion = MKCoordinateRegion(center: location,
-                                                      latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
-                                                      longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
-            self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
-        }).disposed(by: self.disposeBag)
+        let tracking
+            = updateLocation
+                .unwrap()
+                .withLatestFrom(isTrackingCamera) { ($0, $1) }
+                .filter { _, isTracking in isTracking }
+            
+        tracking
+            .subscribe(onNext: { [weak self] location, _ in
+                guard let mapView = self?.mapContainerView.mapView else { return }
+                self?.focusMap(with: location, mapView: mapView)
+            }).disposed(by: self.disposeBag)
         
-        updateLocation.drive(self.currentLocation)
+        updateLocation.unwrap()
+            .debug("updateLocation jhh")
+            .bind(to: self.currentLocation)
             .disposed(by: self.disposeBag)
         
-        foucusCamera.drive(onNext: { [weak self] location in
-            let coordinateRegion = MKCoordinateRegion(center: location,
-                                                      latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
-                                                      longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
-            self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
-        }).disposed(by: self.disposeBag)
+        touchedOutMap
+            .debug("touchedOutMap jhh")
+            .skip(2)
+            .drive(onNext: { _ in
+                isTrackingCamera.onNext(false)
+            }).disposed(by: self.disposeBag)
+        
+        foucusCamera
+            .do(onNext: { _ in
+                isTrackingCamera.onNext(true)
+            }).drive(onNext: { [weak self] location in
+                guard let mapView = self?.mapContainerView.mapView else { return }
+                self?.focusMap(with: location, mapView: mapView)
+            }).disposed(by: self.disposeBag)
         
         writeMemory.drive(onNext: {
             self.listener?.goWrite()
-        }).disposed(by: self.disposeBag)
-        
-        didTapAnnotation.drive(onNext:{ annotation in
-            guard let memory = annotation as? MemoryAnnotation else { return }
-            
-            
         }).disposed(by: self.disposeBag)
         
         self.currentLocation.subscribe(onNext: { [weak self] location in
@@ -160,18 +173,11 @@ extension ReadViewController {
                                                                     longitude: location.longitude))
         }).disposed(by: self.disposeBag)
         
-        self.mapContainerView.mapView.rx.handleViewForAnnotation { mapView, annotation in
-            guard let annotation = annotation as? MemoryAnnotation else { return nil }
-            let identifier = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
-            var view: MemoryAnnotationView
-            if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MemoryAnnotationView {
-                dequedView.annotation = annotation
-                view = dequedView
-            } else {
-                view = MemoryAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            }
-
-            return view
+        self.mapContainerView.mapView.rx
+            .handleViewForAnnotation
+            { [weak self] mapView, annotation in
+                guard let annotation = annotation as? MemoryAnnotation else { return nil }
+                return self?.makeAnnotaionView(with: mapView, annotation: annotation)
         }
     }
     
@@ -186,6 +192,32 @@ extension ReadViewController {
     }
 }
 
+// MARK: ReadViewController Operator
+extension ReadViewController {
+    private func focusMap(with location: CLLocationCoordinate2D, mapView: MKMapView) {
+        let coordinateRegion = MKCoordinateRegion(center: location,
+                                                  latitudinalMeters: self.regionRadius * 2.0,
+                                                  longitudinalMeters: self.regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    private func makeAnnotaionView(with mapView: MKMapView, annotation: MKAnnotation) -> MemoryAnnotationView? {
+        var view: MemoryAnnotationView?
+        let identifier = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
+        
+        if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MemoryAnnotationView {
+            dequedView.annotation = annotation
+            view = dequedView
+        } else {
+            view = nil
+            view = MemoryAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+        
+        return view
+    }
+}
+
+// MARK: ReadPresentable
 extension ReadViewController: ReadPresentable {
     func addAnnotations(annotations: [MKAnnotation]) {
         self.mapContainerView.mapView.removeAnnotations(self.mapContainerView.mapView.annotations)

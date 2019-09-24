@@ -90,10 +90,12 @@ final class SetPlaceViewController: BaseViewController, SettableUINavigationBar 
                                                            animated: true)
         }).disposed(by: self.disposeBag)
         
-        updateLocation.drive(self.currentLocation)
+        updateLocation.unwrap()
+            .bind(to: self.currentLocation)
             .disposed(by: self.disposeBag)
         
-        updateLocation.asObservable().take(1).subscribe(onNext: { [weak self] location in
+        updateLocation.unwrap()
+            .subscribe(onNext: { [weak self] location in
             let coordinateRegion = MKCoordinateRegion(center: location,
                                                       latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
                                                       longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
