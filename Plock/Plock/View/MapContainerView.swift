@@ -152,7 +152,7 @@ final class MapContainerView: BaseView {
         
         self.layout()
         
-        if self.vc is ReadViewController {
+        if self.vc is ReadViewController2 {
             self.searchContainerView.isHidden = true
             self.searchContainerView.snp.updateConstraints {
                 $0.height.equalTo(0)

@@ -66,6 +66,8 @@
 		A149C54823408B1E00AB5AA4 /* MemoryPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54723408B1E00AB5AA4 /* MemoryPlace.swift */; };
 		A149C54A23408C9100AB5AA4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54923408C9100AB5AA4 /* HomeViewController.swift */; };
 		A149C54D23408EF000AB5AA4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54C23408EF000AB5AA4 /* HomeView.swift */; };
+		A149C550234099B200AB5AA4 /* ReadViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54F234099B200AB5AA4 /* ReadViewController2.swift */; };
+		A149C5522340A1CA00AB5AA4 /* ReadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C5512340A1CA00AB5AA4 /* ReadViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +133,8 @@
 		A149C54723408B1E00AB5AA4 /* MemoryPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlace.swift; sourceTree = "<group>"; };
 		A149C54923408C9100AB5AA4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A149C54C23408EF000AB5AA4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A149C54F234099B200AB5AA4 /* ReadViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadViewController2.swift; sourceTree = "<group>"; };
+		A149C5512340A1CA00AB5AA4 /* ReadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadViewModel.swift; sourceTree = "<group>"; };
 		BAFA3903E443755AB98C8D42 /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,7 +235,7 @@
 		144DE14723372F6B0090E630 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A149C54E234094D200AB5AA4 /* New Group */,
+				A149C54E234094D200AB5AA4 /* Read */,
 				A149C54B23408C9600AB5AA4 /* Home */,
 				144DE14823372F6B0090E630 /* MakePlace */,
 				144DE14E23372F6B0090E630 /* SearchPlace */,
@@ -408,11 +412,13 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		A149C54E234094D200AB5AA4 /* New Group */ = {
+		A149C54E234094D200AB5AA4 /* Read */ = {
 			isa = PBXGroup;
 			children = (
+				A149C54F234099B200AB5AA4 /* ReadViewController2.swift */,
+				A149C5512340A1CA00AB5AA4 /* ReadViewModel.swift */,
 			);
-			path = "New Group";
+			path = Read;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -537,6 +543,7 @@
 				144DE16723372F6B0090E630 /* RootViewController.swift in Sources */,
 				144DE17923372F6B0090E630 /* SetPlaceViewController.swift in Sources */,
 				A149C54823408B1E00AB5AA4 /* MemoryPlace.swift in Sources */,
+				A149C550234099B200AB5AA4 /* ReadViewController2.swift in Sources */,
 				144DE19D233730830090E630 /* UIView+.swift in Sources */,
 				144DE17623372F6B0090E630 /* SearchPlaceItemViewModel.swift in Sources */,
 				144DE17823372F6B0090E630 /* SearchPlaceCell.swift in Sources */,
@@ -580,6 +587,7 @@
 				144DE16323372F6B0090E630 /* ReadViewController.swift in Sources */,
 				144DE17A23372F6B0090E630 /* SetPlaceViewModel.swift in Sources */,
 				144DE16F23372F6B0090E630 /* MainComponent+Read.swift in Sources */,
+				A149C5522340A1CA00AB5AA4 /* ReadViewModel.swift in Sources */,
 				A149C54D23408EF000AB5AA4 /* HomeView.swift in Sources */,
 				144DE17723372F6B0090E630 /* SearchPlaceViewController.swift in Sources */,
 				144DE16923372F6B0090E630 /* RootComponent+Main.swift in Sources */,

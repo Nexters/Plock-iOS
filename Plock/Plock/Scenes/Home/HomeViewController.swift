@@ -24,8 +24,8 @@ final class HomeViewController: BaseViewController, SettableUINavigationBar {
     
     override func setupBind() {
         self.homeView.touchedReadButton
-            .drive(onNext:{
-            
+            .drive(onNext:{ [weak self] in
+                self?.goRead()
             }).disposed(by: self.disposeBag)
         
         self.homeView.touchedWriteButton
@@ -40,6 +40,10 @@ extension HomeViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "MakePlaceViewController")
         self.navigationController?.pushViewController(makePlaceViewController, animated: true)
+    }
+    
+    private func goRead() {
+        self.navigationController?.pushViewController(ReadViewController2(), animated: true)
     }
 }
 

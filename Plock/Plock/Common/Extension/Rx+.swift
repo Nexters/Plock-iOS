@@ -19,11 +19,19 @@ extension ObservableType {
     func mapToVoid() -> Observable<Void> {
         return map { _ in }
     }
+    
+    func unwrap<T>() -> Observable<T> where E == T? {
+        return self.filter { $0 != nil }.map {$0!}
+    }
 }
 
 extension SharedSequenceConvertibleType {
     func mapToVoid() -> SharedSequence<SharingStrategy, Void> {
         return map { _ in }
+    }
+    
+    func unwrap<T>() -> SharedSequence<SharingStrategy,T> where E == T? {
+        return self.filter { $0 != nil }.map { $0! }
     }
 }
 

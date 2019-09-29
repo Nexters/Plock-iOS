@@ -1,35 +1,26 @@
 //
-//  ReadViewController.swift
+//  ReadViewController2.swift
 //  Plock
 //
-//  Created by Haehyeon Jeong on 2019/08/03.
-//  Copyright © 2019 Zedd. All rights reserved.
+//  Created by Haehyeon Jeong on 2019/09/29.
+//  Copyright © 2019 nexters. All rights reserved.
 //
 
-import RIBs
-import MapKit
 import UIKit
+import MapKit
 
 import RxSwift
 import RxCocoa
 import RxDataSources
 
-protocol ReadPresentableListener: class {
-    func triggerFetchMemories()
-    func triggerMeasureDistance(with currentLocation: CLLocation)
-    func goWrite()
-    func goDetail(memories: [MemoryPlace])
-}
-
-final class ReadViewController: BaseViewController, ReadViewControllable, SettableUINavigationBar {
-    // MARK: Properties
-    weak var listener: ReadPresentableListener?
+final class ReadViewController2: BaseViewController, SettableUINavigationBar {
+    private let disposeBag = DisposeBag()
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     private let regionRadius: CLLocationDistance = 10
     private var gridView = PlaceGridView()
-    private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedAnimatedDataSource<SectionOfMemory>?
-    var triggerDrawCollectionView: PublishSubject<[SectionOfMemory]> = PublishSubject<[SectionOfMemory]>()
+    private let viewModel = ReadViewModel()
+    var triggerDrawCollectionView = PublishSubject<[SectionOfMemory]>()
     
     // MARK: UI Component
     private lazy var mapContainerView: MapContainerView = {
@@ -47,26 +38,10 @@ final class ReadViewController: BaseViewController, ReadViewControllable, Settab
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.rx
-            .viewWillAppear
-            .mapToVoid()
-            .subscribe(onNext: {
-                self.listener?.triggerFetchMemories()
-            })
-            .disposed(by: self.disposeBag)
     }
     
-    required init?(coder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func loadView() {
-        super.loadView()
-        self.view = self.mapContainerView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     override func setupUI() {
@@ -78,37 +53,19 @@ final class ReadViewController: BaseViewController, ReadViewControllable, Settab
     }
     
     override func setupBind() {
+        self.setBindViewModel()
         self.setBindMap()
-        self.setBindReadViewController()
-        self.triggerDrawCollectionView
-            .do(onNext: { _ in self.gridView.hideEmptyView() })
-            .bind(to: self.gridView
-                .collectionView
-                .rx
-                .items(dataSource: self.dataSource!))
-            .disposed(by: self.disposeBag)
-        
-        self.triggerDrawCollectionView.subscribe(onNext: { [weak self] sections in
-            if sections[0].items.isEmpty {
-                self?.gridView.showEmptyView()
-            } else {
-                self?.gridView.hideEmptyView()
-            }
-        }).disposed(by: self.disposeBag)
-        
-        self.gridView.collectionView.rx
-            .modelSelected(MemoryPlace.self)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                if !$0.isLock {
-                    self.listener?.goDetail(memories: [$0])
-                }
-        }).disposed(by: self.disposeBag)
+        self.setBindUI()
     }
 }
 
-// MARK: Draw UI
-extension ReadViewController {
+// MARK: ReadViewController2 Operator
+extension ReadViewController2 {
+    private func addAnnotations(annotations: [MKAnnotation]) {
+        self.mapContainerView.mapView.removeAnnotations(self.mapContainerView.mapView.annotations)
+        self.mapContainerView.mapView.addAnnotations(annotations)
+    }
+    
     private func changeMap() {
         self.view = self.mapContainerView
         self.showNavigation()
@@ -118,10 +75,21 @@ extension ReadViewController {
         self.view = self.gridView
         self.hideNavigation()
     }
-}
-
-// MARK: Set Bind
-extension ReadViewController {
+    
+    private func setBindViewModel() {
+        let input = ReadViewModel.Input(triggerMemoryFetch: self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete(),
+                                        triggerMeasureDistance: self.currentLocation.map{ CLLocation(latitude: $0.latitude, longitude: $0.longitude) }
+                                            .asDriverOnErrorJustComplete())
+        let output = self.viewModel.transform(input: input)
+        output.memoryAnnotation
+            .drive(onNext:{ [weak self] in
+                self?.addAnnotations(annotations: $0)
+            }).disposed(by: self.disposeBag)
+        
+        output.sectionOfMemories.drive(self.triggerDrawCollectionView)
+            .disposed(by: self.disposeBag)
+    }
+    
     private func setBindMap() {
         let updateLocation = self.mapContainerView.updateLocation
         let foucusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
@@ -146,12 +114,7 @@ extension ReadViewController {
         }).disposed(by: self.disposeBag)
         
         writeMemory.drive(onNext: {
-            self.listener?.goWrite()
-        }).disposed(by: self.disposeBag)
-        
-        self.currentLocation.subscribe(onNext: { [weak self] location in
-            self?.listener?.triggerMeasureDistance(with: CLLocation(latitude: location.latitude,
-                                                                    longitude: location.longitude))
+//            self.listener?.goWrite()
         }).disposed(by: self.disposeBag)
         
         self.mapContainerView.mapView.rx.handleViewForAnnotation { mapView, annotation in
@@ -166,11 +129,36 @@ extension ReadViewController {
                 view = MemoryAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             }
             
-            return view
+            return view   
         }
     }
     
-    private func setBindReadViewController() {
+    private func setBindUI() {
+        self.triggerDrawCollectionView
+            .do(onNext: { [weak self] _ in self?.gridView.hideEmptyView() })
+            .bind(to: self.gridView
+                .collectionView
+                .rx
+                .items(dataSource: self.dataSource!))
+            .disposed(by: self.disposeBag)
+        
+        self.triggerDrawCollectionView.subscribe(onNext: { [weak self] sections in
+            if sections[0].items.isEmpty {
+                self?.gridView.showEmptyView()
+            } else {
+                self?.gridView.hideEmptyView()
+            }
+        }).disposed(by: self.disposeBag)
+        
+        self.gridView.collectionView.rx
+            .modelSelected(MemoryPlace.self)
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                if !$0.isLock {
+//                    self.listener?.goDetail(memories: [$0])
+                }
+            }).disposed(by: self.disposeBag)
+        
         self.titleSegment.rx.value.subscribe(onNext: { [weak self] segment in
             if segment == 0 {
                 self?.changeMap()
@@ -181,15 +169,8 @@ extension ReadViewController {
     }
 }
 
-extension ReadViewController: ReadPresentable {
-    func addAnnotations(annotations: [MKAnnotation]) {
-        self.mapContainerView.mapView.removeAnnotations(self.mapContainerView.mapView.annotations)
-        self.mapContainerView.mapView.addAnnotations(annotations)
-    }
-}
-
 // MARK: CollectionView
-extension ReadViewController {
+extension ReadViewController2 {
     private func setupCollectionView() {
         self.dataSource = RxCollectionViewSectionedAnimatedDataSource(configureCell: self.collectionViewDataSourceUI())
         self.gridView.collectionView.contentInset = UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
@@ -203,12 +184,9 @@ extension ReadViewController {
         layout.minimumInteritemSpacing = 11
         self.gridView.collectionView.collectionViewLayout = layout
     }
-}
-
-// MARK: CollectionView DataSoruce
-extension ReadViewController {
+    
     private func collectionViewDataSourceUI() -> CollectionViewSectionedDataSource<SectionOfMemory>.ConfigureCell {
-            return collectionViewDataSourceConfigureCell()
+        return collectionViewDataSourceConfigureCell()
     }
     
     private func collectionViewDataSourceConfigureCell() -> CollectionViewSectionedDataSource<SectionOfMemory>.ConfigureCell {
@@ -218,16 +196,29 @@ extension ReadViewController {
                 cell.setupUI()
                 return cell
             }
-
+            
             return UICollectionViewCell()
         }
     }
 }
 
 // MARK: CollectionView FlowLayout
-extension ReadViewController: UICollectionViewDelegateFlowLayout {
+extension ReadViewController2: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.frame.width / 2 - 24
         return CGSize(width: size, height: 220)
+    }
+}
+
+
+// MARK: ViewController Life Cycle
+extension ReadViewController2 {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        self.view = self.mapContainerView
     }
 }
