@@ -1,27 +1,19 @@
 //
-//  MainViewController.swift
+//  HomeView.swift
 //  Plock
 //
-//  Created by Haehyeon Jeong on 2019/08/02.
-//  Copyright © 2019 Zedd. All rights reserved.
+//  Created by Haehyeon Jeong on 2019/09/29.
+//  Copyright © 2019 nexters. All rights reserved.
 //
 
-import RIBs
-import RxCocoa
-import RxSwift
-import SnapKit
 import UIKit
 
-protocol MainPresentableListener: class {
-    func read()
-    func write()
-}
+import RxSwift
+import RxCocoa
 
-final class MainViewController: BaseViewController, MainPresentable, MainViewControllable, SettableUINavigationBar {
-    
-    // MARK: Property
-    private let disposeBag = DisposeBag()
-    weak var listener: MainPresentableListener?
+final class HomeView: BaseView {
+    lazy var touchedWriteButton: Driver<Void> = self.writeButton.rx.tap.asDriver()
+    lazy var touchedReadButton: Driver<Void> = self.readButton.rx.tap.asDriver()
     
     // MARK: UI Component
     private var writeButton: UIButton = {
@@ -69,66 +61,22 @@ final class MainViewController: BaseViewController, MainPresentable, MainViewCon
         return stackView
     }()
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //        testCode()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.hideNavigation()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.showNavigation()
-    }
-    
     override func setupUI() {
-        self.view.backgroundColor = .white
-        self.view.addSubview(self.buttonStackView)
-        self.view.addSubview(self.logoImageView)
-        self.view.addSubview(self.logoWordImageView)
+        self.backgroundColor = .white
+        self.addSubview(self.buttonStackView)
+        self.addSubview(self.logoImageView)
+        self.addSubview(self.logoWordImageView)
         
         self.buildButtons()
         self.layout()
     }
     
     override func setupBind() {
-        self.writeButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.listener?.write()
-            }).disposed(by: self.disposeBag)
         
-        self.readButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.listener?.read()
-            }).disposed(by: self.disposeBag)
-    }
-    
-    private func testCode() {
-        let memory = MemoryPlace()
-        memory.title = "제목입니다"
-        memory.content = "오늘은 해가 떴다 핳하"
-        memory.date = Date()
-        memory.image = UIImage(named: "plockPicture")!.pngData()!
-        memory.latitude = 37.478084
-        memory.longitude = 126.961573
-        CoreDataHandler.saveObject(memory: memory)
-        //37.478084, 126.961573
     }
 }
 
-// MARK: draw UI
-extension MainViewController {
+extension HomeView {
     private func buildButtons() {
         let writeStackView = UIStackView()
         writeStackView.axis = .vertical

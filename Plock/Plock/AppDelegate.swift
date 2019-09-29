@@ -14,19 +14,18 @@ import RIBs
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private var launchRouter: LaunchRouting?
+    private var homeViewController: HomeViewController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        /*
-         to 쏭이
-         여기 지우고 님 뷰컨 붙이시면 될듯요
-         */
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         
-        let launchRouter = RootBuilder(dependency: AppComponent()).build()
-        self.launchRouter = launchRouter
-        self.launchRouter?.launchFromWindow(self.window!)
+        self.setupEntryController()
+        self.reloadRootViewController()
+//        let launchRouter = RootBuilder(dependency: AppComponent()).build()
+//        self.launchRouter = launchRouter
+//        self.launchRouter?.launchFromWindow(self.window!)
 
         return true
     }
@@ -82,4 +81,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+
+extension AppDelegate {
+    private func setupEntryController() {
+        self.homeViewController = HomeViewController()
+    }
+    
+    private func reloadRootViewController() {
+        self.window?.rootViewController = UINavigationController(rootViewController: self.homeViewController!)
+        self.window?.makeKeyAndVisible()
+    }
 }

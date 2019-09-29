@@ -64,6 +64,8 @@
 		144DE1A9233730AD0090E630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 144DE1A8233730AD0090E630 /* Main.storyboard */; };
 		6F49FE824C18374B54EFE120 /* Pods_Plock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E368AC1B6B5EE58CFFE12B6 /* Pods_Plock.framework */; };
 		A149C54823408B1E00AB5AA4 /* MemoryPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54723408B1E00AB5AA4 /* MemoryPlace.swift */; };
+		A149C54A23408C9100AB5AA4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54923408C9100AB5AA4 /* HomeViewController.swift */; };
+		A149C54D23408EF000AB5AA4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54C23408EF000AB5AA4 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +129,8 @@
 		4E368AC1B6B5EE58CFFE12B6 /* Pods_Plock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E2988B1D629BB2A48574CB1 /* Pods-Plock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.debug.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.debug.xcconfig"; sourceTree = "<group>"; };
 		A149C54723408B1E00AB5AA4 /* MemoryPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlace.swift; sourceTree = "<group>"; };
+		A149C54923408C9100AB5AA4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A149C54C23408EF000AB5AA4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BAFA3903E443755AB98C8D42 /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,6 +231,8 @@
 		144DE14723372F6B0090E630 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A149C54E234094D200AB5AA4 /* New Group */,
+				A149C54B23408C9600AB5AA4 /* Home */,
 				144DE14823372F6B0090E630 /* MakePlace */,
 				144DE14E23372F6B0090E630 /* SearchPlace */,
 				144DE15523372F6B0090E630 /* SetPlace */,
@@ -393,6 +399,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A149C54B23408C9600AB5AA4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A149C54923408C9100AB5AA4 /* HomeViewController.swift */,
+				A149C54C23408EF000AB5AA4 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		A149C54E234094D200AB5AA4 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -521,6 +543,7 @@
 				144DE16523372F6B0090E630 /* ReadRouter.swift in Sources */,
 				144DE198233730830090E630 /* SectionOfMemory.swift in Sources */,
 				144DE16223372F6B0090E630 /* ReadInteractor.swift in Sources */,
+				A149C54A23408C9100AB5AA4 /* HomeViewController.swift in Sources */,
 				144DE16E23372F6B0090E630 /* MainRouter.swift in Sources */,
 				144DE1A1233730830090E630 /* SettableUINavigationBar.swift in Sources */,
 				144DE16423372F6B0090E630 /* ReadBuilder.swift in Sources */,
@@ -557,6 +580,7 @@
 				144DE16323372F6B0090E630 /* ReadViewController.swift in Sources */,
 				144DE17A23372F6B0090E630 /* SetPlaceViewModel.swift in Sources */,
 				144DE16F23372F6B0090E630 /* MainComponent+Read.swift in Sources */,
+				A149C54D23408EF000AB5AA4 /* HomeView.swift in Sources */,
 				144DE17723372F6B0090E630 /* SearchPlaceViewController.swift in Sources */,
 				144DE16923372F6B0090E630 /* RootComponent+Main.swift in Sources */,
 				144DE0F423372A390090E630 /* AppDelegate.swift in Sources */,
