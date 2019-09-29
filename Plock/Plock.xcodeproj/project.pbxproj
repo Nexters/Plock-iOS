@@ -63,6 +63,7 @@
 		144DE1A7233730830090E630 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DE197233730830090E630 /* BaseView.swift */; };
 		144DE1A9233730AD0090E630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 144DE1A8233730AD0090E630 /* Main.storyboard */; };
 		6F49FE824C18374B54EFE120 /* Pods_Plock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E368AC1B6B5EE58CFFE12B6 /* Pods_Plock.framework */; };
+		A149C54823408B1E00AB5AA4 /* MemoryPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54723408B1E00AB5AA4 /* MemoryPlace.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +126,7 @@
 		144DE1A8233730AD0090E630 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4E368AC1B6B5EE58CFFE12B6 /* Pods_Plock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E2988B1D629BB2A48574CB1 /* Pods-Plock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.debug.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.debug.xcconfig"; sourceTree = "<group>"; };
+		A149C54723408B1E00AB5AA4 /* MemoryPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlace.swift; sourceTree = "<group>"; };
 		BAFA3903E443755AB98C8D42 /* Pods-Plock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.release.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -329,6 +331,7 @@
 			children = (
 				144DE184233730830090E630 /* SectionOfMemory.swift */,
 				144DE185233730830090E630 /* MemoryAnnotation.swift */,
+				A149C54723408B1E00AB5AA4 /* MemoryPlace.swift */,
 			);
 			path = Entries;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				144DE17D23372F6B0090E630 /* DetailMemoryViewController.swift in Sources */,
 				144DE16723372F6B0090E630 /* RootViewController.swift in Sources */,
 				144DE17923372F6B0090E630 /* SetPlaceViewController.swift in Sources */,
+				A149C54823408B1E00AB5AA4 /* MemoryPlace.swift in Sources */,
 				144DE19D233730830090E630 /* UIView+.swift in Sources */,
 				144DE17623372F6B0090E630 /* SearchPlaceItemViewModel.swift in Sources */,
 				144DE17823372F6B0090E630 /* SearchPlaceCell.swift in Sources */,
@@ -696,7 +700,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 787Q6972XA;
+				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = Plock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -715,7 +719,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 787Q6972XA;
+				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = Plock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

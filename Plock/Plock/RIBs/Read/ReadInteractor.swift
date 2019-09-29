@@ -65,26 +65,28 @@ final class ReadInteractor: PresentableInteractor<ReadPresentable>, ReadInteract
             .disposed(by: self.disposeBag)
         
         let convertMemories = Observable.combineLatest(self.memories, self.currentLocation) { ($0, $1) }
-        convertMemories.subscribe(onNext: { [weak self] (memories, currentLocation) in
-            let memories = memories.map {
-                MemoryAnnotation(with: $0)
-            }
-
-            let newAnnotations = ContestedAnnotationTool.annotationsByDistributingAnnotations(annotations: memories) { (oldAnnotation: MemoryAnnotation, newCoordinate: CLLocationCoordinate2D) in
-                let differ = currentLocation.distance(from: CLLocation(latitude: oldAnnotation.coordinate.latitude, longitude: oldAnnotation.coordinate.longitude))
-
-                var isLock = true
-                if differ < self?.allowableDistance ?? 0.0 {
-                    isLock = false
+        convertMemories
+            .debug("convertMemories")
+            .subscribe(onNext: { [weak self] (memories, currentLocation) in
+                let memories = memories.map {
+                    MemoryAnnotation(with: $0)
                 }
-
-                return MemoryAnnotation(coordinate: newCoordinate,
-                                 image: oldAnnotation.image,
-                                 isLock: isLock,
-                                 id: oldAnnotation.id)
-            }
-
-            self?.presenter.addAnnotations(annotations: newAnnotations)
+                
+                let newAnnotations = ContestedAnnotationTool.annotationsByDistributingAnnotations(annotations: memories) { (oldAnnotation: MemoryAnnotation, newCoordinate: CLLocationCoordinate2D) in
+                    let differ = currentLocation.distance(from: CLLocation(latitude: oldAnnotation.coordinate.latitude, longitude: oldAnnotation.coordinate.longitude))
+                    
+                    var isLock = true
+                    if differ < self?.allowableDistance ?? 0.0 {
+                        isLock = false
+                    }
+                    
+                    return MemoryAnnotation(coordinate: newCoordinate,
+                                            image: oldAnnotation.image,
+                                            isLock: isLock,
+                                            id: oldAnnotation.id)
+                }
+                
+                self?.presenter.addAnnotations(annotations: newAnnotations)
         }).disposed(by: self.disposeBag)
         
         convertMemories

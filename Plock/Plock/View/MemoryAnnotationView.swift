@@ -10,9 +10,40 @@ import Foundation
 import MapKit
 
 final class MemoryAnnotationView: MKAnnotationView {
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private lazy var backgroundFrameImgView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.image = UIImage(named: "alram")
+        return imgView
+    }()
+    
+    private lazy var contentImageView: UIImageView = {
+        let imgView = UIImageView()
+        return imgView
+    }()
+    
+    private lazy var lockImageView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.image = UIImage(named: "lock")
+        return imgView
+    }()
+    
+    private lazy var dimView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0.3
+        return view
+    }()
+    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        
+        displayPriority = .defaultHigh
+        self.calloutOffset = CGPoint(x: -5, y: 5)
+        self.setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -22,31 +53,26 @@ final class MemoryAnnotationView: MKAnnotationView {
     override func prepareForDisplay() {
         super.prepareForDisplay()
         guard let memory = self.annotation as? MemoryAnnotation else { return }
-        displayPriority = .defaultHigh
-        self.canShowCallout = true
-        self.calloutOffset = CGPoint(x: -5, y: 5)
-        self.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         
-        let containerView = UIView()
-        let backgroundFrame = UIImageView()
-        backgroundFrame.image = UIImage(named: "alram")
+        self.contentImageView.image = memory.image
+        if memory.isLock {
+            dimView.isHidden = false
+            lockImageView.isHidden = false
+        } else {
+            dimView.isHidden = true
+            lockImageView.isHidden = true
+        }
         
-        let contentImageView = UIImageView()
-        contentImageView.image = memory.image
+        self.addSubview(containerView)
+    }
+    
+    private func setupUI() {
+        self.containerView.addSubview(backgroundFrameImgView)
+        self.containerView.addSubview(contentImageView)
+        self.containerView.addSubview(dimView)
+        self.containerView.addSubview(lockImageView)
         
-        let lockImageView = UIImageView()
-        lockImageView.image = UIImage(named: "lock")
-        
-        let dimView = UIView()
-        dimView.backgroundColor = .black
-        dimView.alpha = 0.3
-        
-        containerView.addSubview(backgroundFrame)
-        containerView.addSubview(contentImageView)
-        containerView.addSubview(dimView)
-        containerView.addSubview(lockImageView)
-        
-        backgroundFrame.snp.makeConstraints {
+        backgroundFrameImgView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
@@ -54,10 +80,10 @@ final class MemoryAnnotationView: MKAnnotationView {
         }
         
         contentImageView.snp.makeConstraints {
-            $0.top.equalTo(backgroundFrame.snp.top).offset(5)
-            $0.left.equalTo(backgroundFrame.snp.left).offset(5)
-            $0.right.equalTo(backgroundFrame.snp.right).offset(-5)
-            $0.bottom.equalTo(backgroundFrame.snp.bottom).offset(-17)
+            $0.top.equalTo(backgroundFrameImgView.snp.top).offset(5)
+            $0.left.equalTo(backgroundFrameImgView.snp.left).offset(5)
+            $0.right.equalTo(backgroundFrameImgView.snp.right).offset(-5)
+            $0.bottom.equalTo(backgroundFrameImgView.snp.bottom).offset(-17)
         }
         
         containerView.snp.makeConstraints {
@@ -76,15 +102,5 @@ final class MemoryAnnotationView: MKAnnotationView {
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(dimView)
         }
-        
-        if memory.isLock {
-            dimView.isHidden = false
-            lockImageView.isHidden = false
-        } else {
-            dimView.isHidden = true
-            lockImageView.isHidden = true
-        }
-        
-        self.addSubview(containerView)
     }
 }

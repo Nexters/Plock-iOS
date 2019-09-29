@@ -29,7 +29,6 @@ final class ReadViewController: BaseViewController, ReadViewControllable, Settab
     private var gridView = PlaceGridView()
     private let disposeBag = DisposeBag()
     private var dataSource: RxCollectionViewSectionedAnimatedDataSource<SectionOfMemory>?
-    private var prevAnnotations: [MKAnnotation] = [MKAnnotation]()
     var triggerDrawCollectionView: PublishSubject<[SectionOfMemory]> = PublishSubject<[SectionOfMemory]>()
     
     // MARK: UI Component
@@ -158,7 +157,17 @@ extension ReadViewController {
         self.mapContainerView.mapView.rx.handleViewForAnnotation { mapView, annotation in
             guard let annotation = annotation as? MemoryAnnotation else { return nil }
             let identifier = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
-            return MemoryAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            
+            var view: MemoryAnnotationView
+            if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MemoryAnnotationView {
+                dequedView.annotation = annotation
+                view = dequedView
+            } else {
+                view = MemoryAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            }
+            
+            return view
+
         }
     }
     
@@ -175,10 +184,7 @@ extension ReadViewController {
 
 extension ReadViewController: ReadPresentable {
     func addAnnotations(annotations: [MKAnnotation]) {
-        if !prevAnnotations.isEmpty {
-            self.mapContainerView.mapView.removeAnnotations(prevAnnotations)
-        }
-        self.prevAnnotations = annotations
+        self.mapContainerView.mapView.removeAnnotations(self.mapContainerView.mapView.annotations)
         self.mapContainerView.mapView.addAnnotations(annotations)
     }
 }
