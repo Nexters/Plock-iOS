@@ -63,6 +63,7 @@
 		144DE1A7233730830090E630 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144DE197233730830090E630 /* BaseView.swift */; };
 		144DE1A9233730AD0090E630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 144DE1A8233730AD0090E630 /* Main.storyboard */; };
 		6F49FE824C18374B54EFE120 /* Pods_Plock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E368AC1B6B5EE58CFFE12B6 /* Pods_Plock.framework */; };
+		A11A29F7234F63AB004C3F16 /* _FullScreenModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11A29F6234F63AB004C3F16 /* _FullScreenModalNavigationController.swift */; };
 		A149C54823408B1E00AB5AA4 /* MemoryPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54723408B1E00AB5AA4 /* MemoryPlace.swift */; };
 		A149C54A23408C9100AB5AA4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54923408C9100AB5AA4 /* HomeViewController.swift */; };
 		A149C54D23408EF000AB5AA4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149C54C23408EF000AB5AA4 /* HomeView.swift */; };
@@ -130,6 +131,7 @@
 		144DE1A8233730AD0090E630 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4E368AC1B6B5EE58CFFE12B6 /* Pods_Plock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E2988B1D629BB2A48574CB1 /* Pods-Plock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plock.debug.xcconfig"; path = "Target Support Files/Pods-Plock/Pods-Plock.debug.xcconfig"; sourceTree = "<group>"; };
+		A11A29F6234F63AB004C3F16 /* _FullScreenModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _FullScreenModalNavigationController.swift; sourceTree = "<group>"; };
 		A149C54723408B1E00AB5AA4 /* MemoryPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlace.swift; sourceTree = "<group>"; };
 		A149C54923408C9100AB5AA4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A149C54C23408EF000AB5AA4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				144DE195233730830090E630 /* BaseViewController.swift */,
 				144DE196233730830090E630 /* ViewModelType.swift */,
 				144DE197233730830090E630 /* BaseView.swift */,
+				A11A29F6234F63AB004C3F16 /* _FullScreenModalNavigationController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				144DE16E23372F6B0090E630 /* MainRouter.swift in Sources */,
 				144DE1A1233730830090E630 /* SettableUINavigationBar.swift in Sources */,
 				144DE16423372F6B0090E630 /* ReadBuilder.swift in Sources */,
+				A11A29F7234F63AB004C3F16 /* _FullScreenModalNavigationController.swift in Sources */,
 				144DE1A6233730830090E630 /* ViewModelType.swift in Sources */,
 				144DE19A233730830090E630 /* UINavigationController+.swift in Sources */,
 				144DE10823372D130090E630 /* Plock.xcdatamodeld in Sources */,
