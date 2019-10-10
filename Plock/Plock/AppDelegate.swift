@@ -8,12 +8,10 @@
 
 import UIKit
 import CoreData
-import RIBs
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    private var launchRouter: LaunchRouting?
     private var homeViewController: HomeViewController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -23,9 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.setupEntryController()
         self.reloadRootViewController()
-//        let launchRouter = RootBuilder(dependency: AppComponent()).build()
-//        self.launchRouter = launchRouter
-//        self.launchRouter?.launchFromWindow(self.window!)
 
         return true
     }

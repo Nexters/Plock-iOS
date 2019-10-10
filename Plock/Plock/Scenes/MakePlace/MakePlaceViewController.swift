@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RIBs
 import CoreData
 import MapKit
 import CoreLocation
@@ -37,7 +36,6 @@ extension UIImage {
     }
 }
 
-extension MakePlaceViewController: ViewControllable { }
 
 class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, CLLocationManagerDelegate {
     

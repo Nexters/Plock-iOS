@@ -9,11 +9,9 @@
 import UIKit
 
 import MapKit
-import RIBs
 import RxSwift
 import RxCocoa
 
-extension SetPlaceViewController: ViewControllable { }
 final class SetPlaceViewController: BaseViewController, SettableUINavigationBar {
     
     // MARK: Properties

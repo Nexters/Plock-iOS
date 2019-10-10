@@ -40,7 +40,7 @@ extension ReadViewModel {
         }.unwrap()
         
         let sectionOfMemories = convertMemories
-            .debounce(1, scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .map { [weak self] (memories, currentLocation) in
                 memories.map { self?.convertMemoryPlace(currentLocation: currentLocation, memory: $0) } }
             .map { (memories)  -> [SectionOfMemory] in
