@@ -61,6 +61,17 @@ final class ReadViewController2: BaseViewController, SettableUINavigationBar {
 
 // MARK: ReadViewController2 Operator
 extension ReadViewController2 {
+    private func goWrite() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "MakePlaceViewController")
+        self.navigationController?.pushViewController(makePlaceViewController, animated: true)
+    }
+    
+    func goDetail(memories: [MemoryPlace]) {
+        let detailVC = DetailMemoryViewController.create(memory: memories)
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
     private func addAnnotations(annotations: [MKAnnotation]) {
         self.mapContainerView.mapView.removeAnnotations(self.mapContainerView.mapView.annotations)
         self.mapContainerView.mapView.addAnnotations(annotations)
@@ -113,8 +124,8 @@ extension ReadViewController2 {
             self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
         }).disposed(by: self.disposeBag)
         
-        writeMemory.drive(onNext: {
-//            self.listener?.goWrite()
+        writeMemory.drive(onNext: { [weak self] in
+            self?.goWrite()
         }).disposed(by: self.disposeBag)
         
         self.mapContainerView.mapView.rx.handleViewForAnnotation { mapView, annotation in
@@ -155,7 +166,7 @@ extension ReadViewController2 {
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
                 if !$0.isLock {
-//                    self.listener?.goDetail(memories: [$0])
+                    self.goDetail(memories: [$0])
                 }
             }).disposed(by: self.disposeBag)
         
