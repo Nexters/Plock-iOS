@@ -108,7 +108,9 @@ extension ReadViewController2 {
         let didTapAnnotation = self.mapContainerView.didTapAnnotationView
         
         //퇴근코딩
-        updateLocation.asObservable().take(10).subscribe(onNext: { [weak self] location in
+        updateLocation
+            .debug("updateLocation")
+            .asObservable().take(10).subscribe(onNext: { [weak self] location in
             let coordinateRegion = MKCoordinateRegion(center: location,
                                                       latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
                                                       longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
