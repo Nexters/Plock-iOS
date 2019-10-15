@@ -43,7 +43,7 @@ extension HomeViewController {
     }
     
     private func goRead() {
-        self.navigationController?.pushViewController(ReadViewController2(), animated: true)
+        self.navigationController?.pushViewController(ReadViewController(), animated: true)
     }
 }
 

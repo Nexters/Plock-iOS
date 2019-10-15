@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class ReadViewController2: BaseViewController, SettableUINavigationBar {
+final class ReadViewController: BaseViewController, SettableUINavigationBar {
     private let disposeBag = DisposeBag()
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     private let regionRadius: CLLocationDistance = 10
@@ -60,7 +60,7 @@ final class ReadViewController2: BaseViewController, SettableUINavigationBar {
 }
 
 // MARK: ReadViewController2 Operator
-extension ReadViewController2 {
+extension ReadViewController {
     private func goWrite() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let makePlaceViewController = storyboard.instantiateViewController(withIdentifier: "MakePlaceViewController")
@@ -105,21 +105,22 @@ extension ReadViewController2 {
         let updateLocation = self.mapContainerView.updateLocation
         let foucusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
         let writeMemory = self.mapContainerView.writeMemory
-        let didTapAnnotation = self.mapContainerView.didTapAnnotationView
-        
+
         //퇴근코딩
         updateLocation
             .debug("updateLocation")
-            .asObservable().take(10).subscribe(onNext: { [weak self] location in
-            let coordinateRegion = MKCoordinateRegion(center: location,
-                                                      latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
-                                                      longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
-            self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
-        }).disposed(by: self.disposeBag)
-        
-        updateLocation.drive(self.currentLocation)
+            .drive(onNext: { [weak self] location in
+                
+                let coordinateRegion = MKCoordinateRegion(center: location[0].coordinate,
+                                                          latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
+                                                          longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
+                self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
+            }).disposed(by: self.disposeBag)
+
+        updateLocation.map{ $0[0].coordinate }
+            .drive(self.currentLocation)
             .disposed(by: self.disposeBag)
-        
+
         foucusCamera.drive(onNext: { [weak self] location in
             let coordinateRegion = MKCoordinateRegion(center: location,
                                                       latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
@@ -184,7 +185,7 @@ extension ReadViewController2 {
 }
 
 // MARK: CollectionView
-extension ReadViewController2 {
+extension ReadViewController {
     private func setupCollectionView() {
         self.dataSource = RxCollectionViewSectionedAnimatedDataSource(configureCell: self.collectionViewDataSourceUI())
         self.gridView.collectionView.contentInset = UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
@@ -217,7 +218,7 @@ extension ReadViewController2 {
 }
 
 // MARK: CollectionView FlowLayout
-extension ReadViewController2: UICollectionViewDelegateFlowLayout {
+extension ReadViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.frame.width / 2 - 24
         return CGSize(width: size, height: 220)
@@ -226,7 +227,7 @@ extension ReadViewController2: UICollectionViewDelegateFlowLayout {
 
 
 // MARK: ViewController Life Cycle
-extension ReadViewController2 {
+extension ReadViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }

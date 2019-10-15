@@ -25,7 +25,7 @@ extension Reactive where Base: MKMapView {
     var didUpdate: Observable<CLLocationCoordinate2D> {
         return delegate.methodInvoked(#selector(MKMapViewDelegate.mapView(_:didUpdate:))).map({ (parameters) in
             return (parameters[1] as? MKUserLocation)?.coordinate ?? CLLocationCoordinate2D.init(latitude: 0, longitude: 0)
-        })
+        }).debug("delegateDidUpdate")
     }
     
     var didChangeVisibleRegion: Observable<CLLocationCoordinate2D> {

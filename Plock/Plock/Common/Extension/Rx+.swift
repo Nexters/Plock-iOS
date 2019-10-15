@@ -10,7 +10,7 @@ import RxCocoa
 import RxSwift
 
 extension ObservableType {
-    func asDriverOnErrorJustComplete() -> Driver<E> {
+    func asDriverOnErrorJustComplete() -> Driver<Element> {
         return asDriver { error in
             return Driver.empty()
         }
@@ -20,8 +20,12 @@ extension ObservableType {
         return map { _ in }
     }
     
-    func unwrap<T>() -> Observable<T> where E == T? {
+    func unwrap<T>() -> Observable<T> where Element == T? {
         return self.filter { $0 != nil }.map {$0!}
+    }
+    
+    func mapTo<R>(_ value: R) -> Observable<R> {
+        return map { _ in value }
     }
 }
 
@@ -30,7 +34,7 @@ extension SharedSequenceConvertibleType {
         return map { _ in }
     }
     
-    func unwrap<T>() -> SharedSequence<SharingStrategy,T> where E == T? {
+    func unwrap<T>() -> SharedSequence<SharingStrategy,T> where Element == T? {
         return self.filter { $0 != nil }.map { $0! }
     }
 }

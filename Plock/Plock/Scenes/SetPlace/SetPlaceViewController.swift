@@ -88,11 +88,12 @@ final class SetPlaceViewController: BaseViewController, SettableUINavigationBar 
                                                            animated: true)
         }).disposed(by: self.disposeBag)
         
-        updateLocation.drive(self.currentLocation)
+        updateLocation.map{ $0[0].coordinate }
+            .drive(self.currentLocation)
             .disposed(by: self.disposeBag)
-        
+
         updateLocation.asObservable().take(10).subscribe(onNext: { [weak self] location in
-            let coordinateRegion = MKCoordinateRegion(center: location,
+            let coordinateRegion = MKCoordinateRegion(center: location[0].coordinate,
                                                       latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
                                                       longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
             self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)

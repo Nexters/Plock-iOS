@@ -33,17 +33,14 @@ final class MapContainerView: BaseView {
             .asDriverOnErrorJustComplete()
     }()
     
-    lazy var didTapAnnotationView: Driver<MKAnnotation> = {
-        return self.mapView.rx.didTapAnnotationView.asDriverOnErrorJustComplete()
-    }()
+    lazy var didTapAnnotationView: Driver<MKAnnotation> = self.mapView.rx.didTapAnnotationView.asDriverOnErrorJustComplete()
+    
     
     lazy var regionDidChangeAnimated: Driver<Bool> = {
         return self.mapView.rx.regionDidChangeAnimated.asDriverOnErrorJustComplete()
     }()
     
-    lazy var updateLocation: Driver<CLLocationCoordinate2D> = {
-        return self.mapView.rx.didUpdate.asDriverOnErrorJustComplete()
-    }()
+    lazy var updateLocation: Driver<[CLLocation]> = self.locationManager.rx.didUpdateLocations.asDriverOnErrorJustComplete()
     
     lazy var didChangeVisibleRegion: Driver<CLLocationCoordinate2D> = {
         return self.mapView.rx.didChangeVisibleRegion.asDriverOnErrorJustComplete()
@@ -129,6 +126,8 @@ final class MapContainerView: BaseView {
         return btn
     }()
     
+    private let disposeBag = DisposeBag()
+    
     required init(controlBy viewController: BaseViewController) {
         super.init(controlBy: viewController)
         self.locationManagerInit()
@@ -136,6 +135,10 @@ final class MapContainerView: BaseView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        self.locationManager.stopUpdatingLocation()
     }
     
     override func setupUI() {
@@ -152,7 +155,7 @@ final class MapContainerView: BaseView {
         
         self.layout()
         
-        if self.vc is ReadViewController2 {
+        if self.vc is ReadViewController {
             self.searchContainerView.isHidden = true
             self.searchContainerView.snp.updateConstraints {
                 $0.height.equalTo(0)
