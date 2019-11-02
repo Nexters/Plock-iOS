@@ -16,7 +16,7 @@ import RxDataSources
 final class ReadViewController: BaseViewController, SettableUINavigationBar {
     private let disposeBag = DisposeBag()
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
-    private let regionRadius: CLLocationDistance = 10
+    private let regionRadius: CLLocationDistance = 300
     private var gridView = PlaceGridView()
     private var dataSource: RxCollectionViewSectionedAnimatedDataSource<SectionOfMemory>?
     private let viewModel = ReadViewModel()
@@ -103,29 +103,32 @@ extension ReadViewController {
     
     private func setBindMap() {
         let updateLocation = self.mapContainerView.updateLocation
-        let foucusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
+        let focusCamera = self.mapContainerView.focusCamera.withLatestFrom(self.currentLocation.asDriverOnErrorJustComplete())
+        let availableFocusCamera = self.mapContainerView.availableFoucs
         let writeMemory = self.mapContainerView.writeMemory
 
-        //퇴근코딩
         updateLocation
-            .debug("updateLocation")
-            .drive(onNext: { [weak self] location in
-                
+            .asObservable().withLatestFrom(availableFocusCamera){ ( $0,$1 ) }
+            .filter{$0.1}
+            .map{ $0.0 }
+            .subscribe(onNext: { [weak self] location in
+                guard let self = self else { return }
                 let coordinateRegion = MKCoordinateRegion(center: location[0].coordinate,
-                                                          latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
-                                                          longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
-                self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
+                                                          latitudinalMeters: self.regionRadius * 2.0,
+                                                          longitudinalMeters: self.regionRadius * 2.0)
+                self.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
             }).disposed(by: self.disposeBag)
 
         updateLocation.map{ $0[0].coordinate }
             .drive(self.currentLocation)
             .disposed(by: self.disposeBag)
 
-        foucusCamera.drive(onNext: { [weak self] location in
+        focusCamera.drive(onNext: { [weak self] location in
+            guard let self = self else { return }
             let coordinateRegion = MKCoordinateRegion(center: location,
-                                                      latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
-                                                      longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
-            self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
+                                                      latitudinalMeters: self.regionRadius * 2.0,
+                                                      longitudinalMeters: self.regionRadius * 2.0)
+            self.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
         }).disposed(by: self.disposeBag)
         
         writeMemory.drive(onNext: { [weak self] in

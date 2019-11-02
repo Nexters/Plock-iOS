@@ -37,6 +37,10 @@ extension SharedSequenceConvertibleType {
     func unwrap<T>() -> SharedSequence<SharingStrategy,T> where Element == T? {
         return self.filter { $0 != nil }.map { $0! }
     }
+    
+    func mapTo<R>(_ value: R) -> SharedSequence<SharingStrategy, R> {
+        return map { _ in value }
+    }
 }
 
 extension Reactive where Base: UIViewController {

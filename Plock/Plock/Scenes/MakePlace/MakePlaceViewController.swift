@@ -145,6 +145,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
             } else {
                 self.infoContainerView.isHidden = true
             }
+            self.flipButton.isHidden = true
         }, completion: { (_) in
             if self.isInfoView {
                 self.infoContainerView.isHidden = false
@@ -153,6 +154,7 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
                 self.contentTextView.isHidden = false
                 self.contentTextView.becomeFirstResponder()
             }
+            self.flipButton.isHidden = false
         })
     }
     
@@ -207,13 +209,13 @@ class MakePlaceViewController: BaseViewController, UIImagePickerControllerDelega
     
     @objc
     func placeSelectDidTap() {
-        let viewController = SetPlaceViewController { memory in
+        let viewController = SetPlaceViewController (confirmCompletion: { memory in
             self.memory.address = memory.address
             self.memory.latitude = memory.latitude
             self.memory.longitude = memory.longitude
             self.locationManager.delegate = nil
             self.updateViews()
-        }
+        }, thumbnail: self.mainImageView.image)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

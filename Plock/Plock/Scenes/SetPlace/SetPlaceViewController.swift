@@ -15,16 +15,20 @@ import RxCocoa
 final class SetPlaceViewController: BaseViewController, SettableUINavigationBar {
     
     // MARK: Properties
+    var thumbnailImage: UIImage?
+    
     private lazy var mapContainerView = MapContainerView(controlBy: self)
     private let currentLocation: BehaviorSubject<CLLocationCoordinate2D> = BehaviorSubject(value: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     private let searchResult = PublishSubject<SearchPlaceItemViewModel>()
-    private let regionRadius: CLLocationDistance = 10
+    private let regionRadius: CLLocationDistance = 300
     private let viewModel = SetPlaceViewModel()
     private let disposeBag = DisposeBag()
     private let confirmCompletion: (MemoryPlace) -> Void
     
-    init(confirmCompletion: @escaping (MemoryPlace) -> Void) {
+    init(confirmCompletion: @escaping (MemoryPlace) -> Void,
+         thumbnail: UIImage? = nil) {
         self.confirmCompletion = confirmCompletion
+        self.thumbnailImage = thumbnail
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -55,8 +59,12 @@ final class SetPlaceViewController: BaseViewController, SettableUINavigationBar 
         self.view.addSubview(frameImage)
         
         let contentImage = UIImageView()
-        contentImage.image = UIImage(named: "empty")
         self.view.addSubview(contentImage)
+        if let image = self.thumbnailImage {
+            contentImage.image = image
+        } else {
+            contentImage.image = UIImage(named: "empty")
+        }
         
         frameImage.snp.makeConstraints {
             $0.width.equalTo(64)
@@ -81,6 +89,7 @@ final class SetPlaceViewController: BaseViewController, SettableUINavigationBar 
         let confirm = self.mapContainerView.confirmChangeLocation
         let chagnedAnimated = self.mapContainerView.regionDidChangeAnimated
         let setLocation = PublishSubject<SearchPlaceItemViewModel>()
+        let availableFocusCamera = self.mapContainerView.availableFoucs
         
         searchLocation.drive(onNext: { [weak self] _ in
             self?.navigationController?.pushViewController(SearchPlaceViewController(location: (self?.currentLocation)!,
@@ -91,13 +100,17 @@ final class SetPlaceViewController: BaseViewController, SettableUINavigationBar 
         updateLocation.map{ $0[0].coordinate }
             .drive(self.currentLocation)
             .disposed(by: self.disposeBag)
-
-        updateLocation.asObservable().take(10).subscribe(onNext: { [weak self] location in
-            let coordinateRegion = MKCoordinateRegion(center: location[0].coordinate,
-                                                      latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
-                                                      longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
-            self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
-        }).disposed(by: self.disposeBag)
+        
+        updateLocation.asObservable()
+            .asObservable().withLatestFrom(availableFocusCamera){ ( $0,$1 ) }
+            .filter{$0.1}
+            .map{ $0.0 }
+            .subscribe(onNext: { [weak self] location in
+                let coordinateRegion = MKCoordinateRegion(center: location[0].coordinate,
+                                                          latitudinalMeters: (self?.regionRadius ?? 100) * 2.0,
+                                                          longitudinalMeters: (self?.regionRadius ?? 100) * 2.0)
+                self?.mapContainerView.mapView.setRegion(coordinateRegion, animated: true)
+            }).disposed(by: self.disposeBag)
         
         foucusCamera.drive(onNext: { [weak self] location in
             self?.setFocus(location: location)

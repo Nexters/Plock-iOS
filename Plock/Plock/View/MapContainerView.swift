@@ -33,20 +33,22 @@ final class MapContainerView: BaseView {
             .asDriverOnErrorJustComplete()
     }()
     
-    lazy var didTapAnnotationView: Driver<MKAnnotation> = self.mapView.rx.didTapAnnotationView.asDriverOnErrorJustComplete()
-    
-    
     lazy var regionDidChangeAnimated: Driver<Bool> = {
         return self.mapView.rx.regionDidChangeAnimated.asDriverOnErrorJustComplete()
     }()
-    
-    lazy var updateLocation: Driver<[CLLocation]> = self.locationManager.rx.didUpdateLocations.asDriverOnErrorJustComplete()
     
     lazy var didChangeVisibleRegion: Driver<CLLocationCoordinate2D> = {
         return self.mapView.rx.didChangeVisibleRegion.asDriverOnErrorJustComplete()
     }()
     
+    lazy var touchedMap: PublishSubject<Void> = PublishSubject<Void>()
+    lazy var didTapAnnotationView: Driver<MKAnnotation> = self.mapView.rx.didTapAnnotationView.asDriverOnErrorJustComplete()
+    lazy var updateLocation: Driver<[CLLocation]> = self.locationManager.rx.didUpdateLocations.asDriverOnErrorJustComplete()
     lazy var confirmChangeLocation: Driver<Void> = self.searchConfirmButton.rx.tap.asDriverOnErrorJustComplete()
+    lazy var availableFoucs = BehaviorSubject<Bool>(value: true)
+    
+    private var tapGestureRecognizer: UITapGestureRecognizer!
+    private var panGestureRecognizer: UIPanGestureRecognizer!
     
     // MARK: UI Component
     lazy var mapView: MKMapView = {
@@ -131,6 +133,7 @@ final class MapContainerView: BaseView {
     required init(controlBy viewController: BaseViewController) {
         super.init(controlBy: viewController)
         self.locationManagerInit()
+        self.addGesture()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -138,6 +141,8 @@ final class MapContainerView: BaseView {
     }
     
     deinit {
+        self.mapView.removeGestureRecognizer(self.panGestureRecognizer)
+        self.mapView.removeGestureRecognizer(self.tapGestureRecognizer)
         self.locationManager.stopUpdatingLocation()
     }
     
@@ -165,6 +170,18 @@ final class MapContainerView: BaseView {
         }
     }
     
+    override func setupBind() {
+        self.focusCamera
+            .mapTo(true)
+            .drive(self.availableFoucs)
+            .disposed(by: self.disposeBag)
+        
+        self.touchedMap
+            .mapTo(false)
+            .bind(to: self.availableFoucs)
+            .disposed(by: self.disposeBag)
+    }
+    
     private func locationManagerInit() {
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
@@ -173,6 +190,19 @@ final class MapContainerView: BaseView {
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.startUpdatingLocation()
         }
+    }
+    
+    private func addGesture(){
+        self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(triggerTouchAction))
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(triggerTouchAction))
+        self.panGestureRecognizer.delegate = self
+        self.mapView.addGestureRecognizer(self.panGestureRecognizer)
+        self.mapView.addGestureRecognizer(self.tapGestureRecognizer)
+    }
+    
+    @objc
+    private func triggerTouchAction(){
+        self.touchedMap.onNext(())
     }
 }
 
@@ -227,5 +257,11 @@ extension MapContainerView {
             $0.height.equalTo(42)
             $0.top.equalTo(self.searchButton.snp.bottom).offset(20)
         }
+    }
+}
+
+extension MapContainerView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
